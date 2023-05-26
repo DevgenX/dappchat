@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ChatDapp from "@/public/chatdapp.jpg";
 import Features from "@/components/Features";
-import Head from "next/head";
+import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 
 type Metadata = {
   title: string;
@@ -20,25 +20,29 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <div className="h-screen screen flex flex-col md:flex-row justify-center items-center md:space-x-12">
+      <div className="home h-screen screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12]">
         <div className="flex flex-col gap-4 mb-10">
-          <Heading className="three-d text-black dark:text-white">
+          <Heading className="three-d text-white dark:text-white">
             Multi-chain <br /> decentralized <br /> messaging
           </Heading>
           <Paragraph className="max-w-md md:text-left ">
             Message anyone from the blockchain anonymously.{" "}
-            <span className="font-bold">ChatDapp</span> is a decentralized
-            protocol that allows wallet-to-wallet messaging powered by
-            multi-chain interoperability.{" "}
+            <span className="font-bold text-light-gold">ChatDapp</span> is a
+            decentralized protocol that allows wallet-to-wallet messaging
+            powered by multi-chain interoperability.{" "}
             <Link
               href="/"
-              className="underline underline-offset-2 text-black dark:text-light-gold"
+              className="underline underline-offset-2 text-slate-100"
             >
-              Explore
+              Explore{" "}
+              <BsFillArrowUpRightCircleFill
+                size={30}
+                className="hover:-translate-y-1 transition-transform cursor-pointer inline-block"
+              />
             </Link>
           </Paragraph>
         </div>
-        <div className="flex flex-col max-w-1xl md:max-w-5xl mx-10">
+        <div className="flex flex-row max-w-1xl md:max-w-5xl mx-10">
           <Image
             className="img-shadow rounded-xl"
             width={800}
@@ -48,7 +52,7 @@ export default function Home() {
           />
         </div>
       </div>
-      <Heading className="flex justify-center mb-3">Features</Heading>
+      <Heading className="flex justify-center my-5">Features</Heading>
       <div className="flex flex-col md:flex-row justify-center items-center">
         <Features />
       </div>

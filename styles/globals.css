@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.home {
+  background: url(../public//assets/background.png);
+  background-position: center;
+  background-size: cover;
+}
+
 .dark .three-d {
   text-shadow: 0px 5px 0px #533519;
 }

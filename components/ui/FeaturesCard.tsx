@@ -1,0 +1,25 @@
+import { ReactElement } from "react";
+import { FeaturesProps } from "@/types/types";
+import Image from "next/image";
+
+interface FeatureCardProps {
+  feature: FeaturesProps;
+}
+
+const FeatureCardComponent: React.FC<FeatureCardProps> = ({
+  feature,
+}): ReactElement => {
+  const { title, desc, icon: Icon } = feature;
+
+  return (
+    <div className="flex flex-col mx-5 my-5 max-w-sm bg-white rounded-lg shadow-md p-6 dark:text-white dark:bg-black">
+      <div className="flex items-center mb-4">
+        <Icon className="text-primary mr-3 text-3xl" />
+        <h3 className="text-lg font-bold">{title}</h3>
+      </div>
+      <p className="text-gray-600 dark:text-white">{desc}</p>
+    </div>
+  );
+};
+
+export default FeatureCardComponent;

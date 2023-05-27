@@ -62,7 +62,7 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-              <button className="rounded-xl bg-black text-white font-bold border p-3 dark:bg-blue-600 border-none block">
+              <button className="rounded-xl bg-black text-white border p-3 dark:bg-blue-600 border-none block">
                 CONNECT WALLET
               </button>
               {currentTheme === "dark" ? (

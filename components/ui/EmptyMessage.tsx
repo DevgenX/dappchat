@@ -10,19 +10,20 @@ const EmptyMessage = () => {
         <Heading size="sm">Welcome to ChatDapp!</Heading>
       </div>
       <Image src={ChatDapp} alt="image" height={200} width={200} />
-      <div className="rounded-md flex flex-col">
-        <div className="border rounded-lg border-slate-600 py-5 text-center bg-white mt-3">
-          <Paragraph className="text-slate-500 ">
-            ChatDapp is a multi-chain decentralized messaging platform for users
-            to simply and instantly message each other, wallet-to-wallet.
+      <div className="rounded-md flex flex-col ">
+        <div className="border rounded-lg border-slate-600 py-5 bg-white mt-3">
+          <Paragraph className="text-slate-500">
+            <span className="text-light-gold">ChatDapp</span> is a multi-chain
+            decentralized messaging platform for users to simply and instantly
+            message each other, wallet-to-wallet.
           </Paragraph>
         </div>
-        <div className="border rounded-lg border-slate-600 py-5 text-center bg-white mt-3">
+        <div className="border rounded-lg border-slate-600 py-5 bg-white mt-3">
           <Paragraph className="text-slate-500">
             Never share your private keys to anyone!
           </Paragraph>
         </div>
-        <div className="border rounded-lg border-slate-600 py-5 text-center bg-white mt-3">
+        <div className="border rounded-lg border-slate-600 py-5 bg-white mt-3">
           <Paragraph className="text-slate-500">Happy Chatting!</Paragraph>
         </div>
       </div>

@@ -9,9 +9,9 @@ const Chats: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<string>("");
 
   return (
-    <div className="flex flex-row h-screen">
+    <div className="flex flex-row min-h-screen">
       <div className="container mx-auto">
-        <div className="flex flex-col h-3/4 mx-auto md:max-w-5xl md:flex-row">
+        <div className="mx-5 min-h-3/4 md:mx-auto md:max-w-5xl md:flex md:flex-row">
           <FriendList
             selectedUser={selectedUser}
             setSelectedUser={setSelectedUser}

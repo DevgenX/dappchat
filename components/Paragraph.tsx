@@ -2,20 +2,17 @@ import { FC, HTMLAttributes, forwardRef } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const paragraphVariants = cva(
-  "max-w-prose text-slate-200 dark:text-slate-100 mb-2 text-center",
-  {
-    variants: {
-      size: {
-        default: "text-base sm:text-lg",
-        sm: "text-sm, sm:text-base",
-      },
+const paragraphVariants = cva("max-w-prose text-white mb-2 text-center", {
+  variants: {
+    size: {
+      default: "text-base sm:text-lg",
+      sm: "text-sm, sm:text-base",
     },
-    defaultVariants: {
-      size: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    size: "default",
+  },
+});
 
 interface ParagraphProps
   extends HTMLAttributes<HTMLParagraphElement>,

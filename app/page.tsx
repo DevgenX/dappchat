@@ -25,7 +25,7 @@ export default function Home() {
           <Heading className="text-white dark:text-white">
             Multi-chain <br /> decentralized <br /> messaging
           </Heading>
-          <Paragraph className="max-w-md md:text-left ">
+          <Paragraph className="max-w-md md:text-left">
             Message anyone from the blockchain anonymously.{" "}
             <span className="font-bold text-light-gold">ChatDapp</span> is a
             decentralized protocol that allows wallet-to-wallet messaging

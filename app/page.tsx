@@ -22,7 +22,7 @@ export default function Home() {
     <>
       <div className="home h-screen screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12]">
         <div className="flex flex-col gap-4 mb-10">
-          <Heading className="three-d text-white dark:text-white">
+          <Heading className="text-white dark:text-white">
             Multi-chain <br /> decentralized <br /> messaging
           </Heading>
           <Paragraph className="max-w-md md:text-left ">
@@ -36,8 +36,8 @@ export default function Home() {
             >
               Explore{" "}
               <BsFillArrowUpRightCircleFill
-                size={30}
-                className="hover:-translate-y-1 transition-transform cursor-pointer inline-block"
+                size={25}
+                className="hover:-translate-y-1 transition-transform cursor-pointer inline-block  z-10"
               />
             </Link>
           </Paragraph>

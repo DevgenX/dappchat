@@ -6,6 +6,7 @@
   background: url(../public//assets/background.png);
   background-position: center;
   background-size: cover;
+  z-index: 1;
 }
 
 .dark .three-d {

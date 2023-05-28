@@ -13,6 +13,11 @@ export default function Navbar() {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const [navbar, setNavbar] = useState(false);
+
+  const handleConnectWallet = () => {
+    console.log("Connected");
+  };
+
   return (
     <header className="w-full mx-auto px-4 sm:px-20 fixed top-0 z-50 shadow bg-white dark:bg-slate-900 dark:border-b dark:border-slate-800">
       <div className="justify-between md:items-center md:flex">
@@ -62,7 +67,10 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-              <button className="rounded-xl bg-black text-white border p-3 dark:bg-blue-600 border-none block">
+              <button
+                onClick={handleConnectWallet}
+                className="rounded-xl bg-black text-white border p-3 dark:bg-blue-600 border-none block"
+              >
                 CONNECT WALLET
               </button>
               {currentTheme === "dark" ? (

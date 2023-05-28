@@ -1,12 +1,11 @@
-import { ReactElement } from "react";
+import { FC, ReactElement } from "react";
 import { FeaturesProps } from "@/types/types";
-import Image from "next/image";
 
 interface FeatureCardProps {
   feature: FeaturesProps;
 }
 
-const FeatureCardComponent: React.FC<FeatureCardProps> = ({
+const FeatureCardComponent: FC<FeatureCardProps> = ({
   feature,
 }): ReactElement => {
   const { title, desc, icon: Icon } = feature;

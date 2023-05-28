@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { CiMenuKebab } from "react-icons/ci";

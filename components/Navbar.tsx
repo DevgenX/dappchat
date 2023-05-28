@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Icons } from "@/components/Icons";
 import { useTheme } from "next-themes";
-import { BsMoonFill, BsFillSunFill } from "react-icons/bs";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { navLinks } from "@/helpers/NavLinks";
 import AnonymousIcon from "@/public/anonymous.png";
@@ -78,14 +78,14 @@ export default function Navbar() {
                   onClick={() => setTheme("light")}
                   className="bg-slate-100 p-2 rounded-xl"
                 >
-                  <BsFillSunFill size={25} color="black" />
+                  <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
                 </button>
               ) : (
                 <button
                   onClick={() => setTheme("dark")}
                   className="bg-slate-100 p-2 rounded-xl"
                 >
-                  <BsMoonFill size={25} />
+                  <Icons.Moon size={30} className="h-7 w-7" />
                 </button>
               )}
             </div>

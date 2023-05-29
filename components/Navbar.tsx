@@ -8,15 +8,12 @@ import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { navLinks } from "@/helpers/NavLinks";
 import AnonymousIcon from "@/public/anonymous.png";
 import Image from "next/image";
+import { connectWallet } from "@/utils/Api";
 
 export default function Navbar() {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const [navbar, setNavbar] = useState(false);
-
-  const handleConnectWallet = () => {
-    console.log("Connected");
-  };
 
   return (
     <header className="w-full mx-auto px-4 sm:px-20 fixed top-0 z-50 shadow bg-white dark:bg-slate-900 dark:border-b dark:border-slate-800">
@@ -68,7 +65,7 @@ export default function Navbar() {
                 );
               })}
               <button
-                onClick={handleConnectWallet}
+                onClick={() => connectWallet()}
                 className="rounded-xl bg-black text-white border p-3 dark:bg-blue-600 border-none block"
               >
                 CONNECT WALLET

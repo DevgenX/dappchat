@@ -36,13 +36,14 @@ export const connectWallet = async () => {
         type: "error",
       });
     }
+    await window.ethereum.enable();
 
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
     });
 
     const getAccount = accounts[0];
-
+    console.log(getAccount);
     return getAccount;
   } catch (e) {
     console.log(e);
@@ -69,4 +70,21 @@ export const connectToSmartContract = async () => {
   }
 };
 
-connectToSmartContract();
+export const convertTime = (time: string | undefined) => {
+  const newTime = new Date(Number(time));
+
+  const convertedTime =
+    newTime.getHours() +
+    "/" +
+    newTime.getMinutes() +
+    "/" +
+    newTime.getSeconds() +
+    " Date:" +
+    newTime.getDate() +
+    "/" +
+    (newTime.getMonth() + 1) +
+    "/" +
+    newTime.getFullYear();
+
+  return convertedTime;
+};

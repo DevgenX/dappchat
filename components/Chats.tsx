@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import Message from "@/components//ui/Message";
 import FriendList from "@/components/ui/FriendList";
 import EmptyMessage from "./ui/EmptyMessage";
+import { useChatContext } from "@/context/ChatDapp.context";
 
 const Chats: FC = () => {
   const [selectedUser, setSelectedUser] = useState<string>("");

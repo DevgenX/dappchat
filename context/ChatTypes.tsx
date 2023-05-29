@@ -17,16 +17,6 @@ export type BlockedUsersType = {
   address: string;
 };
 
-export const initialState = {
-  isLoading: false,
-  account: "",
-  username: "",
-  friendList: [],
-  messages: [],
-  userList: [],
-  blockedUsers: [],
-};
-
 export interface InitialStateInterface {
   isLoading: boolean;
   account: string;
@@ -35,4 +25,38 @@ export interface InitialStateInterface {
   messages: MessagesType[];
   userList: UserListsType[];
   blockedUsers: BlockedUsersType[];
+  connectWallet: () => Promise<string> | "";
+  createAccount: ({ name }: { name: string }) => Promise<void> | "";
+  getUserMessages: (address: string) => Promise<void> | [];
+  handleSendMessage: ({
+    content,
+    address,
+  }: {
+    content: string;
+    address: string;
+  }) => Promise<void> | "";
+  handleAddFriend: ({
+    address,
+    name,
+  }: {
+    address: string;
+    name: string;
+  }) => Promise<void> | "";
+  handleBlockUser: (address: string) => Promise<void> | "";
 }
+
+export const initialState: InitialStateInterface = {
+  isLoading: false,
+  account: "",
+  username: "",
+  friendList: [],
+  messages: [],
+  userList: [],
+  blockedUsers: [],
+  connectWallet: () => "",
+  createAccount: () => "",
+  getUserMessages: () => [],
+  handleSendMessage: () => "",
+  handleAddFriend: () => "",
+  handleBlockUser: () => "",
+};

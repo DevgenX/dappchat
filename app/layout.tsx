@@ -11,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen dark:bg-slate-900 antialiased">
+      <body className="min-h-screen bg-gray-100 dark:bg-slate-900 antialiased">
         <Providers>
           <Navbar />
           <Toaster position="bottom-right" />

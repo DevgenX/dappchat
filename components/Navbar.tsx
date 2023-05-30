@@ -8,15 +8,16 @@ import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { navLinks } from "@/helpers/NavLinks";
 import AnonymousIcon from "@/public/anonymous.png";
 import Image from "next/image";
-import { connectWallet } from "@/utils/Api";
+import { useChatContext } from "@/context/ChatDapp.context";
 
 export default function Navbar() {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const [navbar, setNavbar] = useState(false);
+  const { connectWallet } = useChatContext();
 
   return (
-    <header className="w-full mx-auto px-4 sm:px-20 fixed top-0 z-50 shadow bg-white dark:bg-slate-900 dark:border-b dark:border-slate-800">
+    <header className="w-[80%] mx-auto px-4 sm:px-20">
       <div className="justify-between md:items-center md:flex">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -49,14 +50,14 @@ export default function Navbar() {
               navbar ? "block" : "hidden"
             }`}
           >
-            <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+            <div className="items-center justify-center font-bold space-y-8 md:flex md:space-x-6 md:space-y-0">
               {navLinks.map((item, index) => {
                 return (
                   <Link
                     key={index}
                     href={item.page}
                     className={
-                      "block lg:inline-block text-neutral-900 cursor-pointer hover:underline dark:text-neutral-100"
+                      "block lg:inline-block text-neutral-900 cursor-pointer hover:scale-105 dark:text-neutral-100"
                     }
                     onClick={() => setNavbar(!navbar)}
                   >
@@ -66,7 +67,7 @@ export default function Navbar() {
               })}
               <button
                 onClick={() => connectWallet()}
-                className="rounded-xl bg-black text-white border p-3 dark:bg-blue-600 border-none block"
+                className="rounded-xl bg-teal-600 text-white border p-3 dark:bg-blue-600 border-none block hover:scale-105"
               >
                 CONNECT WALLET
               </button>

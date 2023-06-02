@@ -17,34 +17,6 @@ export const CheckIsWalletConnected = async () => {
     const accounts = await window.ethereum.request({
       method: "eth_accounts",
     });
-
-    const getAccount = accounts[0];
-    return getAccount;
-  } catch (e) {
-    console.log(e);
-
-    throw new Error("No ethereum account found");
-  }
-};
-
-export const connectWallet = async () => {
-  try {
-    if (!window.ethereum) {
-      return toast({
-        title: "Wallet is not connected",
-        message: "Please connect your wallet",
-        type: "error",
-      });
-    }
-    await window.ethereum.enable();
-
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-
-    const getAccount = accounts[0];
-    console.log(getAccount);
-    return getAccount;
   } catch (e) {
     console.log(e);
 

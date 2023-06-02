@@ -14,7 +14,7 @@ const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const [navbar, setNavbar] = useState(false);
-  const { connectWallet } = useChatContext();
+  const { connectWallet, username, account } = useChatContext();
   return (
     <header className="w-[80%] mx-auto px-4 sm:px-20">
       <div className="justify-between md:items-center md:flex">
@@ -68,7 +68,7 @@ const Navbar = () => {
                 onClick={() => connectWallet()}
                 className="rounded-xl text-white border p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
               >
-                CONNECT WALLET
+                {account ? username : "CONNECT WALLET"}
               </button>
               {currentTheme === "dark" ? (
                 <button

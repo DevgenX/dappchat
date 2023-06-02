@@ -9,15 +9,9 @@ interface ModalProps {
 }
 
 const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
-  const [username, setUsername] = useState("");
-  const [walletAddress, setWalletAddress] = useState("");
+  const [name, setName] = useState<string>("");
 
-  const { account } = useChatContext();
-
-  const handleRegister = () => {
-    // Perform registration logic here
-    console.log("Registering user:", username, walletAddress);
-  };
+  const { username, account, createAccount } = useChatContext();
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-0">
@@ -33,8 +27,8 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
             type="text"
             id="username"
             className="w-full border-gray-300 dark:border-gray-600 outline-none py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={account ? username : name}
+            onChange={(e) => setName(e.target.value)}
           />
         </div>
         <div className="mb-6">
@@ -47,7 +41,6 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
             className="w-full border-gray-300 text-slate-500 dark:border-gray-600 outline-none py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
             readOnly
             value={account}
-            onChange={(e) => setWalletAddress(e.target.value)}
           />
         </div>
         <div className="flex justify-end">
@@ -59,7 +52,7 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
           </button>
           <button
             className="px-4 py-2 text-sm font-medium text-white bg-teal-600 dark:bg-blue-600 rounded-md hover:scale-105"
-            onClick={handleRegister}
+            onClick={() => createAccount({ name })}
           >
             Register
           </button>

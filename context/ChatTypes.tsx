@@ -25,7 +25,7 @@ export interface InitialStateInterface {
   messages: MessagesType[];
   userList: UserListsType[];
   blockedUsers: BlockedUsersType[];
-  connectWallet: () => Promise<string> | "";
+  connectWallet: () => Promise<void> | "";
   createAccount: ({ name }: { name: string }) => Promise<void> | "";
   getUserMessages: (address: string) => Promise<void> | [];
   handleSendMessage: ({

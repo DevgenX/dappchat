@@ -12,7 +12,7 @@ const Chats: FC = () => {
   return (
     <div className="flex flex-row min-h-screen">
       <div className="container mx-auto">
-        <div className="mx-5 min-h-3/4 md:mx-auto md:max-w-5xl md:flex md:flex-row">
+        <div className="mx-5 md:min-h-[70%] md:mx-auto md:max-w-5xl md:flex md:flex-row">
           <FriendList
             selectedUser={selectedUser}
             setSelectedUser={setSelectedUser}

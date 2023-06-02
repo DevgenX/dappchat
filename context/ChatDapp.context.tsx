@@ -1,13 +1,6 @@
 "use client";
 
-import React, {
-  FC,
-  useEffect,
-  useState,
-  createContext,
-  useContext,
-} from "react";
-import { ethers } from "ethers";
+import React, { useEffect, useState, createContext, useContext } from "react";
 import { toast } from "@/components/ui/Toast";
 
 import {
@@ -18,11 +11,7 @@ import {
   initialState,
   InitialStateInterface,
 } from "@/context/ChatTypes";
-import {
-  connectWallet,
-  CheckIsWalletConnected,
-  connectToSmartContract,
-} from "@/utils/Api";
+import { connectToSmartContract } from "@/utils/Api";
 
 export const ChatContext = createContext<InitialStateInterface>(initialState);
 
@@ -38,10 +27,6 @@ export const ChatProvider = ({ children }: any) => {
   const fetchUserData = async () => {
     try {
       const contract = await connectToSmartContract();
-      console.log(contract);
-
-      const setUser = await connectWallet();
-      setAccount(setUser);
 
       const getUsername = await contract.getUsername();
       setUsername(getUsername);
@@ -56,10 +41,57 @@ export const ChatProvider = ({ children }: any) => {
       setBlockedUsers(getBlockedUsers);
     } catch (err) {
       toast({
-        title: "Fetching user data",
-        message: "Error fetching user data",
+        title: "Error fetching user data",
+        message: "There seems to be a problem fetching user data",
         type: "error",
       });
+    }
+  };
+
+  const CheckIsWalletConnected = async (): Promise<void> => {
+    try {
+      if (!window.ethereum) {
+        toast({
+          title: "Wallet is not connected",
+          message: "Please connect your wallet",
+          type: "error",
+        });
+      }
+
+      const accounts = await window.ethereum.request({
+        method: "eth_accounts",
+      });
+
+      if (accounts.length) {
+        setAccount(accounts[0]);
+      }
+    } catch (e) {
+      console.log(e);
+
+      throw new Error("No ethereum account found");
+    }
+  };
+
+  const connectWallet = async (): Promise<void> => {
+    try {
+      if (!window.ethereum) {
+        toast({
+          title: "Wallet is not connected",
+          message: "Please connect your wallet",
+          type: "error",
+        });
+      }
+      await window.ethereum.enable();
+
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      setAccount(accounts[0]);
+    } catch (e) {
+      console.log(e);
+
+      throw new Error("No ethereum account found");
     }
   };
 
@@ -164,6 +196,7 @@ export const ChatProvider = ({ children }: any) => {
   };
 
   useEffect(() => {
+    CheckIsWalletConnected();
     fetchUserData();
   }, []);
 

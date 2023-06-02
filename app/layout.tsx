@@ -14,7 +14,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-gray-100 dark:bg-slate-900 antialiased">
         <Providers>
           <Navbar />
-          <Toaster position="bottom-right" />
+          <Toaster position="top-right" />
           {children}
           <Footer />
         </Providers>

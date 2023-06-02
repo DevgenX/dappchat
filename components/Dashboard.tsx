@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Heading from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";
 import Link from "next/link";
@@ -5,8 +8,11 @@ import Image from "next/image";
 import ChatDapp from "@/public/chatdapp.jpg";
 import Features from "@/components/Features";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
+import AccountModal from "@/components/AccountModal";
 
 const Dashboard = () => {
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
   return (
     <>
       <div className="home min-h-screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12]">
@@ -27,10 +33,14 @@ const Dashboard = () => {
               />
             </Link>
           </Paragraph>
-          <button className="rounded-xl w-1/2 md:self-start self-center text-white font-bold p-3 bg-teal-600 dark:bg-blue-600 hover:scale-105">
+          <button
+            onClick={() => setOpenModal((prev) => !prev)}
+            className="rounded-xl w-1/2 md:self-start self-center text-white font-bold p-3 bg-teal-600 dark:bg-blue-600 hover:scale-105"
+          >
             CREATE ACCOUNT
           </button>
         </div>
+        {openModal ? <AccountModal setOpenModal={setOpenModal} /> : ""}
         <div className="flex flex-row max-w-1xl md:max-w-5xl mx-10">
           <Image
             className="img-shadow rounded-xl"

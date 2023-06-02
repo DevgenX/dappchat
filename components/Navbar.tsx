@@ -10,12 +10,11 @@ import AnonymousIcon from "@/public/anonymous.png";
 import Image from "next/image";
 import { useChatContext } from "@/context/ChatDapp.context";
 
-export default function Navbar() {
+const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const [navbar, setNavbar] = useState(false);
   const { connectWallet } = useChatContext();
-
   return (
     <header className="w-[80%] mx-auto px-4 sm:px-20">
       <div className="justify-between md:items-center md:flex">
@@ -67,7 +66,7 @@ export default function Navbar() {
               })}
               <button
                 onClick={() => connectWallet()}
-                className="rounded-xl bg-teal-600 text-white border p-3 dark:bg-blue-600 border-none block hover:scale-105"
+                className="rounded-xl text-white border p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
               >
                 CONNECT WALLET
               </button>
@@ -92,4 +91,6 @@ export default function Navbar() {
       </div>
     </header>
   );
-}
+};
+
+export default Navbar;

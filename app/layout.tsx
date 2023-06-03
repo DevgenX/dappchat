@@ -1,7 +1,7 @@
 import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Toaster } from "@/components/ui/Toast";
+import { Toaster } from "@/components/common/Toast";
 import { Providers } from "@/components/Providers";
 
 export default function RootLayout({

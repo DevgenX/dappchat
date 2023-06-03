@@ -1,9 +1,9 @@
 "use client";
 
 import { FC, useState } from "react";
-import Message from "@/components//ui/Message";
-import FriendList from "@/components/ui/FriendList";
-import EmptyMessage from "./ui/EmptyMessage";
+import Message from "@/components/common/Message";
+import FriendList from "@/components/common/FriendList";
+import EmptyMessage from "./common/EmptyMessage";
 import { useChatContext } from "@/context/ChatDapp.context";
 
 const Chats: FC = () => {

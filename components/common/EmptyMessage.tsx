@@ -1,5 +1,5 @@
-import Heading from "@/components/Heading";
-import Paragraph from "@/components/Paragraph";
+import Heading from "@/components/common/Heading";
+import Paragraph from "@/components/common/Paragraph";
 import ChatDapp from "@/public/anonymous.png";
 import Image from "next/image";
 

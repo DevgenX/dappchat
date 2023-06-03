@@ -3,7 +3,7 @@
 import { FC, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { CiMenuKebab } from "react-icons/ci";
-import Avatar from "@/components/ui/Avatar";
+import Avatar from "@/components/common/Avatar";
 
 interface FriendProps {
   name: string;

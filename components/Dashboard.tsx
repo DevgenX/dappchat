@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import Heading from "@/components/Heading";
-import Paragraph from "@/components/Paragraph";
+import Heading from "@/components/common/Heading";
+import Paragraph from "@/components/common/Paragraph";
 import Link from "next/link";
 import Image from "next/image";
 import ChatDapp from "@/public/chatdapp.jpg";
 import Features from "@/components/Features";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 import AccountModal from "@/components/AccountModal";
+import dynamic from "next/dynamic";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -59,4 +60,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default dynamic(() => Promise.resolve(Dashboard), { ssr: false });

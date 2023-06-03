@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, createContext, useContext } from "react";
-import { toast } from "@/components/ui/Toast";
+import { toast } from "@/components/common/Toast";
 
 import {
   FriendListType,
@@ -26,19 +26,23 @@ export const ChatProvider = ({ children }: any) => {
 
   const fetchUserData = async () => {
     try {
-      const contract = await connectToSmartContract();
+      if (account) {
+        const contract = await connectToSmartContract();
+        console.log(contract);
 
-      const getUsername = await contract.getUsername();
-      setUsername(getUsername);
+        const getUsername = await contract.getUsername();
+        setUsername(getUsername);
 
-      const friendsArray = await contract.getFriends();
-      setFriendList(friendsArray);
+        const friendsArray = await contract.getFriends();
+        setFriendList(friendsArray);
 
-      const getAllUsers = await contract.getAllAppUsers();
-      setUserList(getAllUsers);
+        const getAllUsers = await contract.getAllAppUsers();
+        console.log(getAllUsers);
+        setUserList(getAllUsers);
 
-      const getBlockedUsers = await contract.getAllBlockedUsers();
-      setBlockedUsers(getBlockedUsers);
+        const getBlockedUsers = await contract.getAllBlockedUsers();
+        setBlockedUsers(getBlockedUsers);
+      }
     } catch (err) {
       toast({
         title: "Error fetching user data",
@@ -167,7 +171,6 @@ export const ChatProvider = ({ children }: any) => {
     try {
       if (!address) return;
       setIsLoading(true);
-
       const contract = await connectToSmartContract();
       await contract.blockUser(address);
     } catch (err) {

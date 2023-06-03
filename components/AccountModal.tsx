@@ -2,7 +2,7 @@
 
 import { useState, FC, SetStateAction } from "react";
 import { useChatContext } from "@/context/ChatDapp.context";
-import Heading from "@/components/Heading";
+import Heading from "@/components/common/Heading";
 
 interface ModalProps {
   setOpenModal: React.Dispatch<SetStateAction<boolean>>;
@@ -27,7 +27,7 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
             type="text"
             id="username"
             className="w-full border-gray-300 dark:border-gray-600 outline-none py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
-            value={account ? username : name}
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>

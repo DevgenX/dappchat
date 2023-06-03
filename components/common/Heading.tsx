@@ -19,16 +19,11 @@ const headingVariants = cva(
   }
 );
 
-interface LargeHeadingProps
+interface HeadingProps
   extends React.HTMLAttributes<HTMLHeadingElement>,
     VariantProps<typeof headingVariants> {}
 
-const LargeHeading: FC<LargeHeadingProps> = ({
-  children,
-  className,
-  size,
-  ...props
-}) => {
+const Heading: FC<HeadingProps> = ({ children, className, size, ...props }) => {
   return (
     <h1 {...props} className={cn(headingVariants({ size, className }))}>
       {children}
@@ -36,4 +31,5 @@ const LargeHeading: FC<LargeHeadingProps> = ({
   );
 };
 
-export default LargeHeading;
+Heading.displayName = "Heading";
+export default Heading;

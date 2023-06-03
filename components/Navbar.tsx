@@ -9,6 +9,7 @@ import { navLinks } from "@/helpers/NavLinks";
 import AnonymousIcon from "@/public/anonymous.png";
 import Image from "next/image";
 import { useChatContext } from "@/context/ChatDapp.context";
+import dynamic from "next/dynamic";
 
 const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -93,4 +94,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default dynamic(() => Promise.resolve(Navbar), { ssr: false });

@@ -1,5 +1,3 @@
-"use client";
-
 import Chats from "@/components/Chats";
 
 const page = () => {

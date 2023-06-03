@@ -5,6 +5,7 @@ import {
 } from "react-icons/ai";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 const Footer = () => {
   return (
@@ -50,4 +51,4 @@ const Footer = () => {
     </footer>
   );
 };
-export default Footer;
+export default dynamic(() => Promise.resolve(Footer), { ssr: false });

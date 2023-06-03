@@ -1,28 +1,8 @@
 import Web3Modal from "web3modal";
-import { toast } from "@/components/ui/Toast";
+import { toast } from "@/components/common/Toast";
 import { Signer, ethers } from "ethers";
 
 import { contractABI, contractAddress } from "@/utils/constants";
-
-export const CheckIsWalletConnected = async () => {
-  try {
-    if (!window.ethereum) {
-      return toast({
-        title: "Wallet is not connected",
-        message: "Please connect your wallet",
-        type: "error",
-      });
-    }
-
-    const accounts = await window.ethereum.request({
-      method: "eth_accounts",
-    });
-  } catch (e) {
-    console.log(e);
-
-    throw new Error("No ethereum account found");
-  }
-};
 
 export const fetchContract = (signer: Signer) => {
   return new ethers.Contract(contractAddress, contractABI, signer);

@@ -8,6 +8,9 @@ import { useChatContext } from "@/context/ChatDapp.context";
 
 const Chats: FC = () => {
   const [selectedUser, setSelectedUser] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+
+  const { handleSendMessage } = useChatContext();
 
   return (
     <div className="flex flex-row min-h-screen">
@@ -22,7 +25,11 @@ const Chats: FC = () => {
               <div className="flex-grow bg-slate-200 p-4 md:rounded-tr-lg">
                 {!selectedUser && <div>{<EmptyMessage />}</div>}
               </div>
-              <Message />
+              <Message
+                message={message}
+                setMessage={setMessage}
+                sendMessage={handleSendMessage}
+              />
             </div>
           </div>
         </div>

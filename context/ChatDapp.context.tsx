@@ -18,6 +18,7 @@ export const ChatContext = createContext<InitialStateInterface>(initialState);
 export const ChatProvider = ({ children }: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
+  const [nickname, setNickname] = useState<string>("");
   const [account, setAccount] = useState<string>("");
   const [friendList, setFriendList] = useState<FriendListType[]>([]);
   const [messages, setMessages] = useState<MessagesType[]>([]);
@@ -192,6 +193,20 @@ export const ChatProvider = ({ children }: any) => {
     } catch (err) {
       toast({
         title: "Error fetching user messages",
+        message: "It seems you are trying to access messages from unknown user",
+        type: "error",
+      });
+    }
+  };
+
+  const getUsername = async (address: string) => {
+    try {
+      const contract = await connectToSmartContract();
+      const getUsername = await contract.getUsername(address);
+      setNickname(getUsername);
+    } catch (err) {
+      toast({
+        title: "Error fetching username",
         message: "It seems you are trying to access messages from unknown user",
         type: "error",
       });

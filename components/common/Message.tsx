@@ -1,6 +1,24 @@
 import { BsSendFill } from "react-icons/bs";
+import { FC } from "react";
 
-const Message = () => {
+interface MessageTypes {
+  message: string;
+  setMessage: React.Dispatch<React.SetStateAction<string>>;
+  sendMessage: ({
+    content,
+    address,
+  }: {
+    content: string;
+    address: string;
+  }) => "" | Promise<void>;
+}
+
+const Message: FC<MessageTypes> = ({
+  message: content,
+  setMessage,
+  sendMessage,
+}) => {
+  let address = "0123232";
   return (
     <>
       <div className="flex py-2 gap-2 relative my-4 mx-4">
@@ -8,8 +26,12 @@ const Message = () => {
           type="text"
           placeholder="Message..."
           className="bg-white flex-grow rounded-full outline-none p-2"
+          onChange={(e) => setMessage(e.target.value)}
         />
-        <button className="absolute bg-blue-500 p-2 text-white mt-1 rounded-full right-1">
+        <button
+          onClick={() => sendMessage({ content, address })}
+          className="absolute bg-blue-500 p-2 text-white mt-1 rounded-full right-1"
+        >
           <BsSendFill />
         </button>
       </div>

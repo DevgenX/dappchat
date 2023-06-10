@@ -1,5 +1,6 @@
 import { BsSendFill } from "react-icons/bs";
 import { FC } from "react";
+import { Icons } from "@/components/Icons";
 
 interface MessageTypes {
   message: string;
@@ -30,9 +31,9 @@ const Message: FC<MessageTypes> = ({
         />
         <button
           onClick={() => sendMessage({ content, address })}
-          className="absolute bg-blue-500 p-2 text-white mt-1 rounded-full right-1 hover:scale-105"
+          className="absolute p-2 text-black mt-1 rounded-full right-1 hover:scale-105"
         >
-          <BsSendFill />
+          <Icons.Send size={20} />
         </button>
       </div>
     </>

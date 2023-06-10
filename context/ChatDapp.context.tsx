@@ -27,23 +27,19 @@ export const ChatProvider = ({ children }: any) => {
 
   const fetchUserData = async () => {
     try {
-      if (account) {
-        const contract = await connectToSmartContract();
-        console.log(contract);
+      const contract = await connectToSmartContract();
 
-        const getUsername = await contract.getUsername();
-        setUsername(getUsername);
+      // const getUsername = await contract.getUsername();
+      // setUsername(getUsername);
 
-        const friendsArray = await contract.getFriends();
-        setFriendList(friendsArray);
+      // const friendsArray = await contract.getFriends();
+      // setFriendList(friendsArray);
 
-        const getAllUsers = await contract.getAllAppUsers();
-        console.log(getAllUsers);
-        setUserList(getAllUsers);
+      const getAllUsers = await contract.getAllAppUsers();
+      setUserList(getAllUsers);
 
-        const getBlockedUsers = await contract.getAllBlockedUsers();
-        setBlockedUsers(getBlockedUsers);
-      }
+      const getBlockedUsers = await contract.getAllBlockedUsers();
+      setBlockedUsers(getBlockedUsers);
     } catch (err) {
       toast({
         title: "Error fetching user data",
@@ -52,6 +48,8 @@ export const ChatProvider = ({ children }: any) => {
       });
     }
   };
+
+  console.log(userList);
 
   const CheckIsWalletConnected = async (): Promise<void> => {
     try {

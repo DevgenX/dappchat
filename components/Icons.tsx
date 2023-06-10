@@ -1,9 +1,11 @@
-import { Moon, Sun, XOctagon } from "lucide-react";
+import { Moon, Sun, Ban, MoreVertical, Send } from "lucide-react";
 
 export const Icons = {
   Sun,
   Moon,
-  XOctagon,
+  Ban,
+  MoreVertical,
+  Send,
 };
 
 export default Icons;

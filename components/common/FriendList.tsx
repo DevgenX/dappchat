@@ -2,7 +2,6 @@
 
 import { FC, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
-import { CiMenuKebab } from "react-icons/ci";
 import { Icons } from "@/components/Icons";
 import Avatar from "@/components/common/Avatar";
 import FriendModal from "@/components/common/FriendModal";
@@ -71,10 +70,10 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
                 />
               )}
               <div onClick={toggleDropdown} className="hover:scale-125">
-                <CiMenuKebab size={20} />
+                <Icons.MoreVertical size={20} />
               </div>
               {isDropdownOpen && (
-                <div className="absolute bg-black py-2 px-4 rounded-md shadow right-0 mt-10">
+                <div className="absolute bg-black py-1 px-3 rounded-md shadow right-0 mt-10">
                   <button
                     onClick={handleLogout}
                     className="block w-full text-white hover:scale-105"
@@ -104,7 +103,6 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
                   <Avatar id={index} name={friend.name} />
                   <span>{friend.name}</span>
                 </div>
-                <Icons.XOctagon className="self-center hover:scale-105" />
               </div>
             </div>
           ))}

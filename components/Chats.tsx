@@ -5,10 +5,16 @@ import Message from "@/components/common/Message";
 import FriendList from "@/components/common/FriendList";
 import EmptyMessage from "./common/EmptyMessage";
 import { useChatContext } from "@/context/ChatDapp.context";
+import Icons from "@/components/Icons";
 
 const Chats: FC = () => {
   const [selectedUser, setSelectedUser] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+  const [blockModal, setBlockModal] = useState<boolean>(false);
+
+  const toggleBlock = () => {
+    setBlockModal(() => !blockModal);
+  };
 
   const { handleSendMessage } = useChatContext();
 
@@ -22,7 +28,25 @@ const Chats: FC = () => {
           />
           <div className="w-full md:w-2/3 text-black md:rounded-r-lg bg-slate-400">
             <div className="h-full flex flex-col">
-              <div className="flex-grow bg-slate-200 p-4 md:rounded-tr-lg">
+              <div className="flex text-slate-800 justify-between px-2 py-2">
+                <p>Getting spammed by a user?</p>
+                <Icons.Ban
+                  size={17}
+                  className="self-center text-red-400 cursor-pointer hover:scale-105"
+                  onClick={toggleBlock}
+                />
+                {/* {blockModal && (
+                  <div className="absolute bg-black py-1 px-3 rounded-md shadow right-0 mt-10">
+                    <button
+                      onClick={toggleBlock}
+                      className="block w-full text-white hover:scale-105"
+                    >
+                      Block
+                    </button>
+                  </div>
+                )} */}
+              </div>
+              <div className="flex-grow bg-slate-200 p-4 ">
                 {!selectedUser && <div>{<EmptyMessage />}</div>}
               </div>
               <Message

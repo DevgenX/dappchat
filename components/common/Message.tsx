@@ -30,7 +30,7 @@ const Message: FC<MessageTypes> = ({
         />
         <button
           onClick={() => sendMessage({ content, address })}
-          className="absolute bg-blue-500 p-2 text-white mt-1 rounded-full right-1"
+          className="absolute bg-blue-500 p-2 text-white mt-1 rounded-full right-1 hover:scale-105"
         >
           <BsSendFill />
         </button>

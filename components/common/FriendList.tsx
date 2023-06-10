@@ -3,7 +3,9 @@
 import { FC, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { CiMenuKebab } from "react-icons/ci";
+import { Icons } from "@/components/Icons";
 import Avatar from "@/components/common/Avatar";
+import FriendModal from "@/components/common/FriendModal";
 
 interface FriendProps {
   name: string;
@@ -32,13 +34,18 @@ interface FriendListProps {
 
 const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const selectFriend = (user: string) => {
     setSelectedUser(user);
   };
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+    setIsDropdownOpen(() => !isDropdownOpen);
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen(() => !isModalOpen);
   };
 
   const handleLogout = () => {
@@ -54,9 +61,15 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
               <h1>John Doe</h1>
             </div>
             <div className="flex cursor-pointer">
-              <div className="pr-3 hover:scale-125">
+              <div onClick={toggleModal} className="pr-3 hover:scale-125">
                 <BsFillPersonPlusFill size={20} />
               </div>
+              {isModalOpen && (
+                <FriendModal
+                  isModalOpen={isModalOpen}
+                  setIsModalOpen={setIsModalOpen}
+                />
+              )}
               <div onClick={toggleDropdown} className="hover:scale-125">
                 <CiMenuKebab size={20} />
               </div>
@@ -64,7 +77,7 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
                 <div className="absolute bg-black py-2 px-4 rounded-md shadow right-0 mt-10">
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-white hover:text-gray-400"
+                    className="block w-full text-white hover:scale-105"
                   >
                     Logout
                   </button>
@@ -86,9 +99,12 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
               {selectedUser === friend.name && (
                 <div className="w-1 bg-blue-500 h-12 rounded-r-md"></div>
               )}
-              <div className="flex gap-2 py-2 pl-4 items-center justify-center">
-                <Avatar id={index} name={friend.name} />
-                <span>{friend.name}</span>
+              <div className="flex items-center">
+                <div className="flex gap-2 py-2 pl-4 items-center justify-center">
+                  <Avatar id={index} name={friend.name} />
+                  <span>{friend.name}</span>
+                </div>
+                <Icons.XOctagon className="self-center hover:scale-105" />
               </div>
             </div>
           ))}

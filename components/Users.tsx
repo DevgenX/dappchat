@@ -50,11 +50,17 @@ const Users = () => {
   return (
     <div className="container mx-auto">
       <div className="flex flex-col justify-center items-center">
-        <Heading size="lg">Meet and Add Friends</Heading>
-        <Paragraph size="sm" className="m-5 font-extralight">
+        <Heading size="lg" data-testid="user-heading">
+          Meet and Add Friends
+        </Heading>
+        <Paragraph
+          size="sm"
+          className="m-5 font-extralight"
+          data-testid="user-paragraph"
+        >
           Start chatting anonymously with users by adding them as friends
         </Paragraph>
-        <hr className="w-1/2 h-0.5 mx-auto mt-3 bg-neutral-400 border-0 dark:bg-neutral-200 "></hr>
+        <hr className="w-1/2 h-0.5 mx-auto mt-3 bg-neutral-400 border-0 dark:bg-neutral-200" />
       </div>
       <div className="my-20 mx-10 grid grid-cols-1 md:grid-cols-3">
         {UsersList.map((user, index) => (

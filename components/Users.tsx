@@ -56,7 +56,7 @@ const Users = () => {
         </Paragraph>
         <hr className="w-1/2 h-0.5 mx-auto mt-3 bg-neutral-400 border-0 dark:bg-neutral-200 "></hr>
       </div>
-      <div className="py-3 mx-10 grid grid-cols-1 md:grid-cols-3">
+      <div className="my-20 mx-10 grid grid-cols-1 md:grid-cols-3">
         {UsersList.map((user, index) => (
           <UsersCard index={index} key={index} user={user} />
         ))}

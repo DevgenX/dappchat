@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { Icons } from "@/components/Icons";
 import { useTheme } from "next-themes";
-import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { navLinks } from "@/helpers/NavLinks";
 import AnonymousIcon from "@/public/anonymous.png";
 import Image from "next/image";
@@ -19,28 +18,26 @@ const Navbar = () => {
   return (
     <header className="w-[80%] mx-auto px-4 sm:px-20">
       <div className="justify-between md:items-center md:flex">
-        <div>
-          <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link href="/">
-              <div className="container flex items-center space-x-2">
-                <Image src={AnonymousIcon} alt="icon" height={50} width={50} />
-                <h2 className="text-2xl text-black font-bold dark:text-white">
-                  ChatDapp
-                </h2>
-              </div>
-            </Link>
-            <div className="md:hidden">
-              <button
-                className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
-                onClick={() => setNavbar(!navbar)}
-              >
-                {navbar ? (
-                  <IoMdClose className="dark:text-white" size={30} />
-                ) : (
-                  <IoMdMenu className="dark:text-white" size={30} />
-                )}
-              </button>
+        <div className="flex items-center justify-between py-3 md:py-5 md:block">
+          <Link href="/">
+            <div className="container flex items-center space-x-2">
+              <Image src={AnonymousIcon} alt="icon" height={50} width={50} />
+              <h2 className="text-2xl text-black font-bold dark:text-white">
+                ChatDapp
+              </h2>
             </div>
+          </Link>
+          <div className="md:hidden">
+            <button
+              className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+              onClick={() => setNavbar(!navbar)}
+            >
+              {navbar ? (
+                <Icons.X className="dark:text-white" size={30} />
+              ) : (
+                <Icons.Menu className="dark:text-white" size={30} />
+              )}
+            </button>
           </div>
         </div>
 

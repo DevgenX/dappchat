@@ -1,4 +1,4 @@
-import Users from "@/components/Users";
+import Tutorials from "@/components/Tutorials";
 
 type Metadata = {
   title: string;
@@ -6,14 +6,14 @@ type Metadata = {
 };
 
 export const metadata: Metadata = {
-  title: "ChatDapp | Users",
+  title: "ChatDapp | Tutorials",
   description: "A multi-chain decentralized messaging application ",
 };
 
 const page = () => {
   return (
     <>
-      <Users />
+      <Tutorials />
     </>
   );
 };

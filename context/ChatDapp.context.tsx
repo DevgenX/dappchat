@@ -49,8 +49,6 @@ export const ChatProvider = ({ children }: any) => {
     }
   };
 
-  console.log(userList);
-
   const CheckIsWalletConnected = async (): Promise<void> => {
     try {
       if (!window.ethereum) {

@@ -5,3 +5,8 @@ export interface FeaturesProps {
   desc: string;
   icon: IconType;
 }
+
+export interface UserCardProps {
+  name: string;
+  address: string;
+}

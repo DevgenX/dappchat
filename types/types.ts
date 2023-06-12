@@ -1,4 +1,5 @@
 import { IconType } from "react-icons";
+import { UserList } from "@/context/ChatTypes";
 
 export interface FeaturesProps {
   title: string;
@@ -8,5 +9,5 @@ export interface FeaturesProps {
 
 export interface UserCardProps {
   name: string;
-  address: string;
+  accountAddress: string;
 }

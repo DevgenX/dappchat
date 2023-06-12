@@ -6,7 +6,7 @@ import { toast } from "@/components/common/Toast";
 import {
   FriendListType,
   MessagesType,
-  UserListsType,
+  UserList,
   BlockedUsersType,
   initialState,
   InitialStateInterface,
@@ -22,7 +22,7 @@ export const ChatProvider = ({ children }: any) => {
   const [account, setAccount] = useState<string>("");
   const [friendList, setFriendList] = useState<FriendListType[]>([]);
   const [messages, setMessages] = useState<MessagesType[]>([]);
-  const [userList, setUserList] = useState<UserListsType[]>([]);
+  const [userList, setUserList] = useState<UserList[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<BlockedUsersType[]>([]);
 
   const fetchUserData = async () => {

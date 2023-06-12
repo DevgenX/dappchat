@@ -20,7 +20,7 @@ const Avatar: FC<AvatarProps> = ({ id, name }) => {
     <div
       className={`w-8 h-8 ${colors[id]} rounded-full flex items-center justify-center`}
     >
-      {name[0]}
+      {name[0].toLocaleUpperCase()}
     </div>
   );
 };

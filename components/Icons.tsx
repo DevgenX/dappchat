@@ -4,6 +4,7 @@ export const Icons = {
   Sun,
   Moon,
   Ban,
+  Send,
   MoreVertical,
   Menu,
   X,

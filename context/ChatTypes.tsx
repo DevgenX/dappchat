@@ -8,10 +8,10 @@ export type MessagesType = {
   content: string;
 };
 
-export type UserListsType = {
+export interface UserList {
   name: string;
-  address: string;
-};
+  accountAddress: string;
+}
 
 export type BlockedUsersType = {
   address: string;
@@ -23,7 +23,7 @@ export interface InitialStateInterface {
   username: string;
   friendList: FriendListType[];
   messages: MessagesType[];
-  userList: UserListsType[];
+  userList: UserList[];
   blockedUsers: BlockedUsersType[];
   connectWallet: () => Promise<void> | "";
   createAccount: ({ name }: { name: string }) => Promise<void> | "";

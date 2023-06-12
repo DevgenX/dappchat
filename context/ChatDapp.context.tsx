@@ -102,7 +102,6 @@ export const ChatProvider = ({ children }: any) => {
       const contract = await connectToSmartContract();
       if (!name || !contract) return;
       await contract.createUser(name);
-      window.location.reload();
     } catch (err) {
       toast({
         title: "Error creating an account",

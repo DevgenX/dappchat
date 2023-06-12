@@ -12,14 +12,17 @@ const Footer = () => {
     <footer className="mx-auto max-w-2xl px-4 sm:p-6 md:max-w-7xl">
       <hr className="w-full h-0.5 mx-auto mt-8 bg-neutral-400 border-0 dark:bg-neutral-200 "></hr>
       <div className="mx-auto p-4 mb-2 text-black text-center flex flex-col dark:text-neutral-100 md:flex-row md:justify-between">
-        <div className="text-black dark:text-light-gold mb-3">
-          Made with ❤ by <span className="font-bold">Seb</span>
+        <div className="text-black dark:text-light-gold mb-3 ">
+          <h3>
+            Made with ❤ by <span className="font-bold">Seb</span>
+          </h3>
         </div>
         <div className="flex flex-row items-center justify-center space-x-2">
           <Link
             href="https://github.com/DevgenX"
             rel="noreferrer"
             target="_blank"
+            data-testid="footer-github"
           >
             <AiOutlineGithub
               className="hover:-translate-y-1 transition-transform cursor-pointer text-black dark:text-neutral-100"
@@ -30,6 +33,7 @@ const Footer = () => {
             href="https://www.linkedin.com/in/sebgonzales/"
             rel="noreferrer"
             target="_blank"
+            data-testid="footer-linkedin"
           >
             <AiOutlineLinkedin
               className="hover:-translate-y-1 transition-transform cursor-pointer text-black dark:text-neutral-100"
@@ -40,6 +44,7 @@ const Footer = () => {
             href="https://medium.com/@seb_5882"
             rel="noreferrer"
             target="_blank"
+            data-testid="footer-medium"
           >
             <AiOutlineMedium
               className="hover:-translate-y-1 transition-transform cursor-pointer text-black dark:text-neutral-100"

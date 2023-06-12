@@ -1,7 +1,7 @@
 import Users from "@/components/Users";
 import { render, screen } from "@testing-library/react";
 
-describe("Tutorials Component", () => {
+describe("Users Component", () => {
   it("Users component renders without errors", () => {
     render(<Users />);
   });

@@ -4,7 +4,7 @@ import Paragraph from "@/components/common/Heading";
 const Tutorials = () => {
   return (
     <div className="flex flex-col md:flex-row h-full items-center justify-center">
-      <>
+      <div>
         <Heading size="lg" data-testid="heading">
           Experience Blockchain Messaging
         </Heading>
@@ -15,7 +15,7 @@ const Tutorials = () => {
         >
           Ready to experience the decentralized way of messaging?
         </Paragraph>
-      </>
+      </div>
     </div>
   );
 };

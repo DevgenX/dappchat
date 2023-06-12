@@ -18,10 +18,16 @@ const Dashboard = () => {
     <>
       <div className="home min-h-screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12]">
         <div className="flex flex-col gap-4 mb-10">
-          <Heading className="text-white text-5xl dark:text-white">
+          <Heading
+            className="text-white text-5xl dark:text-white"
+            data-testid="heading"
+          >
             Multi-chain <br /> decentralized <br /> messaging
           </Heading>
-          <Paragraph className="max-w-md md:text-left text-gray-200">
+          <Paragraph
+            className="max-w-md md:text-left text-gray-200"
+            data-testid="paragraph"
+          >
             Message anyone from the blockchain anonymously.{" "}
             <span className="font-bold text-light-gold">ChatDapp</span> is a
             decentralized protocol that allows wallet-to-wallet messaging
@@ -52,7 +58,9 @@ const Dashboard = () => {
           />
         </div>
       </div>
-      <Heading className="flex justify-center my-5">Features</Heading>
+      <Heading className="flex justify-center my-5" data-testid="section-title">
+        Features
+      </Heading>
       <div className="flex flex-col md:flex-row justify-center items-center">
         <Features />
       </div>

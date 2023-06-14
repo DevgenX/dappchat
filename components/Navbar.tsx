@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Icons } from "@/components/Icons";
 import { useTheme } from "next-themes";
@@ -14,7 +14,19 @@ const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const [navbar, setNavbar] = useState(false);
-  const { connectWallet, username, account } = useChatContext();
+  const [currentUser, setCurrentUser] = useState<string>("");
+  const { connectWallet, getUsername, account } = useChatContext();
+
+  const accountUser = async () => {
+    const username = await getUsername(account);
+
+    setCurrentUser(username);
+  };
+
+  useEffect(() => {
+    accountUser();
+  });
+
   return (
     <header className="w-[80%] mx-auto px-4 sm:px-20">
       <div className="justify-between md:items-center md:flex">
@@ -66,7 +78,7 @@ const Navbar = () => {
                 onClick={() => connectWallet()}
                 className="rounded-xl text-white border p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
               >
-                {account ? username : "CONNECT WALLET"}
+                {account ? currentUser : "CONNECT WALLET"}
               </button>
               {currentTheme === "dark" ? (
                 <button

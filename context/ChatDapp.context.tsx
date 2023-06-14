@@ -24,16 +24,14 @@ export const ChatProvider = ({ children }: any) => {
   const [messages, setMessages] = useState<MessagesType[]>([]);
   const [userList, setUserList] = useState<UserList[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<BlockedUsersType[]>([]);
+  const [currentUser, setCurrentUser] = useState<string>("");
 
   const fetchUserData = async () => {
     try {
       const contract = await connectToSmartContract();
 
-      // const getUsername = await contract.getUsername();
-      // setUsername(getUsername);
-
-      // const friendsArray = await contract.getFriends();
-      // setFriendList(friendsArray);
+      const friendsArray = await contract.getFriends();
+      setFriendList(friendsArray);
 
       const getAllUsers = await contract.getAllAppUsers();
       setUserList(getAllUsers);
@@ -198,7 +196,8 @@ export const ChatProvider = ({ children }: any) => {
     try {
       const contract = await connectToSmartContract();
       const getUsername = await contract.getUsername(address);
-      setNickname(getUsername);
+
+      return getUsername;
     } catch (err) {
       toast({
         title: "Error fetching username",
@@ -226,6 +225,7 @@ export const ChatProvider = ({ children }: any) => {
         connectWallet,
         createAccount,
         getUserMessages,
+        getUsername,
         handleSendMessage,
         handleBlockUser,
         handleAddFriend,

@@ -3,28 +3,9 @@
 import { FC, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { Icons } from "@/components/Icons";
-import Avatar from "@/components/common/Avatar";
 import FriendModal from "@/components/common/FriendModal";
-
-interface FriendProps {
-  name: string;
-  address: string;
-}
-
-const friends: FriendProps[] = [
-  {
-    name: "Jason",
-    address: "0x7213232",
-  },
-  {
-    name: "Mark",
-    address: "0x7213232",
-  },
-  {
-    name: "John",
-    address: "0x7213232",
-  },
-];
+import { useChatContext } from "@/context/ChatDapp.context";
+import FriendCard from "@/components/common/FriendCard";
 
 interface FriendListProps {
   selectedUser: string;
@@ -34,6 +15,9 @@ interface FriendListProps {
 const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { friendList } = useChatContext();
+
+  const handleLogout = () => {};
 
   const selectFriend = (user: string) => {
     setSelectedUser(user);
@@ -45,10 +29,6 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
 
   const toggleModal = () => {
     setIsModalOpen(() => !isModalOpen);
-  };
-
-  const handleLogout = () => {
-    console.log("Logout");
   };
 
   return (
@@ -84,27 +64,14 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
               )}
             </div>
           </div>
-          {friends.map((friend, index) => (
-            <div
+          {friendList.map((friend, index) => (
+            <FriendCard
               key={index}
-              onClick={() => selectFriend(friend.name)}
-              className={`border-b border-gray-500 hover:bg-slate-600 flex mb-2 items-center gap-2 ${
-                selectedUser?.trim().toLowerCase() ===
-                friend.name.trim().toLowerCase()
-                  ? "bg-slate-600"
-                  : ""
-              }`}
-            >
-              {selectedUser === friend.name && (
-                <div className="w-1 bg-blue-500 h-12 rounded-r-md"></div>
-              )}
-              <div className="flex items-center">
-                <div className="flex gap-2 py-2 pl-4 items-center justify-center">
-                  <Avatar id={index} name={friend.name} />
-                  <span>{friend.name}</span>
-                </div>
-              </div>
-            </div>
+              index={index}
+              selectFriend={selectFriend}
+              selectedUser={selectedUser}
+              friend={friend}
+            />
           ))}
         </div>
       </div>

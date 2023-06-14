@@ -1,6 +1,6 @@
 export type FriendListType = {
   name: string;
-  address: string;
+  pubkey: string;
 };
 
 export type MessagesType = {
@@ -28,6 +28,7 @@ export interface InitialStateInterface {
   connectWallet: () => Promise<void> | "";
   createAccount: ({ name }: { name: string }) => Promise<void> | "";
   getUserMessages: (address: string) => Promise<void> | [];
+  getUsername: (address: string) => Promise<string> | "";
   handleSendMessage: ({
     content,
     address,
@@ -56,6 +57,7 @@ export const initialState: InitialStateInterface = {
   connectWallet: () => "",
   createAccount: () => "",
   getUserMessages: () => [],
+  getUsername: () => "",
   handleSendMessage: () => "",
   handleAddFriend: () => "",
   handleBlockUser: () => "",

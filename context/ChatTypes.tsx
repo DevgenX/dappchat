@@ -1,3 +1,5 @@
+import { SetStateAction } from "react";
+
 export type FriendListType = {
   name: string;
   pubkey: string;
@@ -25,10 +27,12 @@ export interface InitialStateInterface {
   messages: MessagesType[];
   userList: UserList[];
   blockedUsers: BlockedUsersType[];
+  setCurrentUser: React.Dispatch<React.SetStateAction<string>>;
+  currentUser: string;
   connectWallet: () => Promise<void> | "";
   createAccount: ({ name }: { name: string }) => Promise<void> | "";
   getUserMessages: (address: string) => Promise<void> | [];
-  getUsername: (address: string) => Promise<string> | "";
+  getUsername: (address: string) => Promise<string | undefined> | "";
   handleSendMessage: ({
     content,
     address,
@@ -54,6 +58,8 @@ export const initialState: InitialStateInterface = {
   messages: [],
   userList: [],
   blockedUsers: [],
+  setCurrentUser: () => "",
+  currentUser: "",
   connectWallet: () => "",
   createAccount: () => "",
   getUserMessages: () => [],

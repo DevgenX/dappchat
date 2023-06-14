@@ -15,7 +15,7 @@ interface FriendListProps {
 const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { friendList } = useChatContext();
+  const { friendList, currentUser } = useChatContext();
 
   const handleLogout = () => {};
 
@@ -37,7 +37,7 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
         <div className="my-3 gap-2">
           <div className="flex justify-between border-b border-gray-500 mx-3">
             <div className="mb-3">
-              <h1>John Doe</h1>
+              <h1>{currentUser}</h1>
             </div>
             <div className="flex cursor-pointer">
               <div onClick={toggleModal} className="pr-3 hover:scale-125">

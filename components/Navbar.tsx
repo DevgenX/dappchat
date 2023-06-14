@@ -14,17 +14,17 @@ const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const [navbar, setNavbar] = useState(false);
-  const [currentUser, setCurrentUser] = useState<string>("");
-  const { connectWallet, getUsername, account } = useChatContext();
+  const { connectWallet, getUsername, account, setCurrentUser, currentUser } =
+    useChatContext();
 
-  const accountUser = async () => {
+  const fetchAccountUsername = async () => {
     const username = await getUsername(account);
 
-    setCurrentUser(username);
+    setCurrentUser(username || "");
   };
 
   useEffect(() => {
-    accountUser();
+    fetchAccountUsername();
   });
 
   return (

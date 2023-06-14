@@ -147,9 +147,9 @@ export const ChatProvider = ({ children }: any) => {
       if (!address || !name) return;
 
       setIsLoading(true);
-
       const contract = await connectToSmartContract();
       await contract.addFriend(address, name);
+      window.location.reload();
     } catch (err) {
       toast({
         title: "Error adding a friend",
@@ -192,16 +192,16 @@ export const ChatProvider = ({ children }: any) => {
     }
   };
 
-  const getUsername = async (address: string) => {
+  const getUsername = async (address: string): Promise<string | undefined> => {
     try {
       const contract = await connectToSmartContract();
-      const getUsername = await contract.getUsername(address);
-
-      return getUsername;
+      const currentUsername = await contract.getUsername(address);
+      return currentUsername;
     } catch (err) {
       toast({
         title: "Error fetching username",
-        message: "It seems you are trying to access messages from unknown user",
+        message:
+          "There seem to be an error while fetching your username. Please wait for a moment while we load your username",
         type: "error",
       });
     }
@@ -221,6 +221,8 @@ export const ChatProvider = ({ children }: any) => {
         friendList,
         messages,
         userList,
+        setCurrentUser,
+        currentUser,
         blockedUsers,
         connectWallet,
         createAccount,

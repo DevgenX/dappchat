@@ -1,4 +1,3 @@
-import { BsSendFill } from "react-icons/bs";
 import { FC } from "react";
 import { Icons } from "@/components/Icons";
 

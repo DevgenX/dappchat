@@ -1,6 +1,8 @@
 import { FC } from "react";
 import Avatar from "@/components/common/Avatar";
 import { FriendListType } from "@/context/ChatTypes";
+import Link from "next/link";
+import { useChatContext } from "@/context/ChatDapp.context";
 
 interface FriendProps {
   index: number;
@@ -15,12 +17,18 @@ const FriendCard: FC<FriendProps> = ({
   selectedUser,
   friend,
 }) => {
-  console.log(friend);
+  const { getUserMessages, getUsername } = useChatContext();
+
   return (
-    <div>
+    <Link
+      href={{
+        pathname: "/chat",
+        query: { name: `${friend.name}`, pubkey: `${friend.pubkey}` },
+      }}
+    >
       <div
         key={index}
-        onClick={() => selectFriend(friend.name)}
+        onClick={() => getUserMessages(friend.pubkey)}
         className={`border-b border-gray-500 hover:bg-slate-600 flex mb-2 items-center gap-2 ${
           selectedUser?.trim().toLowerCase() ===
           friend.name.trim().toLowerCase()
@@ -38,7 +46,7 @@ const FriendCard: FC<FriendProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 export default FriendCard;

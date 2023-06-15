@@ -1,4 +1,4 @@
-import { SetStateAction } from "react";
+import { BigNumber } from "ethers";
 
 export type FriendListType = {
   name: string;
@@ -6,8 +6,9 @@ export type FriendListType = {
 };
 
 export type MessagesType = {
-  address: string;
   content: string;
+  sender: string;
+  timestamp: string;
 };
 
 export interface UserList {
@@ -28,6 +29,8 @@ export interface InitialStateInterface {
   userList: UserList[];
   blockedUsers: BlockedUsersType[];
   setCurrentUser: React.Dispatch<React.SetStateAction<string>>;
+  input: string;
+  setInput: React.Dispatch<React.SetStateAction<string>>;
   currentUser: string;
   connectWallet: () => Promise<void> | "";
   createAccount: ({ name }: { name: string }) => Promise<void> | "";
@@ -58,8 +61,10 @@ export const initialState: InitialStateInterface = {
   messages: [],
   userList: [],
   blockedUsers: [],
-  setCurrentUser: () => "",
   currentUser: "",
+  setCurrentUser: () => "",
+  input: "",
+  setInput: () => "",
   connectWallet: () => "",
   createAccount: () => "",
   getUserMessages: () => [],

@@ -1,6 +1,6 @@
 import Web3Modal from "web3modal";
-import { toast } from "@/components/common/Toast";
 import { Signer, ethers } from "ethers";
+import BigNumber from "bignumber.js";
 
 import { contractABI, contractAddress } from "@/utils/constants";
 
@@ -22,21 +22,25 @@ export const connectToSmartContract = async () => {
   }
 };
 
-export const convertTime = (time: string | undefined) => {
-  const newTime = new Date(Number(time));
+export const formattedTime = (time: string | number | BigNumber) => {
+  const timestamp = new BigNumber(time);
 
-  const convertedTime =
-    newTime.getHours() +
-    "/" +
-    newTime.getMinutes() +
-    "/" +
-    newTime.getSeconds() +
-    " Date:" +
-    newTime.getDate() +
-    "/" +
-    (newTime.getMonth() + 1) +
-    "/" +
-    newTime.getFullYear();
+  if (timestamp.isNaN()) {
+    return undefined;
+  }
 
-  return convertedTime;
+  const date = timestamp.toNumber() * 1000;
+
+  const newTime = new Date(date);
+
+  const today = new Date();
+
+  const formattedDate = newTime.toLocaleDateString();
+  const formattedTime = newTime.toLocaleTimeString();
+
+  if (today.toLocaleDateString() === formattedDate) {
+    return `Today, ${formattedTime}`;
+  } else {
+    return `${formattedDate}, ${formattedTime}`;
+  }
 };

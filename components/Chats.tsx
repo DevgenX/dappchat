@@ -1,15 +1,16 @@
 "use client";
 
 import { FC, useState } from "react";
-import Message from "@/components/common/Message";
+import InputBox from "@/components/common/InputBox";
 import FriendList from "@/components/common/FriendList";
 import EmptyMessage from "./common/EmptyMessage";
 import { useChatContext } from "@/context/ChatDapp.context";
+import { usePathname } from "next/navigation";
 import Icons from "@/components/Icons";
+import Messages from "@/components/Messages";
 
 const Chats: FC = () => {
   const [selectedUser, setSelectedUser] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
   const [blockModal, setBlockModal] = useState<boolean>(false);
 
   const toggleBlock = () => {
@@ -17,6 +18,7 @@ const Chats: FC = () => {
   };
 
   const { handleSendMessage } = useChatContext();
+  const pathname = usePathname();
 
   return (
     <div className="flex flex-row min-h-screen">
@@ -44,16 +46,17 @@ const Chats: FC = () => {
                       Block
                     </button>
                   </div>
+                  
                 )} */}
               </div>
               <div className="flex-grow bg-slate-200 p-4 ">
-                {!selectedUser && <div>{<EmptyMessage />}</div>}
+                {pathname === "/chat" ? (
+                  <Messages />
+                ) : (
+                  <div>{<EmptyMessage />}</div>
+                )}
               </div>
-              <Message
-                message={message}
-                setMessage={setMessage}
-                sendMessage={handleSendMessage}
-              />
+              <InputBox sendMessage={handleSendMessage} />
             </div>
           </div>
         </div>

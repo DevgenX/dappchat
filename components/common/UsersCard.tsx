@@ -29,7 +29,9 @@ const UsersCard: FC<UsersCardType> = ({ user, index }) => {
         <Avatar id={index} name={user.name} />
         <h3>{user.name}</h3>
         <div className="pt-3">
-          <p className="text-sm">{user.accountAddress}</p>
+          <p className="box-border md:text-sm text-[10px]">
+            {user.accountAddress}
+          </p>
         </div>
       </div>
       {openModal && (

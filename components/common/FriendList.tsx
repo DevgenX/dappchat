@@ -37,7 +37,10 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
         <div className="my-3 gap-2">
           <div className="flex justify-between border-b border-gray-500 mx-3">
             <div className="mb-3">
-              <h1>{currentUser}</h1>
+              <h1>
+                {currentUser.charAt(0).toLocaleUpperCase() +
+                  currentUser.slice(1)}
+              </h1>
             </div>
             <div className="flex cursor-pointer">
               <div onClick={toggleModal} className="pr-3 hover:scale-125">

@@ -19,6 +19,11 @@ const FriendCard: FC<FriendProps> = ({
 }) => {
   const { getUserMessages, getUsername } = useChatContext();
 
+  const handleSelectFriend = (friend: string) => {
+    selectFriend(friend);
+    getUserMessages(friend);
+  };
+
   return (
     <Link
       href={{
@@ -28,7 +33,7 @@ const FriendCard: FC<FriendProps> = ({
     >
       <div
         key={index}
-        onClick={() => getUserMessages(friend.pubkey)}
+        onClick={() => handleSelectFriend(friend.pubkey)}
         className={`border-b border-gray-500 hover:bg-slate-600 flex mb-2 items-center gap-2 ${
           selectedUser?.trim().toLowerCase() ===
           friend.name.trim().toLowerCase()

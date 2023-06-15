@@ -18,7 +18,6 @@ const Chats: FC = () => {
   };
 
   const { handleSendMessage } = useChatContext();
-  const pathname = usePathname();
 
   return (
     <div className="flex flex-row min-h-screen">
@@ -28,8 +27,8 @@ const Chats: FC = () => {
             selectedUser={selectedUser}
             setSelectedUser={setSelectedUser}
           />
-          <div className="w-full md:w-2/3 text-black md:rounded-r-lg bg-slate-400">
-            <div className="h-full flex flex-col">
+          <div className="w-full md:w-2/3  text-black md:rounded-r-lg bg-slate-400">
+            <div className="h-full  flex flex-col">
               <div className="flex text-slate-800 justify-between px-2 py-2">
                 <p>Getting spammed by a user?</p>
                 <Icons.Ban
@@ -37,24 +36,9 @@ const Chats: FC = () => {
                   className="self-center text-red-400 cursor-pointer hover:scale-105"
                   onClick={toggleBlock}
                 />
-                {/* {blockModal && (
-                  <div className="absolute bg-black py-1 px-3 rounded-md shadow right-0 mt-10">
-                    <button
-                      onClick={toggleBlock}
-                      className="block w-full text-white hover:scale-105"
-                    >
-                      Block
-                    </button>
-                  </div>
-                  
-                )} */}
               </div>
-              <div className="flex-grow bg-slate-200 p-4 ">
-                {pathname === "/chat" ? (
-                  <Messages />
-                ) : (
-                  <div>{<EmptyMessage />}</div>
-                )}
+              <div className="flex-grow max-h-[100%] bg-slate-200 p-4 height: 100vh">
+                {selectedUser ? <Messages /> : <div>{<EmptyMessage />}</div>}
               </div>
               <InputBox sendMessage={handleSendMessage} />
             </div>

@@ -8,9 +8,7 @@ interface MessagesProps {
 }
 
 const MessageCard: FC<MessagesProps> = ({ message }) => {
-  const { currentUser, account, getUsername } = useChatContext();
-
-  console.log(message.timestamp);
+  const { account } = useChatContext();
 
   return (
     <div className="overflow-y-scroll">

@@ -1,17 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import Heading from "@/components/common/Heading";
-import Paragraph from "@/components/common/Paragraph";
+import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 import Link from "next/link";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+import Heading from "@/components/common/Heading";
+import Paragraph from "@/components/common/Paragraph";
 import ChatDapp from "@/public/chatdapp.jpg";
 import Features from "@/components/Features";
-import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
-import AccountModal from "@/components/AccountModal";
-import dynamic from "next/dynamic";
-import { useChatContext } from "../context/ChatDapp.context";
+import AccountModal from "@/components/common/AccountModal";
 import Loading from "@/components/common/Loading";
+
+import { useChatContext } from "../context/ChatDapp.context";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);

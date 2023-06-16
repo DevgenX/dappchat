@@ -1,8 +1,18 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity ^0.8.0;
 
-contract ChatDapp {
+library ArrayUtils {
+    function indexOf(address[] storage array, address element) internal view returns (int256) {
+        for (uint256 i = 0; i < array.length; i++) {
+            if (array[i] == element) {
+                return int256(i);
+            }
+        }
+        return -1;
+    }
+}
+
+contract DappChat {
     struct User {
         string name;
         mapping(address => bool) blockedUsers;
@@ -12,7 +22,7 @@ contract ChatDapp {
 
     struct Friends {
         string name;
-        address pubkey;
+        address friendkey;
     }
 
     struct Message {
@@ -21,14 +31,15 @@ contract ChatDapp {
         string content;
     }
 
-    struct AllUserStruct {
+    struct AllUsers {
         string name;
         address accountAddress;
     }
 
-    AllUserStruct[] private allUsers;
+    AllUsers[] private allUsers;
     mapping(address => User) private users;
     mapping(bytes32 => Message[]) private allMessages;
+    
 
     event UserCreated(address indexed userAddress, string name);
     event FriendAdded(address indexed userAddress, address friendAddress);
@@ -44,7 +55,7 @@ contract ChatDapp {
         require(bytes(users[msg.sender].name).length == 0, "User already exists");
 
         users[msg.sender].name = name;
-        allUsers.push(AllUserStruct(name, msg.sender));
+        allUsers.push(AllUsers(name, msg.sender));
 
         emit UserCreated(msg.sender, name);
     }
@@ -72,15 +83,41 @@ contract ChatDapp {
         require(msg.sender != userAddress, "You can't block yourself");
 
         for(uint256 i = 0; i < users[msg.sender].friendList.length; i++) {
-            if(users[msg.sender].friendList[i].pubkey == userAddress) {
-                delete users[msg.sender].friendList[i];
-                break;
-            }
-        }
+        if(users[msg.sender].friendList[i].friendkey == userAddress) {
+        users[msg.sender].friendList[i] = users[msg.sender].friendList[users[msg.sender].friendList.length - 1];
+        users[msg.sender].friendList.pop();
+        break;
+    }
+}
 
         users[msg.sender].blockedUsers[userAddress] = true;
         users[msg.sender].blockedUsersArray.push(userAddress);
     }
+
+function unblockUser(address userAddress) external userExists(msg.sender) {
+    require(bytes(users[userAddress].name).length > 0, "User is not registered");
+    require(msg.sender != userAddress, "You can't unblock yourself");
+
+    users[msg.sender].blockedUsers[userAddress] = false;
+    int256 index = ArrayUtils.indexOf(users[msg.sender].blockedUsersArray, userAddress);
+    if (index >= 0) {
+        users[msg.sender].blockedUsersArray[uint256(index)] = users[msg.sender].blockedUsersArray[users[msg.sender].blockedUsersArray.length - 1];
+        users[msg.sender].blockedUsersArray.pop();
+
+        // Check if the user is already a friend
+        bool isFriend = isFriend(msg.sender, userAddress);
+
+        // Add the user as a friend if not already a friend
+        if (!isFriend) {
+            string memory friendName = users[userAddress].name;
+            Friends memory friend = Friends(friendName, userAddress);
+            Friends memory me = Friends(users[msg.sender].name, msg.sender);
+            users[msg.sender].friendList.push(friend);
+            users[userAddress].friendList.push(me);
+            emit FriendAdded(msg.sender, userAddress);
+        }
+    }
+}
 
     function isUserBlocked(address userAddress) external view userExists(msg.sender) returns (bool) {
         return users[msg.sender].blockedUsers[userAddress];
@@ -119,7 +156,7 @@ contract ChatDapp {
         return allMessages[chatCode];
     }
 
-    function getAllAppUsers() external view returns (AllUserStruct[] memory) {
+    function getAllAppUsers() external view returns (AllUsers[] memory) {
         return allUsers;
     }
 
@@ -132,7 +169,7 @@ contract ChatDapp {
     function isFriend(address userAddress, address friendAddress) private view returns (bool) {
     User storage user = users[userAddress];
     for (uint256 i = 0; i < user.friendList.length; i++) {
-        if (user.friendList[i].pubkey == friendAddress) {
+        if (user.friendList[i].friendkey == friendAddress) {
             return true;
         }
     }

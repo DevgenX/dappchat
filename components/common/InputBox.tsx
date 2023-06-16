@@ -4,6 +4,7 @@ import { FC, useState, useEffect } from "react";
 import { Icons } from "@/components/Icons";
 import { useSearchParams } from "next/navigation";
 import { useChatContext } from "@/context/ChatDapp.context";
+import Loading from "@/components/common/Loading";
 
 interface UserData {
   name: string;
@@ -26,7 +27,12 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
     pubkey: "",
   });
 
-  const { getUserMessages, input: content, setInput } = useChatContext();
+  const {
+    getUserMessages,
+    isLoading,
+    input: content,
+    setInput,
+  } = useChatContext();
 
   const params = useSearchParams();
 
@@ -59,8 +65,9 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
             sendMessage({ content: content, address: userData.pubkey })
           }
           className="absolute p-2 text-black mt-1 rounded-full right-1 hover:scale-105"
+          disabled={isLoading}
         >
-          <Icons.Send size={20} />
+          {isLoading ? <Loading /> : <Icons.Send size={20} />}
         </button>
       </div>
     </>

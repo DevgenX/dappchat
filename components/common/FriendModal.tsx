@@ -6,14 +6,12 @@ import Heading from "@/components/common/Heading";
 import Loading from "@/components/common/Loading";
 
 interface ModalProps {
-  isModalOpen: boolean;
   setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;
 }
 
-const FriendModal: FC<ModalProps> = ({ setIsModalOpen, isModalOpen }) => {
+const FriendModal: FC<ModalProps> = ({ setIsModalOpen }) => {
   const [name, setName] = useState<string>("");
   const [address, setAddress] = useState<string>("");
-
   const { handleAddFriend, isLoading } = useChatContext();
 
   return (

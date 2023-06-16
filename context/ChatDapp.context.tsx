@@ -197,13 +197,19 @@ export const ChatProvider = ({ children }: any) => {
       const contract = await connectToSmartContract();
       const newBlockedUser = await contract.blockUser(address);
       await newBlockedUser.wait();
+      toast({
+        title: "Successfully blocked a user!",
+        message: "User has been blocked and won't be able to message you .",
+        type: "success",
+      });
       setIsLoading(false);
       window.location.reload();
     } catch (err) {
       setIsLoading(false);
       toast({
         title: "Error blocking a user",
-        message: "It seems you are blocking an unregistered user",
+        message:
+          "There seems to be an error while blocking this user. Please try again.",
         type: "error",
       });
     } finally {

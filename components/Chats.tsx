@@ -1,6 +1,8 @@
 "use client";
 
 import { FC, useState } from "react";
+import { useSearchParams } from "next/navigation";
+
 import InputBox from "@/components/common/InputBox";
 import FriendList from "@/components/common/FriendList";
 import EmptyMessage from "./common/EmptyMessage";
@@ -17,7 +19,9 @@ const Chats: FC = () => {
     setBlockModal(() => !blockModal);
   };
 
-  const { handleSendMessage, isLoading } = useChatContext();
+  const params = useSearchParams();
+
+  const { handleSendMessage, isLoading, handleBlockUser } = useChatContext();
 
   return (
     <div className="flex flex-row min-h-screen">
@@ -33,11 +37,11 @@ const Chats: FC = () => {
             ) : (
               <div className="h-full  flex flex-col">
                 <div className="flex text-slate-800 justify-between px-2 py-2">
-                  <p>Getting spammed by a user?</p>
+                  <p>Getting spammed by this user?</p>
                   <Icons.Ban
                     size={17}
                     className="self-center text-red-400 cursor-pointer hover:scale-105"
-                    onClick={toggleBlock}
+                    onClick={() => handleBlockUser(params.get("pubkey") || " ")}
                   />
                 </div>
                 <div className="flex-grow max-h-[100%] bg-slate-200 p-4 height: 100vh">

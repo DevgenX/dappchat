@@ -1,4 +1,5 @@
 import Dashboard from "@/components/Dashboard";
+import Announcement from "@/components/common/Announcement";
 
 type Metadata = {
   title: string;
@@ -6,8 +7,9 @@ type Metadata = {
 };
 
 export const metadata: Metadata = {
-  title: "ChatDapp",
-  description: "A multi-chain decentralized messaging application",
+  title: "DappChat",
+  description:
+    "A multi-chain and fully on-chain decentralized messaging application",
 };
 
 export default function Home() {

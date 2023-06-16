@@ -7,7 +7,7 @@ import { useTheme } from "next-themes";
 import { navLinks } from "@/helpers/NavLinks";
 import AnonymousIcon from "@/public/anonymous.png";
 import Image from "next/image";
-import { useChatContext } from "@/context/ChatDapp.context";
+import { useChatContext } from "@/context/DappChat.context";
 import dynamic from "next/dynamic";
 
 const Navbar = () => {
@@ -35,7 +35,7 @@ const Navbar = () => {
             <div className="container flex items-center space-x-2">
               <Image src={AnonymousIcon} alt="icon" height={50} width={50} />
               <h2 className="text-2xl text-black font-bold dark:text-white">
-                ChatDapp
+                DappChat
               </h2>
             </div>
           </Link>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, FC, SetStateAction } from "react";
-import { useChatContext } from "@/context/ChatDapp.context";
+import { useChatContext } from "@/context/DappChat.context";
 import Heading from "@/components/common/Heading";
 
 interface ModalProps {

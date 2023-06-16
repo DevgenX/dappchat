@@ -2,7 +2,7 @@ import { FC } from "react";
 import Avatar from "@/components/common/Avatar";
 import { FriendListType } from "@/context/ChatTypes";
 import Link from "next/link";
-import { useChatContext } from "@/context/ChatDapp.context";
+import { useChatContext } from "@/context/DappChat.context";
 
 interface FriendProps {
   index: number;

@@ -3,7 +3,7 @@
 import Heading from "@/components/common/Heading";
 import Paragraph from "@/components/common/Heading";
 import UsersCard from "./common/UsersCard";
-import { useChatContext } from "@/context/ChatDapp.context";
+import { useChatContext } from "@/context/DappChat.context";
 
 const Users = () => {
   const { userList } = useChatContext();

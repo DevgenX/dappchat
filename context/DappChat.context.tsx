@@ -217,6 +217,33 @@ export const ChatProvider = ({ children }: any) => {
     }
   };
 
+  const handleUnblockUser = async (address: string) => {
+    setIsLoading(true);
+    try {
+      if (!address) return;
+      const contract = await connectToSmartContract();
+      const unblockedUser = await contract.unblockUser(address);
+      await unblockedUser.wait();
+      toast({
+        title: "Successfully unblocked a user!",
+        message: "You can now message the user to start a conversation .",
+        type: "success",
+      });
+      setIsLoading(false);
+      window.location.reload();
+    } catch (err) {
+      setIsLoading(false);
+      toast({
+        title: "Error unblocking a user",
+        message:
+          "There seems to be an error while unblocking this user. Please try again.",
+        type: "error",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const getUserMessages = async (address: string) => {
     setIsLoading(true);
     try {
@@ -280,6 +307,7 @@ export const ChatProvider = ({ children }: any) => {
         getUsername,
         handleSendMessage,
         handleBlockUser,
+        handleUnblockUser,
         handleAddFriend,
       }}
     >

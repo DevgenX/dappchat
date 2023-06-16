@@ -5,9 +5,7 @@ const Tutorials = () => {
   return (
     <div className="flex flex-col md:flex-row h-full items-center justify-center">
       <div>
-        <Heading size="lg" className="">
-          Experience Blockchain Messaging
-        </Heading>
+        <Heading size="lg">Experience Blockchain Messaging</Heading>
 
         <Paragraph
           size="sm"

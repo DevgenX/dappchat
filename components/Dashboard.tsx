@@ -8,12 +8,12 @@ import dynamic from "next/dynamic";
 
 import Heading from "@/components/common/Heading";
 import Paragraph from "@/components/common/Paragraph";
-import ChatDapp from "@/public/chatdapp.jpg";
+import DappChat from "@/public/DappChat.jpg";
 import Features from "@/components/Features";
 import AccountModal from "@/components/common/AccountModal";
 import Loading from "@/components/common/Loading";
 
-import { useChatContext } from "../context/ChatDapp.context";
+import { useChatContext } from "../context/DappChat.context";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -28,7 +28,7 @@ const Dashboard = () => {
           </Heading>
           <Paragraph className="max-w-md md:text-left text-gray-200">
             Message anyone from the blockchain anonymously.{" "}
-            <span className="font-bold text-light-gold">ChatDapp</span> is a
+            <span className="font-bold text-light-gold">DappChat</span> is a
             decentralized protocol that allows wallet-to-wallet messaging
             powered by multi-chain interoperability.{" "}
             <Link href="/" className="underline underline-offset-2">
@@ -57,7 +57,7 @@ const Dashboard = () => {
             className="img-shadow rounded-xl"
             width={800}
             height={700}
-            src={ChatDapp}
+            src={DappChat}
             alt="Decentralized-Messaging"
           />
         </div>

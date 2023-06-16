@@ -6,8 +6,9 @@ type Metadata = {
 };
 
 export const metadata: Metadata = {
-  title: "ChatDapp | Chat",
-  description: "A multi-chain decentralized messaging application ",
+  title: "DappChat | Chat",
+  description:
+    "A multi-chain and fully on-chain decentralized messaging application",
 };
 
 const page = () => {

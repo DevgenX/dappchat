@@ -1,5 +1,3 @@
-import { BigNumber } from "ethers";
-
 export type FriendListType = {
   name: string;
   pubkey: string;
@@ -28,6 +26,7 @@ export interface InitialStateInterface {
   messages: MessagesType[];
   userList: UserList[];
   blockedUsers: BlockedUsersType[];
+
   setCurrentUser: React.Dispatch<React.SetStateAction<string>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
@@ -51,6 +50,7 @@ export interface InitialStateInterface {
     name: string;
   }) => Promise<void> | "";
   handleBlockUser: (address: string) => Promise<void> | "";
+  handleUnblockUser: (address: string) => Promise<void> | "";
 }
 
 export const initialState: InitialStateInterface = {
@@ -72,4 +72,5 @@ export const initialState: InitialStateInterface = {
   handleSendMessage: () => "",
   handleAddFriend: () => "",
   handleBlockUser: () => "",
+  handleUnblockUser: () => "",
 };

@@ -4,7 +4,7 @@ import { FC, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { Icons } from "@/components/Icons";
 import FriendModal from "@/components/common/FriendModal";
-import { useChatContext } from "@/context/ChatDapp.context";
+import { useChatContext } from "@/context/DappChat.context";
 import FriendCard from "@/components/common/FriendCard";
 
 interface FriendListProps {

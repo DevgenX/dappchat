@@ -3,7 +3,7 @@
 import { FC, useState, useEffect } from "react";
 import { Icons } from "@/components/Icons";
 import { useSearchParams } from "next/navigation";
-import { useChatContext } from "@/context/ChatDapp.context";
+import { useChatContext } from "@/context/DappChat.context";
 import Loading from "@/components/common/Loading";
 
 interface UserData {

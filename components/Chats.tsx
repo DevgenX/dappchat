@@ -6,19 +6,13 @@ import { useSearchParams } from "next/navigation";
 import InputBox from "@/components/common/InputBox";
 import FriendList from "@/components/common/FriendList";
 import EmptyMessage from "./common/EmptyMessage";
-import { useChatContext } from "@/context/ChatDapp.context";
+import { useChatContext } from "@/context/DappChat.context";
 import Icons from "@/components/Icons";
 import Messages from "@/components/Messages";
 import Loading from "@/components/common/Loading";
 
 const Chats: FC = () => {
   const [selectedUser, setSelectedUser] = useState<string>("");
-  const [blockModal, setBlockModal] = useState<boolean>(false);
-
-  const toggleBlock = () => {
-    setBlockModal(() => !blockModal);
-  };
-
   const params = useSearchParams();
 
   const { handleSendMessage, isLoading, handleBlockUser } = useChatContext();

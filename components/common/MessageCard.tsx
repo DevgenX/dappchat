@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { MessagesType } from "@/context/ChatTypes";
-import { useChatContext } from "@/context/ChatDapp.context";
+import { useChatContext } from "@/context/DappChat.context";
 import { formattedTime } from "@/lib/Api";
 
 interface MessagesProps {

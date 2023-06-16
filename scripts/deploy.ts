@@ -1,12 +1,12 @@
 import { ethers } from "hardhat";
 
 const main = async () => {
-  const ChatDapp = await ethers.getContractFactory("ChatDapp");
-  const chatDapp = await ChatDapp.deploy();
+  const DappChat = await ethers.getContractFactory("DappChat");
+  const dappChat = await DappChat.deploy();
 
-  await chatDapp.deployed();
+  await dappChat.deployed();
 
-  console.log(`Contract address is to ${chatDapp.address}`);
+  console.log(`Contract address is to ${dappChat.address}`);
 };
 
 const runMain = async () => {

@@ -36,11 +36,13 @@ export const formattedTime = (time: string | number | BigNumber) => {
   const today = new Date();
 
   const formattedDate = newTime.toLocaleDateString();
-  const formattedTime = newTime.toLocaleTimeString();
+  const formattedTime = newTime.toLocaleTimeString().slice(0, -6);
 
   if (today.toLocaleDateString() === formattedDate) {
-    return `Today, ${formattedTime}`;
+    return `Today, ${formattedTime} ${newTime.getHours() >= 12 ? "PM" : "AM"}`;
   } else {
-    return `${formattedDate}, ${formattedTime}`;
+    return `${formattedDate}, ${formattedTime} ${
+      newTime.getHours() >= 12 ? "PM" : "AM"
+    }`;
   }
 };

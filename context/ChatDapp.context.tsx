@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { toast } from "@/components/common/Toast";
+import { useRouter, usePathname } from "next/navigation";
 
 import {
   FriendListType,
@@ -11,7 +12,7 @@ import {
   initialState,
   InitialStateInterface,
 } from "@/context/ChatTypes";
-import { connectToSmartContract } from "@/utils/Api";
+import { connectToSmartContract } from "@/lib/Api";
 
 export const ChatContext = createContext<InitialStateInterface>(initialState);
 
@@ -27,16 +28,16 @@ export const ChatProvider = ({ children }: any) => {
   const [currentUser, setCurrentUser] = useState<string>("");
   const [input, setInput] = useState<string>("");
 
+  const router = useRouter();
+  const pathname = usePathname();
+
   const fetchUserData = async () => {
     try {
       const contract = await connectToSmartContract();
-
       const friendsArray = await contract.getFriends();
       setFriendList(friendsArray);
-
       const getAllUsers = await contract.getAllAppUsers();
       setUserList(getAllUsers);
-
       const getBlockedUsers = await contract.getAllBlockedUsers();
       setBlockedUsers(getBlockedUsers);
     } catch (err) {
@@ -82,7 +83,6 @@ export const ChatProvider = ({ children }: any) => {
         });
       }
       await window.ethereum.enable();
-
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
@@ -96,12 +96,23 @@ export const ChatProvider = ({ children }: any) => {
   };
 
   const createAccount = async ({ name }: { name: string }): Promise<void> => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       const contract = await connectToSmartContract();
       if (!name || !contract) return;
-      await contract.createUser(name);
+      const newUser = await contract.createUser(name);
+      await newUser.wait();
+      setIsLoading(false);
+      if (newUser) {
+        toast({
+          title: "Happy Chatting!",
+          message: "Successfully Created an Account",
+          type: "success",
+        });
+      }
+      router.push("/chat");
     } catch (err) {
+      setIsLoading(false);
       toast({
         title: "Error creating an account",
         message:
@@ -120,12 +131,22 @@ export const ChatProvider = ({ children }: any) => {
     content: string;
     address: string;
   }): Promise<void> => {
+    setIsLoading(true);
     try {
       if (!content || !address) return;
-      setIsLoading(true);
       const contract = await connectToSmartContract();
-      await contract.sendMessage(address, content);
+      const newMessage = await contract.sendMessage(address, content);
+      await newMessage.wait();
+      setIsLoading(false);
+      if (newMessage) {
+        toast({
+          title: "Message Sent",
+          message: "Successfuly sent a message to your friend",
+          type: "success",
+        });
+      }
     } catch (err) {
+      setIsLoading(false);
       toast({
         title: "Error sending a message",
         message: "It seems you are not friends with this user",
@@ -144,31 +165,42 @@ export const ChatProvider = ({ children }: any) => {
     address: string;
     name: string;
   }): Promise<void> => {
+    setIsLoading(true);
     try {
       if (!address || !name) return;
-
-      setIsLoading(true);
       const contract = await connectToSmartContract();
-      await contract.addFriend(address, name);
+      const newFriend = await contract.addFriend(address, name);
+      await newFriend.wait();
+      setIsLoading(false);
       window.location.reload();
+      if (newFriend) {
+        toast({
+          title: "Added Successfully!",
+          message: "Successfuly added a new friend.",
+          type: "success",
+        });
+      }
     } catch (err) {
+      setIsLoading(false);
       toast({
         title: "Error adding a friend",
         message: "It seems you are adding an unregistered user",
         type: "error",
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
   const handleBlockUser = async (address: string) => {
+    setIsLoading(true);
     try {
       if (!address) return;
-      setIsLoading(true);
       const contract = await connectToSmartContract();
-      await contract.blockUser(address);
+      const newBlockedUser = await contract.blockUser(address);
+      await newBlockedUser.wait();
+      setIsLoading(false);
+      window.location.reload();
     } catch (err) {
+      setIsLoading(false);
       toast({
         title: "Error blocking a user",
         message: "It seems you are blocking an unregistered user",
@@ -180,16 +212,21 @@ export const ChatProvider = ({ children }: any) => {
   };
 
   const getUserMessages = async (address: string) => {
+    setIsLoading(true);
     try {
       const contract = await connectToSmartContract();
       const getMessages = await contract.readMessages(address);
       setMessages(getMessages);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       toast({
         title: "Error fetching user messages",
         message: "It seems you are trying to access messages from unknown user",
         type: "error",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -207,6 +244,8 @@ export const ChatProvider = ({ children }: any) => {
           "There seem to be an error while fetching your username. Please wait for a moment while we load your username",
         type: "error",
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 

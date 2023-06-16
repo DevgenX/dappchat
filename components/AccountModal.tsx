@@ -3,6 +3,7 @@
 import { useState, FC, SetStateAction } from "react";
 import { useChatContext } from "@/context/ChatDapp.context";
 import Heading from "@/components/common/Heading";
+import Loading from "@/components/common/Loading";
 
 interface ModalProps {
   setOpenModal: React.Dispatch<SetStateAction<boolean>>;
@@ -11,7 +12,7 @@ interface ModalProps {
 const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
   const [name, setName] = useState<string>("");
 
-  const { username, account, createAccount } = useChatContext();
+  const { account, isLoading, createAccount } = useChatContext();
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-opacity-0">

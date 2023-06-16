@@ -26,15 +26,7 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
     pubkey: "",
   });
 
-  const {
-    getUserMessages,
-    getUsername,
-    messages,
-    account,
-    username,
-    input: content,
-    setInput,
-  } = useChatContext();
+  const { getUserMessages, input: content, setInput } = useChatContext();
 
   const params = useSearchParams();
 

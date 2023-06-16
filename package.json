@@ -43,6 +43,7 @@
     "@types/react-scroll": "^1.8.6",
     "autoprefixer": "^10.4.13",
     "chai": "^4.3.7",
+    "framer-motion": "^10.12.16",
     "hardhat": "^2.14.0",
     "react-scroll": "^1.8.9",
     "react-type-animation": "^2.1.2",

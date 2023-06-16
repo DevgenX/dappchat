@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { MessagesType } from "@/context/ChatTypes";
 import { useChatContext } from "@/context/ChatDapp.context";
-import { formattedTime } from "@/utils/Api";
+import { formattedTime } from "@/lib/Api";
 
 interface MessagesProps {
   message: MessagesType;
@@ -11,7 +11,7 @@ const MessageCard: FC<MessagesProps> = ({ message }) => {
   const { account } = useChatContext();
 
   return (
-    <div className="overflow-y-scroll">
+    <div className="overflow-scroll">
       <div
         className={
           message.sender.toLowerCase() === account.toLowerCase()

@@ -1,8 +1,8 @@
 import { useChatContext } from "@/context/ChatDapp.context";
-import MessageCard from "./common/MessageCard";
+import MessageCard from "@/components/common/MessageCard";
 
 const Messages = () => {
-  const { messages, getUsername, account, username } = useChatContext();
+  const { messages } = useChatContext();
 
   return (
     <>

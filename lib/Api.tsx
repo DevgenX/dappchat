@@ -2,7 +2,7 @@ import Web3Modal from "web3modal";
 import { Signer, ethers } from "ethers";
 import BigNumber from "bignumber.js";
 
-import { contractABI, contractAddress } from "@/utils/constants";
+import { contractABI, contractAddress } from "@/lib/constants";
 
 export const fetchContract = (signer: Signer) => {
   return new ethers.Contract(contractAddress, contractABI, signer);

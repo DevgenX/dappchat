@@ -10,9 +10,12 @@ import Features from "@/components/Features";
 import { BsFillArrowUpRightCircleFill } from "react-icons/bs";
 import AccountModal from "@/components/AccountModal";
 import dynamic from "next/dynamic";
+import { useChatContext } from "../context/ChatDapp.context";
+import Loading from "@/components/common/Loading";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const { isLoading } = useChatContext();
 
   return (
     <>
@@ -41,7 +44,12 @@ const Dashboard = () => {
             CREATE ACCOUNT
           </button>
         </div>
-        {openModal ? <AccountModal setOpenModal={setOpenModal} /> : ""}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          openModal && <AccountModal setOpenModal={setOpenModal} />
+        )}
+
         <div className="flex flex-row max-w-1xl md:max-w-5xl mx-10">
           <Image
             className="img-shadow rounded-xl"

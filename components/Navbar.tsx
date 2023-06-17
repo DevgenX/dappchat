@@ -8,24 +8,32 @@ import { navLinks } from "@/helpers/NavLinks";
 import AnonymousIcon from "@/public/anonymous.png";
 import Image from "next/image";
 import { useChatContext } from "@/context/DappChat.context";
+import ConnectChain from "@/lib/connect";
 import dynamic from "next/dynamic";
+import NetworkModal from "@/components/common/NetworkModal";
 
 const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
-  const [navbar, setNavbar] = useState(false);
+  const [navbar, setNavbar] = useState<boolean>(false);
   const { connectWallet, getUsername, account, setCurrentUser, currentUser } =
     useChatContext();
 
+  const [selectedNetwork, setSelectedNetwork] = useState<string>("Set Network");
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
   const fetchAccountUsername = async () => {
     const username = await getUsername(account);
-
     setCurrentUser(username || "");
+  };
+
+  const handleOpenModal = () => {
+    setOpenModal(() => !openModal);
   };
 
   useEffect(() => {
     fetchAccountUsername();
-  }, []);
+  }, [account]);
 
   return (
     <header className="w-[80%] mx-auto px-4 sm:px-20">
@@ -52,10 +60,25 @@ const Navbar = () => {
         </div>
         <div className="items-center space-x-2 hidden md:flex">
           <button
-            onClick={() => connectWallet()}
-            className="rounded-xl text-white border p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
+            onClick={handleOpenModal}
+            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
           >
-            {account ? currentUser : "CONNECT WALLET"}
+            {selectedNetwork}
+          </button>
+          {openModal && (
+            <NetworkModal
+              selectedNetwork={selectedNetwork}
+              setSelectedNetwork={setSelectedNetwork}
+              setOpenModal={setOpenModal}
+            />
+          )}
+          <button
+            onClick={() => connectWallet()}
+            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
+          >
+            {currentUser
+              ? currentUser?.charAt(0).toUpperCase() + currentUser.slice(1)
+              : "CONNECT WALLET"}
           </button>
           <button
             onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}

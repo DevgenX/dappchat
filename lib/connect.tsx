@@ -10,6 +10,7 @@ import {
 } from "@/lib/ChainChange";
 
 import Image from "next/image";
+import networks from "@/public/logo";
 
 export default function ConnectChain() {
   const [selected, setSelected] = useState<string>("Set Network");
@@ -33,29 +34,23 @@ export default function ConnectChain() {
 
   const blockImage = useMemo(() => {
     if (selectedValue === "Ethereum") {
-      return (
-        <Image alt="eth" src="./ethereumlogo.png" width={25} height={25} />
-      );
+      return <Image alt="eth" src={networks.eth} width={35} height={35} />;
     } else if (selectedValue === "Binance Smart Chain") {
-      return <Image alt="bsc" src="./bsc.png" width={25} height={25} />;
+      return <Image alt="bsc" src={networks.bnb} width={25} height={25} />;
     } else if (selectedValue === "Polygon") {
-      return (
-        <Image alt="poly" src="./polygonwhite.png" width={25} height={25} />
-      );
+      return <Image alt="poly" src={networks.polygon} width={25} height={25} />;
     } else if (selectedValue === "Mumbai") {
       return (
-        <Image alt="mumbai" src="./polygonwhite.png" width={25} height={25} />
+        <Image alt="mumbai" src={networks.mumbai} width={25} height={25} />
       );
     } else if (selectedValue === "Bsctest") {
-      return (
-        <Image alt="goerli" src="./polygonwhite.png" width={25} height={25} />
-      );
+      return <Image alt="goerli" src={networks.bsc} width={25} height={25} />;
     } else if (selectedValue === "Goerli") {
       return (
-        <Image alt="hardhat" src="./polygonwhite.png" width={25} height={25} />
+        <Image alt="hardhat" src={networks.goerli} width={25} height={25} />
       );
     } else if (selectedValue === "Hardhat") {
-      return <Image alt="" src="./polygonwhite.png" width={25} height={25} />;
+      return <Image alt="" src={networks.hardhat} width={25} height={25} />;
     } else if (selectedValue === "Set Network") {
       return (
         <div className="mt-4">

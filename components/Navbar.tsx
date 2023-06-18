@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Icons } from "@/components/Icons";
 import { useTheme } from "next-themes";
-import { navLinks } from "@/helpers/NavLinks";
-import AnonymousIcon from "@/public/anonymous.png";
-import Image from "next/image";
-import { useChatContext } from "@/context/DappChat.context";
-import ConnectChain from "@/lib/connect";
 import dynamic from "next/dynamic";
+import Image from "next/image";
+
+import { Icons } from "@/components/Icons";
+import { navLinks } from "@/helpers/NavLinks";
+import AnonymousIcon from "@/public/assets/anonymous.png";
+import { useChatContext } from "@/context/DappChat.context";
 import NetworkModal from "@/components/common/NetworkModal";
 
 const Navbar = () => {

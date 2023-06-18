@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 
 import Heading from "@/components/common/Heading";
 import Paragraph from "@/components/common/Paragraph";
-import DappChat from "@/public/DappChat.jpg";
+import DappChat from "@/public/assets/DappChat.jpg";
 import Features from "@/components/Features";
 import AccountModal from "@/components/common/AccountModal";
 import Loading from "@/components/common/Loading";

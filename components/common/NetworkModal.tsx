@@ -11,6 +11,7 @@ import {
   polyChain,
   hardChain,
 } from "@/lib/ChainChange";
+
 import Image from "next/image";
 import networks from "@/public/logo";
 import Icons from "@/components/Icons";
@@ -26,11 +27,6 @@ const NetworkModal: FC<ModalProps> = ({
   setSelectedNetwork,
   setOpenModal,
 }) => {
-  const selectedValue = useMemo(
-    () => selectedNetwork.replaceAll("_", " "),
-    [selectedNetwork]
-  );
-
   const options = useMemo(
     () => [
       { network: "Ethereum", image: networks.eth },

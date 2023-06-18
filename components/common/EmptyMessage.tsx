@@ -1,6 +1,6 @@
 import Heading from "@/components/common/Heading";
 import Paragraph from "@/components/common/Paragraph";
-import ChatDapp from "@/public/anonymous.png";
+import ChatDapp from "@/public/assets/anonymous.png";
 import Image from "next/image";
 
 const EmptyMessage = () => {

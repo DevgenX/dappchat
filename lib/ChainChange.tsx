@@ -179,8 +179,8 @@ export async function hardChain() {
                 symbol: "ETH",
                 decimals: 18,
               },
-              rpcUrls: ["http://node.a3b.io:8545"],
-              blockExplorerUrls: [""],
+              rpcUrls: ["https://goerli.infura.io/v3/"],
+              blockExplorerUrls: ["https://goerli.etherscan.io/"],
             },
           ],
         });

@@ -5,12 +5,15 @@ import detectEthereumProvider from "@metamask/detect-provider";
 
 import { contractABI, contractAddress } from "@/lib/constants";
 import { hardhatRPC, goerliRPC, mumbaiRPC, bscRPC } from "@/lib/constants";
+import { toast } from "@/components/common/Toast";
 import {
   hhContract,
   goerliContract,
   mumbaiContract,
   bscContract,
 } from "@/lib/constants";
+
+let contractAdd: string;
 
 interface ContractTypes {
   eth: string;
@@ -43,33 +46,43 @@ export const getCurrentRPC = async () => {
   } else if (chainId === bsct) {
     rpc = bscRPC;
   }
-
   return rpc;
 };
 
-export const setSmartContract = async () => {
-  let smartContract;
+export const setSmartContract = async (): Promise<string> => {
   let hh = "0x7a69";
   let goerli = "0x5";
   let mm = "0x13881";
   let bsct = "0x61";
   const provider = (await detectEthereumProvider()) as any;
 
-  if (!provider) return;
+  if (!provider) {
+    toast({
+      title: "Metamask Error",
+      message: "Please install metamask",
+      type: "error",
+    });
+  }
   const chainId = await provider.request({ method: "eth_chainId" });
-  if (!chainId) return;
-
-  if (chainId === hh) {
-    smartContract = hhContract;
-  } else if (chainId === goerli) {
-    smartContract = goerliContract;
-  } else if (chainId === mm) {
-    smartContract = mumbaiContract;
-  } else if (chainId === bsct) {
-    smartContract = bscContract;
+  if (!chainId) {
+    toast({
+      title: "Network Error",
+      message: "Please change your network",
+      type: "error",
+    });
   }
 
-  return smartContract;
+  if (chainId === hh) {
+    contractAdd = hhContract;
+  } else if (chainId === goerli) {
+    contractAdd = goerliContract;
+  } else if (chainId === mm) {
+    contractAdd = mumbaiContract;
+  } else if (chainId === bsct) {
+    contractAdd = bscContract;
+  }
+
+  return contractAdd;
 };
 
 const contractAddresses: ContractTypes = {
@@ -82,8 +95,9 @@ const contractAddresses: ContractTypes = {
   hardhat: "0xabc",
 };
 
-export const fetchContract = (signer: Signer) => {
-  return new ethers.Contract(contractAddress, contractABI, signer);
+export const fetchContract = async (signer: Signer) => {
+  const multiChainContract = await setSmartContract();
+  return new ethers.Contract(multiChainContract, contractABI, signer);
 };
 
 export const connectToSmartContract = async () => {
@@ -92,6 +106,7 @@ export const connectToSmartContract = async () => {
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
+
     const contract = fetchContract(signer);
 
     return contract;

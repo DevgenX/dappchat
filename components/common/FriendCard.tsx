@@ -17,23 +17,33 @@ const FriendCard: FC<FriendProps> = ({
   selectedUser,
   friend,
 }) => {
-  const { getUserMessages, getUsername } = useChatContext();
+  const { getUserMessages } = useChatContext();
 
   const handleSelectFriend = (friend: string) => {
     selectFriend(friend);
     getUserMessages(friend);
   };
 
+  const getUserName = (username: string) => {
+    if (!username) return;
+
+    if (username.length > 8) {
+      return username.charAt(0).toUpperCase() + username.slice(1, 6);
+    } else {
+      return username;
+    }
+  };
+
   return (
     <Link
       href={{
         pathname: "/chat",
-        query: { name: `${friend.name}`, pubkey: `${friend.pubkey}` },
+        query: { name: `${friend.name}`, friendkey: `${friend.friendkey}` },
       }}
     >
       <div
         key={index}
-        onClick={() => handleSelectFriend(friend.pubkey)}
+        onClick={() => handleSelectFriend(friend.friendkey)}
         className={`border-b border-gray-500 hover:bg-slate-600 flex mb-2 items-center gap-2 ${
           selectedUser?.trim().toLowerCase() ===
           friend.name.trim().toLowerCase()
@@ -47,7 +57,7 @@ const FriendCard: FC<FriendProps> = ({
         <div className="flex items-center">
           <div className="flex gap-2 py-2 pl-4 items-center justify-center">
             <Avatar id={index} name={friend.name} />
-            <span>{friend.name}</span>
+            <span>{getUserName(friend.name)}</span>
           </div>
         </div>
       </div>

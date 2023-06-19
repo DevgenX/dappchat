@@ -1,6 +1,6 @@
 export type FriendListType = {
   name: string;
-  pubkey: string;
+  friendkey: string;
 };
 
 export type MessagesType = {

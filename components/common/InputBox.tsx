@@ -8,7 +8,7 @@ import Loading from "@/components/common/Loading";
 
 interface UserData {
   name: string;
-  pubkey: string;
+  friendkey: string;
 }
 
 interface MessageTypes {
@@ -24,7 +24,7 @@ interface MessageTypes {
 const Input: FC<MessageTypes> = ({ sendMessage }) => {
   const [userData, setUserData] = useState<UserData>({
     name: "",
-    pubkey: "",
+    friendkey: "",
   });
 
   const {
@@ -32,6 +32,7 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
     isLoading,
     input: content,
     setInput,
+    messages,
   } = useChatContext();
 
   const params = useSearchParams();
@@ -40,15 +41,15 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
     if (!params) return;
     setUserData({
       name: params.get("name") || "",
-      pubkey: params.get("pubkey") || " ",
+      friendkey: params.get("friendkey") || " ",
     });
   }, [params]);
 
   useEffect(() => {
-    if (userData.pubkey) {
-      getUserMessages(userData.pubkey);
+    if (userData.friendkey) {
+      getUserMessages(userData.friendkey);
     }
-  }, []);
+  }, [messages]);
 
   return (
     <>
@@ -62,7 +63,7 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
         />
         <button
           onClick={() =>
-            sendMessage({ content: content, address: userData.pubkey })
+            sendMessage({ content: content, address: userData.friendkey })
           }
           className="absolute p-2 text-black mt-1 rounded-full right-1 hover:scale-105"
           disabled={isLoading}

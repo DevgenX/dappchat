@@ -46,11 +46,8 @@ const Dashboard = () => {
             CREATE ACCOUNT
           </button>
         </div>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          openModal && <AccountModal setOpenModal={setOpenModal} />
-        )}
+
+        {openModal && <AccountModal setOpenModal={setOpenModal} />}
 
         <div className="flex flex-row max-w-1xl md:max-w-5xl mx-10">
           <Image

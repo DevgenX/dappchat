@@ -64,7 +64,7 @@ const NetworkModal: FC<ModalProps> = ({
   }, [selectedNetwork]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-opacity-0">
+    <div className="fixed inset-0 flex items-center justify-center bg-opacity-0 z-10">
       <div className="absolute bg-gray-800 rounded-md p-8">
         <button
           className="absolute top-3 right-3"

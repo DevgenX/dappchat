@@ -31,27 +31,29 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
     setIsModalOpen(() => !isModalOpen);
   };
 
+  const getUserName = (username: string) => {
+    if (!username) return;
+
+    if (username.length > 8) {
+      return username.charAt(0).toUpperCase() + username.slice(1, 6);
+    } else {
+      return username;
+    }
+  };
+
   return (
     <>
       <div className="bg-slate-500 p-2 md:w-1/3 text-white md:rounded-l-lg mb-4 md:mb-0 relative">
         <div className="my-3 gap-2">
           <div className="flex justify-between border-b border-gray-500 mx-3">
             <div className="mb-3">
-              <h1>
-                {currentUser.charAt(0).toLocaleUpperCase() +
-                  currentUser.slice(1)}
-              </h1>
+              <h1>{getUserName(currentUser)}</h1>
             </div>
             <div className="flex cursor-pointer">
               <div onClick={toggleModal} className="pr-3 hover:scale-125">
                 <BsFillPersonPlusFill size={20} />
               </div>
-              {isModalOpen && (
-                <FriendModal
-                  isModalOpen={isModalOpen}
-                  setIsModalOpen={setIsModalOpen}
-                />
-              )}
+              {isModalOpen && <FriendModal setIsModalOpen={setIsModalOpen} />}
               <div onClick={toggleDropdown} className="hover:scale-125">
                 <Icons.MoreVertical size={20} />
               </div>

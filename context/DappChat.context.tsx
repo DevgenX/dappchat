@@ -184,7 +184,8 @@ export const ChatProvider = ({ children }: any) => {
       setIsLoading(false);
       toast({
         title: "Error adding a friend",
-        message: "It seems you are adding an unregistered user",
+        message:
+          "It seems you are adding an unregistered or a user that you blocked",
         type: "error",
       });
     }
@@ -285,7 +286,7 @@ export const ChatProvider = ({ children }: any) => {
   useEffect(() => {
     CheckIsWalletConnected();
     fetchUserData();
-  }, []);
+  }, [account, currentUser, messages]);
 
   return (
     <ChatContext.Provider

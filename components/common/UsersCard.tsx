@@ -18,6 +18,16 @@ const UsersCard: FC<UsersCardType> = ({ user, index }) => {
     setOpenModal(() => !openModal);
   };
 
+  const getUserName = (username: string) => {
+    if (!username) return;
+
+    if (username.length > 8) {
+      return username.charAt(0).toUpperCase() + username.slice(1, 6);
+    } else {
+      return username;
+    }
+  };
+
   return (
     <div className="max-w-sm bg-gray-100 rounded-lg shadow-md p-5 dark:text-white dark:bg-black mx-2 my-2">
       <BsFillPersonPlusFill
@@ -27,16 +37,14 @@ const UsersCard: FC<UsersCardType> = ({ user, index }) => {
       />
       <div className="flex flex-col p-3 pt-3 items-center justify-center">
         <Avatar id={index} name={user.name} />
-        <h3>{user.name}</h3>
+        <h3>{getUserName(user.name)}</h3>
         <div className="pt-3">
           <p className="box-border md:text-sm text-[10px]">
             {user.accountAddress}
           </p>
         </div>
       </div>
-      {openModal && (
-        <FriendModal isModalOpen={openModal} setIsModalOpen={setOpenModal} />
-      )}
+      {openModal && <FriendModal setIsModalOpen={setOpenModal} />}
     </div>
   );
 };

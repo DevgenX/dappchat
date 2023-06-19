@@ -33,7 +33,7 @@ const Navbar = () => {
 
   useEffect(() => {
     fetchAccountUsername();
-  }, [account]);
+  }, [account, currentUser]);
 
   return (
     <header className="w-[80%] mx-auto px-4 sm:px-20">
@@ -76,9 +76,7 @@ const Navbar = () => {
             onClick={() => connectWallet()}
             className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
           >
-            {currentUser
-              ? currentUser?.charAt(0).toUpperCase() + currentUser.slice(1)
-              : "CONNECT WALLET"}
+            {currentUser ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
           </button>
           <button
             onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}

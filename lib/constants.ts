@@ -1,7 +1,7 @@
-import abi from "./ChatDapp.json";
+import abi from "./DappChat.json";
 
-export const contractAddress = "0xddbA3952256c997D052b43E2806a7F2fB9282d89";
-export const contractABI = abi.abi;
+export const contractAddress = "0x56Dc3b782C3192169f7ED570a1e6Cb2A533eb2E2";
+export const contractABI = abi;
 
 // rpcs
 export const hardhatRPC = "http://localhost:8545";
@@ -11,7 +11,7 @@ export const bscRPC = "https://data-seed-prebsc-1-s1.binance.org:8545";
 
 // contract addresses
 
-export const hhContract = "";
-export const goerliContract = "";
-export const mumbaiContract = "";
-export const bscContract = "";
+export const hhContract = "0x089CB8783ffE1f195f73E3F21e7762E228B0ee1E";
+export const goerliContract = "0x089CB8783ffE1f195f73E3F21e7762E228B0ee1E";
+export const mumbaiContract = "0x56Dc3b782C3192169f7ED570a1e6Cb2A533eb2E2";
+export const bscContract = "0x089CB8783ffE1f195f73E3F21e7762E228B0ee1E";

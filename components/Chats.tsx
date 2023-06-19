@@ -35,7 +35,9 @@ const Chats: FC = () => {
                   <Icons.Ban
                     size={17}
                     className="self-center text-red-400 cursor-pointer hover:scale-105"
-                    onClick={() => handleBlockUser(params.get("pubkey") || " ")}
+                    onClick={() =>
+                      handleBlockUser(params.get("friendkey") || " ")
+                    }
                   />
                 </div>
                 <div className="flex-grow max-h-[100%] bg-slate-200 p-4 height: 100vh">

@@ -76,22 +76,20 @@ export const ChatProvider = ({ children }: any) => {
 
   const connectWallet = async (): Promise<void> => {
     try {
-      if (typeof window !== "undefined") {
-        if (!window.ethereum) {
-          toast({
-            title: "Wallet is not connected",
-            message: "Please connect your wallet",
-            type: "error",
-          });
-        }
-
-        await window.ethereum.enable();
-        const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
+      if (!window.ethereum) {
+        toast({
+          title: "Wallet is not connected",
+          message: "Please connect your wallet",
+          type: "error",
         });
-
-        setAccount(accounts[0]);
       }
+
+      await window.ethereum.enable();
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      setAccount(accounts[0]);
     } catch (e) {
       console.log(e);
 

@@ -53,21 +53,19 @@ export const ChatProvider = ({ children }: any) => {
 
   const CheckIsWalletConnected = async (): Promise<void> => {
     try {
-      if (typeof window !== undefined) {
-        if (!window.ethereum) {
-          toast({
-            title: "Wallet is not connected",
-            message: "Please connect your wallet",
-            type: "error",
-          });
-        }
-
-        const accounts = await window.ethereum.request({
-          method: "eth_accounts",
+      if (!window.ethereum) {
+        toast({
+          title: "Wallet is not connected",
+          message: "Please download metamask",
+          type: "error",
         });
-        if (accounts.length) {
-          setAccount(accounts[0]);
-        }
+      }
+
+      const accounts = await window.ethereum.request({
+        method: "eth_accounts",
+      });
+      if (accounts.length) {
+        setAccount(accounts[0]);
       }
     } catch (e) {
       console.log(e);

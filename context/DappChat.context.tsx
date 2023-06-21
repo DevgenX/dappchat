@@ -214,7 +214,9 @@ export const ChatProvider = ({ children }: any) => {
         type: "success",
       });
       setIsLoading(false);
-      window.location.reload();
+      if (typeof window !== "undefined") {
+        window.location.reload();
+      }
     } catch (err) {
       setIsLoading(false);
       toast({
@@ -241,7 +243,10 @@ export const ChatProvider = ({ children }: any) => {
         type: "success",
       });
       setIsLoading(false);
-      window.location.reload();
+
+      if (typeof window !== "undefined") {
+        window.location.reload();
+      }
     } catch (err) {
       setIsLoading(false);
       toast({

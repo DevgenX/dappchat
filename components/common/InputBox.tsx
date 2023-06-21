@@ -49,6 +49,7 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
     if (userData.friendkey) {
       getUserMessages(userData.friendkey);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
   return (

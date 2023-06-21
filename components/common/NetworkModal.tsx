@@ -30,10 +30,10 @@ const NetworkModal: FC<ModalProps> = ({
   const options = useMemo(
     () => [
       { network: "BSC", image: networks.bnb },
-      { network: "Polygon", image: networks.polygon },
       { network: "Goerli", image: networks.goerli },
-      { network: "BSC Testnet", image: networks.bsc },
       { network: "Mumbai", image: networks.mumbai },
+      { network: "Polygon", image: networks.polygon },
+      { network: "BSC Testnet", image: networks.bsc },
       { network: "Ethereum", image: networks.eth },
       { network: "Hardhat", image: networks.hardhat },
       { network: "FTM", image: networks.ftm },

@@ -34,7 +34,6 @@ export const ChatProvider = ({ children }: any) => {
   const fetchUserData = async () => {
     try {
       if (!account) return;
-
       const contract = await connectToSmartContract();
       const friendsArray = await contract.getFriends();
       setFriendList(friendsArray);
@@ -51,49 +50,44 @@ export const ChatProvider = ({ children }: any) => {
     }
   };
 
-  const CheckIsWalletConnected = async (): Promise<void> => {
+  const checkWalletConnection = async () => {
     try {
       if (!window.ethereum) {
         toast({
           title: "Wallet is not connected",
-          message: "Please download metamask",
+          message: "Please download Metamask",
           type: "error",
         });
-      }
-
-      const accounts = await window.ethereum.request({
-        method: "eth_accounts",
-      });
-      if (accounts.length) {
-        setAccount(accounts[0]);
+      } else {
+        const walletAccounts = await window.ethereum.request({
+          method: "eth_accounts",
+        });
+        if (walletAccounts.length) {
+          setAccount(walletAccounts[0]);
+        }
       }
     } catch (e) {
-      console.log(e);
-
-      throw new Error("No ethereum account found");
+      toast({
+        title: "Wallet is not connected",
+        message: "Please download Metamask",
+        type: "error",
+      });
     }
   };
 
-  const connectWallet = async (): Promise<void> => {
+  const connectWallet = async () => {
     try {
-      if (!window.ethereum) {
-        toast({
-          title: "Wallet is not connected",
-          message: "Please connect your wallet",
-          type: "error",
-        });
-      }
-
       await window.ethereum.enable();
-      const accounts = await window.ethereum.request({
+      const walletAccounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
-
-      setAccount(accounts[0]);
+      setAccount(walletAccounts[0]);
     } catch (e) {
-      console.log(e);
-
-      throw new Error("No ethereum account found");
+      toast({
+        title: "Wallet is not connected",
+        message: "Please download Metamask",
+        type: "error",
+      });
     }
   };
 
@@ -303,15 +297,24 @@ export const ChatProvider = ({ children }: any) => {
     }
   };
 
-  if (typeof window !== "undefined") {
-    window.ethereum.on("chainChanged", () => {
-      window.location.reload();
-    });
-  }
+  const chainChange = () => {
+    if (typeof window.ethereum !== "undefined") {
+      window.ethereum.on("chainChanged", () => {
+        window.location.reload();
+      });
+    } else {
+      toast({
+        title: "Wallet is not connected",
+        message: "Please download Metamask",
+        type: "error",
+      });
+    }
+  };
 
   useEffect(() => {
-    CheckIsWalletConnected();
+    checkWalletConnection();
     fetchUserData();
+    chainChange();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, currentUser, messages]);
 

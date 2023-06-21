@@ -20,8 +20,10 @@ const Navbar = () => {
   const { connectWallet, getUsername, account, setCurrentUser, currentUser } =
     useChatContext();
 
-  const [selectedNetwork, setSelectedNetwork] = useState<string>("Set Network");
-  const [currentChain, setCurrentChain] = useState<string | undefined>("");
+  const [selectedNetwork, setSelectedNetwork] = useState<string>("");
+  const [currentChain, setCurrentChain] = useState<string | undefined>(
+    "Set Network"
+  );
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const fetchAccountUsername = async () => {
@@ -72,7 +74,7 @@ const Navbar = () => {
             onClick={handleOpenModal}
             className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
           >
-            {currentChain ? currentChain : ""}
+            {currentChain ? currentChain : "Set Network"}
           </button>
           {openModal && (
             <NetworkModal

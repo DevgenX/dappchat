@@ -2,7 +2,8 @@
 
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { toast } from "@/components/common/Toast";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { getCurrentChain } from "@/lib/Api";
 
 import {
   FriendListType,
@@ -19,20 +20,22 @@ export const ChatContext = createContext<InitialStateInterface>(initialState);
 export const ChatProvider = ({ children }: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [username, setUsername] = useState<string>("");
-  const [nickname, setNickname] = useState<string>("");
   const [account, setAccount] = useState<string>("");
   const [friendList, setFriendList] = useState<FriendListType[]>([]);
   const [messages, setMessages] = useState<MessagesType[]>([]);
   const [userList, setUserList] = useState<UserList[]>([]);
   const [blockedUsers, setBlockedUsers] = useState<BlockedUsersType[]>([]);
   const [currentUser, setCurrentUser] = useState<string>("");
+  const [registeredUser, setRegisteredUser] = useState<string>("");
+  const [chain, setChain] = useState<string>("");
   const [input, setInput] = useState<string>("");
 
   const router = useRouter();
-  const pathname = usePathname();
 
   const fetchUserData = async () => {
     try {
+      if (!account) return;
+
       const contract = await connectToSmartContract();
       const friendsArray = await contract.getFriends();
       setFriendList(friendsArray);
@@ -101,6 +104,7 @@ export const ChatProvider = ({ children }: any) => {
       const contract = await connectToSmartContract();
       if (!name || !contract) return;
       const newUser = await contract.createUser(name);
+      setRegisteredUser(newUser);
       await newUser.wait();
       setIsLoading(false);
       if (newUser) {
@@ -248,6 +252,13 @@ export const ChatProvider = ({ children }: any) => {
   const getUserMessages = async (address: string) => {
     setIsLoading(true);
     try {
+      if (!account && !registeredUser) {
+        toast({
+          title: "Error fetching user data",
+          message: "Please create an account to access the application",
+          type: "error",
+        });
+      }
       const contract = await connectToSmartContract();
       const getMessages = await contract.readMessages(address);
       setMessages(getMessages);
@@ -266,6 +277,8 @@ export const ChatProvider = ({ children }: any) => {
 
   const getUsername = async (address: string): Promise<string | undefined> => {
     try {
+      if (!account) return;
+
       if (account) {
         const contract = await connectToSmartContract();
         const currentUsername = await contract.getUsername(address);
@@ -282,6 +295,10 @@ export const ChatProvider = ({ children }: any) => {
       setIsLoading(false);
     }
   };
+
+  window.ethereum.on("chainChanged", () => {
+    window.location.reload();
+  });
 
   useEffect(() => {
     CheckIsWalletConnected();

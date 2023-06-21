@@ -1,5 +1,5 @@
 import Dashboard from "@/components/Dashboard";
-import Announcement from "@/components/common/Announcement";
+import Announcement from "@/components/Announcement";
 
 type Metadata = {
   title: string;

@@ -11,6 +11,7 @@ import { navLinks } from "@/helpers/NavLinks";
 import AnonymousIcon from "@/public/assets/anonymous.png";
 import { useChatContext } from "@/context/DappChat.context";
 import NetworkModal from "@/components/common/NetworkModal";
+import { getCurrentChain } from "@/lib/Api";
 
 const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -20,6 +21,7 @@ const Navbar = () => {
     useChatContext();
 
   const [selectedNetwork, setSelectedNetwork] = useState<string>("Set Network");
+  const [currentChain, setCurrentChain] = useState<string | undefined>("");
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const fetchAccountUsername = async () => {
@@ -31,9 +33,15 @@ const Navbar = () => {
     setOpenModal(() => !openModal);
   };
 
+  const getNetwork = async () => {
+    const currChain = await getCurrentChain();
+    setCurrentChain(currChain);
+  };
+
   useEffect(() => {
+    getNetwork();
     fetchAccountUsername();
-  }, [account, currentUser]);
+  }, [account, currentUser, selectedNetwork, currentChain]);
 
   return (
     <header className="w-[80%] mx-auto px-4 sm:px-20">
@@ -63,7 +71,7 @@ const Navbar = () => {
             onClick={handleOpenModal}
             className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
           >
-            {selectedNetwork}
+            {currentChain ? currentChain : ""}
           </button>
           {openModal && (
             <NetworkModal

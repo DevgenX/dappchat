@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/common/Toast";
 import { Providers } from "@/components/Providers";
-import Announcement from "@/components/common/Announcement";
+import Announcement from "@/components/Announcement";
 
 export default function RootLayout({
   children,

@@ -11,42 +11,49 @@ import {
   goerliContract,
   mumbaiContract,
   bscContract,
+  bnbContract,
+  polygonContract,
 } from "@/lib/constants";
 
 let contractAdd: string;
 
-interface ContractTypes {
-  eth: string;
-  goerli: string;
-  polygon: string;
-  bsc: string;
-  bsctest: string;
-  hardhat: string;
-  mumbai: string;
-}
-
-export const getCurrentRPC = async () => {
-  let rpc;
+export const getCurrentChain = async () => {
+  let chain;
   let hh = "0x7a69";
   let goerli = "0x5";
   let mm = "0x13881";
   let bsct = "0x61";
-  const provider = (await detectEthereumProvider()) as any;
+  let bnb = "0x38";
+  let eth = "0x1";
+  let polygon = "0x89";
+  let ftm = "0xfa";
+  let avalanche = "0xa86a";
 
+  const provider = (await detectEthereumProvider()) as any;
   if (!provider) return;
   const chainId = await provider.request({ method: "eth_chainId" });
   if (!chainId) return;
 
   if (chainId === hh) {
-    rpc = hardhatRPC;
+    chain = "Hardhat";
   } else if (chainId === goerli) {
-    rpc = goerliRPC;
+    chain = "Goerli";
   } else if (chainId === mm) {
-    rpc = mumbaiRPC;
+    chain = "Mumbai";
   } else if (chainId === bsct) {
-    rpc = bscRPC;
+    chain = "BSC Testnet";
+  } else if (chainId === bnb) {
+    chain = "BSC";
+  } else if (chainId === eth) {
+    chain = "Ethereum";
+  } else if (chainId === polygon) {
+    chain = "Polygon";
+  } else if (chainId === ftm) {
+    chain = "Fantom";
+  } else if (chainId === avalanche) {
+    chain = "Avalanche";
   }
-  return rpc;
+  return chain;
 };
 
 export const setSmartContract = async (): Promise<string> => {
@@ -54,6 +61,9 @@ export const setSmartContract = async (): Promise<string> => {
   let goerli = "0x5";
   let mm = "0x13881";
   let bsct = "0x61";
+  let bnb = "0x38";
+  let polygon = "0x89";
+
   const provider = (await detectEthereumProvider()) as any;
 
   if (!provider) {
@@ -80,19 +90,12 @@ export const setSmartContract = async (): Promise<string> => {
     contractAdd = mumbaiContract;
   } else if (chainId === bsct) {
     contractAdd = bscContract;
+  } else if (chainId === bnb) {
+    contractAdd = bnbContract;
+  } else if (chainId === polygon) {
+    contractAdd = polygonContract;
   }
-
   return contractAdd;
-};
-
-const contractAddresses: ContractTypes = {
-  eth: "0xabced",
-  goerli: "0xabcdef123456...",
-  polygon: "0xabcdef123456...",
-  bsc: "0xabcdef123456...",
-  mumbai: "0xabcdef123456...",
-  bsctest: "0xabcdef123456...",
-  hardhat: "0xabc",
 };
 
 export const fetchContract = async (signer: Signer) => {
@@ -106,7 +109,6 @@ export const connectToSmartContract = async () => {
     const connection = await web3modal.connect();
     const provider = new ethers.providers.Web3Provider(connection);
     const signer = provider.getSigner();
-
     const contract = fetchContract(signer);
 
     return contract;
@@ -123,9 +125,7 @@ export const formattedTime = (time: string | number | BigNumber) => {
   }
 
   const date = timestamp.toNumber() * 1000;
-
   const newTime = new Date(date);
-
   const today = new Date();
 
   const formattedDate = newTime.toLocaleDateString();

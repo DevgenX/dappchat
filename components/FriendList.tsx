@@ -17,8 +17,6 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const { friendList, currentUser } = useChatContext();
 
-  const handleLogout = () => {};
-
   const selectFriend = (user: string) => {
     setSelectedUser(user);
   };
@@ -60,7 +58,7 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
               {isDropdownOpen && (
                 <div className="absolute bg-black py-1 px-3 rounded-md shadow right-0 mt-10">
                   <button
-                    onClick={handleLogout}
+                    onClick={() => ""}
                     className="block w-full text-white hover:scale-105"
                   >
                     Logout

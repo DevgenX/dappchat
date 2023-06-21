@@ -4,7 +4,7 @@ import { FC, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 import InputBox from "@/components/common/InputBox";
-import FriendList from "@/components/common/FriendList";
+import FriendList from "@/components/FriendList";
 import EmptyMessage from "./common/EmptyMessage";
 import { useChatContext } from "@/context/DappChat.context";
 import Icons from "@/components/Icons";

@@ -61,6 +61,7 @@ const NetworkModal: FC<ModalProps> = ({
 
   useEffect(() => {
     enableChain();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedNetwork]);
 
   return (

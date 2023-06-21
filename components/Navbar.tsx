@@ -41,6 +41,7 @@ const Navbar = () => {
   useEffect(() => {
     getNetwork();
     fetchAccountUsername();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, currentUser, selectedNetwork, currentChain]);
 
   return (

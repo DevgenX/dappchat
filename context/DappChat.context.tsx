@@ -3,7 +3,6 @@
 import React, { useEffect, useState, createContext, useContext } from "react";
 import { toast } from "@/components/common/Toast";
 import { useRouter } from "next/navigation";
-import { getCurrentChain } from "@/lib/Api";
 
 import {
   FriendListType,
@@ -54,20 +53,21 @@ export const ChatProvider = ({ children }: any) => {
 
   const CheckIsWalletConnected = async (): Promise<void> => {
     try {
-      if (!window.ethereum) {
-        toast({
-          title: "Wallet is not connected",
-          message: "Please connect your wallet",
-          type: "error",
+      if (typeof window !== undefined) {
+        if (!window.ethereum) {
+          toast({
+            title: "Wallet is not connected",
+            message: "Please connect your wallet",
+            type: "error",
+          });
+        }
+
+        const accounts = await window.ethereum.request({
+          method: "eth_accounts",
         });
-      }
-
-      const accounts = await window.ethereum.request({
-        method: "eth_accounts",
-      });
-
-      if (accounts.length) {
-        setAccount(accounts[0]);
+        if (accounts.length) {
+          setAccount(accounts[0]);
+        }
       }
     } catch (e) {
       console.log(e);
@@ -78,19 +78,22 @@ export const ChatProvider = ({ children }: any) => {
 
   const connectWallet = async (): Promise<void> => {
     try {
-      if (!window.ethereum) {
-        toast({
-          title: "Wallet is not connected",
-          message: "Please connect your wallet",
-          type: "error",
-        });
-      }
-      await window.ethereum.enable();
-      const accounts = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
+      if (typeof window !== "undefined") {
+        if (!window.ethereum) {
+          toast({
+            title: "Wallet is not connected",
+            message: "Please connect your wallet",
+            type: "error",
+          });
+        }
 
-      setAccount(accounts[0]);
+        await window.ethereum.enable();
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+
+        setAccount(accounts[0]);
+      }
     } catch (e) {
       console.log(e);
 
@@ -176,7 +179,10 @@ export const ChatProvider = ({ children }: any) => {
       const newFriend = await contract.addFriend(address, name);
       await newFriend.wait();
       setIsLoading(false);
-      window.location.reload();
+      if (typeof window !== "undefined") {
+        window.location.reload();
+      }
+
       if (newFriend) {
         toast({
           title: "Added Successfully!",
@@ -296,13 +302,16 @@ export const ChatProvider = ({ children }: any) => {
     }
   };
 
-  window.ethereum.on("chainChanged", () => {
-    window.location.reload();
-  });
+  if (typeof window !== "undefined") {
+    window.ethereum.on("chainChanged", () => {
+      window.location.reload();
+    });
+  }
 
   useEffect(() => {
     CheckIsWalletConnected();
     fetchUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, currentUser, messages]);
 
   return (

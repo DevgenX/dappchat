@@ -52,7 +52,8 @@ const NetworkModal: FC<ModalProps> = ({
     } else if (selectedNetwork === "Hardhat") {
       return;
     } else if (selectedNetwork === "BSC Testnet") {
-      bscTest();
+      // bscTest();
+      return;
     } else if (selectedNetwork === "Goerli") {
       ethTest();
     } else if (selectedNetwork === "Mumbai") {

@@ -100,6 +100,11 @@ export const ChatProvider = ({ children }: any) => {
       setRegisteredUser(newUser);
       await newUser.wait();
       setIsLoading(false);
+
+      if (typeof window !== "undefined") {
+        window.location.reload();
+      }
+
       if (newUser) {
         toast({
           title: "Happy Chatting!",
@@ -107,7 +112,8 @@ export const ChatProvider = ({ children }: any) => {
           type: "success",
         });
       }
-      router.push("/chat");
+
+      router.push("/users");
     } catch (err) {
       setIsLoading(false);
       toast({

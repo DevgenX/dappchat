@@ -135,7 +135,7 @@ const Navbar = () => {
           })}
           <button
             onClick={handleOpenModal}
-            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
+            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none  hover:scale-105"
           >
             {currentChain ? currentChain : "Set Network"}
           </button>

@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 const page = () => {
   return (
-    <>
+    <div className="min-h-screen">
       <Tutorials />
-    </>
+    </div>
   );
 };
 export default page;

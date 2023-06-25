@@ -24,16 +24,20 @@ const BlockModal: FC<ModalProps> = ({ toggleBlockModal }) => {
         </div>
         <Paragraph size="sm">Click an address to unblock</Paragraph>
         <div className="text-slate-200 text-sm flex flex-wrap justify-center items-center p-3">
-          {blockedUsers.map((address, index) => (
-            <div key={index} className="p-2">
-              <h3
-                className="cursor-pointer md:text-sm text-[12px]"
-                onClick={() => handleUnblockUser(address)}
-              >
-                {address}
-              </h3>
-            </div>
-          ))}
+          {blockedUsers.length >= 1 ? (
+            blockedUsers.map((address, index) => (
+              <div key={index} className="p-2">
+                <h3
+                  className="cursor-pointer md:text-sm text-[12px]"
+                  onClick={() => handleUnblockUser(address)}
+                >
+                  {address}
+                </h3>
+              </div>
+            ))
+          ) : (
+            <Paragraph>You don&apos;t have any blocked users</Paragraph>
+          )}
         </div>
       </div>
     </div>

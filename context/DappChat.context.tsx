@@ -1,6 +1,13 @@
 "use client";
 
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React, {
+  useMemo,
+  useEffect,
+  useState,
+  createContext,
+  useContext,
+  useCallback,
+} from "react";
 import { toast } from "@/components/common/Toast";
 import { useRouter } from "next/navigation";
 
@@ -254,31 +261,35 @@ export const ChatProvider = ({ children }: any) => {
     }
   };
 
-  const getUserMessages = async (address: string) => {
-    setIsLoading(true);
-    try {
-      if (!account && !registeredUser) {
+  const getUserMessages = useCallback(
+    async (address: string) => {
+      setIsLoading(true);
+      try {
+        if (!account && !registeredUser) {
+          toast({
+            title: "Error fetching user data",
+            message: "Please create an account to access the application",
+            type: "error",
+          });
+        }
+        const contract = await connectToSmartContract();
+        const getMessages = await contract.readMessages(address);
+        setMessages(getMessages);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
         toast({
-          title: "Error fetching user data",
-          message: "Please create an account to access the application",
+          title: "Error fetching user messages",
+          message:
+            "It seems you are trying to access messages from unknown user",
           type: "error",
         });
+      } finally {
+        setIsLoading(false);
       }
-      const contract = await connectToSmartContract();
-      const getMessages = await contract.readMessages(address);
-      setMessages(getMessages);
-      setIsLoading(false);
-    } catch (err) {
-      setIsLoading(false);
-      toast({
-        title: "Error fetching user messages",
-        message: "It seems you are trying to access messages from unknown user",
-        type: "error",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+    [messages, account]
+  );
 
   const getUsername = async (address: string): Promise<string | undefined> => {
     try {
@@ -308,8 +319,8 @@ export const ChatProvider = ({ children }: any) => {
       });
     } else {
       toast({
-        title: "Error connecting to other chain",
-        message: "Please reload the page",
+        title: "Error connecting to a chain",
+        message: "Make sure you are connected to metamask",
         type: "error",
       });
     }

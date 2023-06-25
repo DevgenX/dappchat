@@ -26,7 +26,6 @@ export const ChatProvider = ({ children }: any) => {
   const [blockedUsers, setBlockedUsers] = useState<BlockedUsersType[]>([]);
   const [currentUser, setCurrentUser] = useState<string>("");
   const [registeredUser, setRegisteredUser] = useState<string>("");
-  const [chain, setChain] = useState<string>("");
   const [input, setInput] = useState<string>("");
 
   const router = useRouter();
@@ -310,8 +309,8 @@ export const ChatProvider = ({ children }: any) => {
       });
     } else {
       toast({
-        title: "Wallet is not connected",
-        message: "Please download Metamask",
+        title: "Error connecting to other chain",
+        message: "Please reload the page",
         type: "error",
       });
     }

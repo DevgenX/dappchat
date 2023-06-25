@@ -11,7 +11,7 @@ const EmptyMessage = () => {
       </div>
       <Image src={ChatDapp} alt="image" height={200} width={200} />
       <div className="rounded-md flex flex-col ">
-        <div className="border rounded-lg border-slate-600 py-5 bg-white mt-3">
+        <div className="border rounded-lg border-slate-600 p-5 bg-white mt-3">
           <Paragraph className="text-slate-500">
             <span className="text-light-gold">DappChat</span> is a multi-chain
             decentralized messaging platform for users to simply and instantly

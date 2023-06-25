@@ -6,6 +6,7 @@ import { Icons } from "@/components/Icons";
 import FriendModal from "@/components/common/FriendModal";
 import { useChatContext } from "@/context/DappChat.context";
 import FriendCard from "@/components/common/FriendCard";
+import BlockModal from "./common/BlockedModal";
 
 interface FriendListProps {
   selectedUser: string;
@@ -21,8 +22,8 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
     setSelectedUser(user);
   };
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(() => !isDropdownOpen);
+  const toggleBlockModal = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   const toggleModal = () => {
@@ -47,23 +48,16 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
             <div className="mb-3">
               <h1>{getUserName(currentUser)}</h1>
             </div>
-            <div className="flex cursor-pointer">
+            <div className="flex">
               <div onClick={toggleModal} className="pr-3 hover:scale-125">
                 <BsFillPersonPlusFill size={20} />
               </div>
               {isModalOpen && <FriendModal setIsModalOpen={setIsModalOpen} />}
-              <div onClick={toggleDropdown} className="hover:scale-125">
+              <div onClick={toggleBlockModal} className="hover:scale-125">
                 <Icons.MoreVertical size={20} />
               </div>
               {isDropdownOpen && (
-                <div className="absolute bg-black py-1 px-3 rounded-md shadow right-0 mt-10">
-                  <button
-                    onClick={() => ""}
-                    className="block w-full text-white hover:scale-105"
-                  >
-                    Logout
-                  </button>
-                </div>
+                <BlockModal toggleBlockModal={toggleBlockModal} />
               )}
             </div>
           </div>

@@ -8,7 +8,6 @@ import {
   FriendListType,
   MessagesType,
   UserList,
-  BlockedUsersType,
   initialState,
   InitialStateInterface,
 } from "@/context/ChatTypes";
@@ -23,7 +22,7 @@ export const ChatProvider = ({ children }: any) => {
   const [friendList, setFriendList] = useState<FriendListType[]>([]);
   const [messages, setMessages] = useState<MessagesType[]>([]);
   const [userList, setUserList] = useState<UserList[]>([]);
-  const [blockedUsers, setBlockedUsers] = useState<BlockedUsersType[]>([]);
+  const [blockedUsers, setBlockedUsers] = useState<string[]>([]);
   const [currentUser, setCurrentUser] = useState<string>("");
   const [registeredUser, setRegisteredUser] = useState<string>("");
   const [input, setInput] = useState<string>("");

@@ -14,10 +14,6 @@ export interface UserList {
   accountAddress: string;
 }
 
-export type BlockedUsersType = {
-  address: string;
-};
-
 export interface InitialStateInterface {
   isLoading: boolean;
   account: string;
@@ -25,7 +21,7 @@ export interface InitialStateInterface {
   friendList: FriendListType[];
   messages: MessagesType[];
   userList: UserList[];
-  blockedUsers: BlockedUsersType[];
+  blockedUsers: string[];
 
   setCurrentUser: React.Dispatch<React.SetStateAction<string>>;
   input: string;

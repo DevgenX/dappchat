@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Loading: FC = () => {
   return (
-    <div className="mx-auto w-full h-full flex justify-center items-center bg-transparent">
+    <div className="mx-auto w-full h-full flex flex-col justify-center items-center bg-transparent">
       <motion.div
         className="spinner animate-spin"
         style={{
@@ -17,6 +17,7 @@ const Loading: FC = () => {
           animation: "spin 1s linear infinite",
         }}
       />
+      <p className="text-sm text-white p-2">Please wait...</p>
     </div>
   );
 };

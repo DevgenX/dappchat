@@ -40,7 +40,7 @@ const Chats: FC = () => {
                     }
                   />
                 </div>
-                <div className="flex-grow max-h-[100%] bg-slate-200 p-4 height: 100vh">
+                <div className="overflow-scroll flex-grow max-h-[700px] bg-slate-200 p-4 min-h-[700px]">
                   {selectedUser ? <Messages /> : <div>{<EmptyMessage />}</div>}
                 </div>
                 <InputBox sendMessage={handleSendMessage} />

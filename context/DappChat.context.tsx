@@ -288,6 +288,7 @@ export const ChatProvider = ({ children }: any) => {
         setIsLoading(false);
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [messages, account]
   );
 

@@ -33,6 +33,7 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
     input: content,
     setInput,
     messages,
+    currentUser,
   } = useChatContext();
 
   const params = useSearchParams();
@@ -60,6 +61,7 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
           placeholder="Message..."
           className="bg-white flex-grow rounded-full outline-none p-2"
           value={content}
+          readOnly={currentUser ? false : true}
           onChange={(e) => setInput(e.target.value)}
         />
         <button

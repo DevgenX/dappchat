@@ -20,8 +20,8 @@ const Avatar: FC<AvatarProps> = ({ id }) => {
         src={avatarSrc}
         className="rounded-full"
         alt="avatar"
-        height={50}
-        width={50}
+        height={60}
+        width={60}
       />
     </div>
   );

@@ -29,10 +29,10 @@ const UsersCard: FC<UsersCardType> = ({ user, index }) => {
   };
 
   return (
-    <div className="max-w-sm bg-gray-100 rounded-lg shadow-md p-5 dark:text-white dark:bg-black mx-2 my-2">
+    <div className="max-w-sm bg-gray-100 rounded-lg shadow-md p-5 dark:text-white dark:bg-black mx-2 my-2 relative">
       <BsFillPersonPlusFill
-        size={20}
-        className="float-right hover:scale-105 cursor-pointer"
+        size={25}
+        className="pt-1 absolute top-0 right-0 mt-3 mr-3 cursor-pointer"
         onClick={handleToggleModal}
       />
       <div className="flex flex-col p-3 pt-3 items-center justify-center">

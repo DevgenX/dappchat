@@ -19,7 +19,7 @@ const FriendModal: FC<ModalProps> = ({ setIsModalOpen }) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="bg-gray-800 rounded-lg p-6 sm:p-8 mx-4 sm:mx-auto w-full max-w-md">
+        <div className="bg-gray-800 rounded-lg p-6 sm:p-8 mx-4 sm:mx-auto w-full max-w-md z-50">
           <Heading size="sm" className="text-2xl text-white  font-bold mb-4">
             Add Friends
           </Heading>

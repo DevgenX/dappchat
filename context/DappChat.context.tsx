@@ -281,7 +281,7 @@ export const ChatProvider = ({ children }: any) => {
         toast({
           title: "Error fetching user messages",
           message:
-            "It seems you are trying to access messages from unknown user",
+            "It seems you are trying to access messages from unknown user.",
           type: "error",
         });
       } finally {
@@ -305,7 +305,7 @@ export const ChatProvider = ({ children }: any) => {
       toast({
         title: "Error fetching username",
         message:
-          "There seem to be an error while fetching your username. Please wait for a moment while we load your username",
+          "There seem to be an error while fetching your username. Please wait for a moment while we load your username.",
         type: "error",
       });
     } finally {
@@ -321,7 +321,7 @@ export const ChatProvider = ({ children }: any) => {
     } else {
       toast({
         title: "Error connecting to a chain",
-        message: "Make sure you are connected to metamask",
+        message: "Make sure you are connected to or have installed metamask.",
         type: "error",
       });
     }

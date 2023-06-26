@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Heading from "@/components/common/Heading";
 import Paragraph from "@/components/common/Heading";
-import UsersCard from "./common/UsersCard";
+import UsersCard from "@/components/common/UsersCard";
 import { useChatContext } from "@/context/DappChat.context";
+import AccountModal from "@/components/common/AccountModal";
 
 const Users = () => {
   const { userList, currentUser } = useChatContext();
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   return (
     <div className="container mx-auto min-h-screen">
@@ -24,9 +27,18 @@ const Users = () => {
           ))}
         </div>
       ) : (
-        <p className="flex justify-center text-center mt-5">
-          Please create an account to view users
-        </p>
+        <>
+          <div className="block text-center">
+            <p className="m-5">Please create an account to view users</p>
+            <button
+              onClick={() => setOpenModal((prev) => !prev)}
+              className="rounded-xl text-white font-bold p-3 bg-teal-600 dark:bg-blue-600 hover:scale-105"
+            >
+              CREATE ACCOUNT
+            </button>
+          </div>
+          {openModal && <AccountModal setOpenModal={setOpenModal} />}
+        </>
       )}
     </div>
   );

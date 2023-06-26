@@ -31,7 +31,7 @@ const Dashboard = () => {
             <span className="font-bold text-light-gold">DappChat</span> is a
             decentralized protocol that allows wallet-to-wallet messaging
             powered by multi-chain interoperability.{" "}
-            <Link href="/" className="underline underline-offset-2">
+            <Link href="/tutorials" className="underline underline-offset-2">
               Explore{" "}
               <BsFillArrowUpRightCircleFill
                 size={25}

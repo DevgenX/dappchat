@@ -7,6 +7,10 @@ interface NavItems {
 
 export const navLinks: NavItems[] = [
   {
+    label: "Home",
+    page: "/",
+  },
+  {
     label: "Users",
     page: "users",
   },

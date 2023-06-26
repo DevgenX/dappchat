@@ -30,7 +30,7 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
             <input
               type="text"
               id="username"
-              className="w-full border-gray-300 dark:border-gray-600 outline-none py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
+              className="w-full text-black dark:text-white border-gray-300 dark:border-gray-600 outline-none py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />

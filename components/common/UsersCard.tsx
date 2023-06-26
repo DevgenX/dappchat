@@ -29,12 +29,14 @@ const UsersCard: FC<UsersCardType> = ({ user, index }) => {
   };
 
   return (
-    <div className="max-w-sm bg-gray-100 rounded-lg shadow-md p-5 dark:text-white dark:bg-black mx-2 my-2 relative">
-      <BsFillPersonPlusFill
-        size={25}
-        className="pt-1 absolute top-0 right-0 mt-3 mr-3 cursor-pointer"
-        onClick={handleToggleModal}
-      />
+    <div className="max-w-sm bg-gray-100 rounded-lg shadow-md p-5 dark:text-white dark:bg-black mx-2 my-2">
+      <div className="flex justify-end">
+        <BsFillPersonPlusFill
+          size={20}
+          className="cursor-pointer"
+          onClick={handleToggleModal}
+        />
+      </div>
       <div className="flex flex-col p-3 pt-3 items-center justify-center">
         <Avatar id={index} />
         <h3>{getUserName(user.name)}</h3>
@@ -44,6 +46,7 @@ const UsersCard: FC<UsersCardType> = ({ user, index }) => {
           </p>
         </div>
       </div>
+
       {openModal && <FriendModal setIsModalOpen={setOpenModal} />}
     </div>
   );

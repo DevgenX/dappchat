@@ -29,13 +29,13 @@ const NetworkModal: FC<ModalProps> = ({
 }) => {
   const options = useMemo(
     () => [
-      { network: "BSC", image: networks.bnb },
+      { network: "Sepolia", image: networks.sepolia },
       { network: "Goerli", image: networks.goerli },
+      { network: "BSC", image: networks.bnb },
       { network: "Mumbai", image: networks.mumbai },
       { network: "Polygon", image: networks.polygon },
       { network: "BSC Testnet", image: networks.bsc },
       { network: "Ethereum", image: networks.eth },
-      { network: "Hardhat", image: networks.hardhat },
       { network: "FTM", image: networks.ftm },
     ],
     []
@@ -49,7 +49,7 @@ const NetworkModal: FC<ModalProps> = ({
     } else if (selectedNetwork === "Ethereum") {
       // ethChain();
       return;
-    } else if (selectedNetwork === "Hardhat") {
+    } else if (selectedNetwork === "Sepolia") {
       return;
     } else if (selectedNetwork === "BSC Testnet") {
       // bscTest();

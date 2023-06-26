@@ -6,6 +6,7 @@ import goerli from "./go.png";
 import hardhat from "./hardhat.png";
 import mumbai from "./mumbai.png";
 import polygon from "./polygon.png";
+import sepolia from "./Sepolia.png";
 
 const networks = {
   eth,
@@ -16,6 +17,7 @@ const networks = {
   hardhat,
   mumbai,
   polygon,
+  sepolia,
 };
 
 export default networks;

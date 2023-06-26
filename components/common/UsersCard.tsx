@@ -36,7 +36,7 @@ const UsersCard: FC<UsersCardType> = ({ user, index }) => {
         onClick={handleToggleModal}
       />
       <div className="flex flex-col p-3 pt-3 items-center justify-center">
-        <Avatar id={index} name={user.name} />
+        <Avatar id={index} />
         <h3>{getUserName(user.name)}</h3>
         <div className="pt-3">
           <p className="box-border md:text-sm text-[10px]">

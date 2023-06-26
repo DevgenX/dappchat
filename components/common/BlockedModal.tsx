@@ -36,7 +36,7 @@ const BlockModal: FC<ModalProps> = ({ toggleBlockModal }) => {
               </div>
             ))
           ) : (
-            <Paragraph>You don&apos;t have any blocked users</Paragraph>
+            <Paragraph>You don&apos;t have any blocked addresses</Paragraph>
           )}
         </div>
       </div>

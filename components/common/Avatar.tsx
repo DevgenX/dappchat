@@ -4,10 +4,9 @@ import Avatars from "@/public/icons";
 
 interface AvatarProps {
   id: number;
-  name: string;
 }
 
-const Avatar: FC<AvatarProps> = ({ id, name }) => {
+const Avatar: FC<AvatarProps> = ({ id }) => {
   const { Icon1, Icon2, Icon3, Icon4, Icon5, Icon6, Icon7, Icon8 } = Avatars;
   const avatars = [Icon1, Icon2, Icon3, Icon4, Icon5, Icon6, Icon7, Icon8];
 

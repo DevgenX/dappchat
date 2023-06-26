@@ -56,7 +56,7 @@ const FriendCard: FC<FriendProps> = ({
         )}
         <div className="flex items-center">
           <div className="flex gap-2 py-2 pl-4 items-center justify-center">
-            <Avatar id={index} name={friend.name} />
+            <Avatar id={index} />
             <span>{getUserName(friend.name)}</span>
           </div>
         </div>

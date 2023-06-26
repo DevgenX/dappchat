@@ -16,7 +16,6 @@ import { useChatContext } from "../context/DappChat.context";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const { isLoading } = useChatContext();
 
   return (
     <>

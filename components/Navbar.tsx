@@ -51,7 +51,13 @@ const Navbar = () => {
       <div className="flex items-center justify-between py-3 md:py-5">
         <Link href="/">
           <div className="flex items-center space-x-2 cursor-pointer">
-            <Image src={AnonymousIcon} alt="icon" height={50} width={50} />
+            <Image
+              src={AnonymousIcon}
+              className="rounded-full"
+              alt="icon"
+              height={50}
+              width={50}
+            />
             <h2 className="text-2xl text-black font-bold dark:text-white">
               DappChat
             </h2>

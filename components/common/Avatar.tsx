@@ -1,4 +1,6 @@
 import { FC } from "react";
+import Image from "next/image";
+import Avatars from "@/public/icons";
 
 interface AvatarProps {
   id: number;
@@ -6,28 +8,21 @@ interface AvatarProps {
 }
 
 const Avatar: FC<AvatarProps> = ({ id, name }) => {
-  const colors = [
-    "bg-red-200",
-    "bg-green-200",
-    "bg-yellow-200",
-    "bg-purple-200",
-    "bg-pink-200",
-    "bg-blue-200",
-    "bg-teal-200",
-    "bg-orange-200",
-    "bg-indigo-200",
-    "bg-cyan-200",
-    "bg-lime-200",
-    "bg-gray-200",
-  ];
+  const { Icon1, Icon2, Icon3, Icon4, Icon5, Icon6, Icon7, Icon8 } = Avatars;
+  const avatars = [Icon1, Icon2, Icon3, Icon4, Icon5, Icon6, Icon7, Icon8];
 
-  const colorIndex = id % colors.length;
+  const avatarIndex = id % avatars.length;
+  const avatarSrc = avatars[avatarIndex];
 
   return (
-    <div
-      className={`w-8 h-8 ${colors[colorIndex]} rounded-full flex items-center justify-center`}
-    >
-      {name[0]?.toLocaleUpperCase()}
+    <div className={"w-8 h-8 flex items-center justify-center"}>
+      <Image
+        src={avatarSrc}
+        className="rounded-full"
+        alt="avatar"
+        height={50}
+        width={50}
+      />
     </div>
   );
 };

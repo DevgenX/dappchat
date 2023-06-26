@@ -36,7 +36,7 @@ export const ChatProvider = ({ children }: any) => {
 
   const router = useRouter();
 
-  const fetchUserData = async () => {
+  const fetchUserData = useCallback(async () => {
     try {
       if (!account) return;
       const contract = await connectToSmartContract();
@@ -49,13 +49,14 @@ export const ChatProvider = ({ children }: any) => {
     } catch (err) {
       toast({
         title: "Error fetching user data",
-        message: "There seems to be a problem fetching user data",
+        message:
+          "There seems to be a problem fetching user data. Please make sure you have an account created.",
         type: "error",
       });
     }
-  };
+  }, [account]);
 
-  const checkWalletConnection = async () => {
+  const checkWalletConnection = useCallback(async () => {
     try {
       if (!window.ethereum) {
         toast({
@@ -78,7 +79,7 @@ export const ChatProvider = ({ children }: any) => {
         type: "error",
       });
     }
-  };
+  }, []);
 
   const connectWallet = async () => {
     try {
@@ -113,7 +114,7 @@ export const ChatProvider = ({ children }: any) => {
       if (newUser) {
         toast({
           title: "Happy Chatting!",
-          message: "Successfully Created an Account",
+          message: "Successfully created an account.",
           type: "success",
         });
       }
@@ -124,7 +125,7 @@ export const ChatProvider = ({ children }: any) => {
       toast({
         title: "Error creating an account",
         message:
-          "It seems the account already exists. Please try again using another wallet",
+          "It seems the account already exists. Please try again using another wallet.",
         type: "error",
       });
     } finally {
@@ -148,8 +149,8 @@ export const ChatProvider = ({ children }: any) => {
       setIsLoading(false);
       if (newMessage) {
         toast({
-          title: "Message Sent",
-          message: "Successfuly sent a message to your friend",
+          title: "Message Sent!",
+          message: "Successfuly sent a message to your friend.",
           type: "success",
         });
       }
@@ -157,7 +158,7 @@ export const ChatProvider = ({ children }: any) => {
       setIsLoading(false);
       toast({
         title: "Error sending a message",
-        message: "It seems you are not friends with this user",
+        message: "It seems you are not friends with this user.",
         type: "error",
       });
     } finally {
@@ -196,7 +197,7 @@ export const ChatProvider = ({ children }: any) => {
       toast({
         title: "Error adding a friend",
         message:
-          "It seems you are adding an unregistered or a user that you blocked",
+          "It seems you are adding an unregistered or a user that you blocked.",
         type: "error",
       });
     }
@@ -211,7 +212,7 @@ export const ChatProvider = ({ children }: any) => {
       await newBlockedUser.wait();
       toast({
         title: "Successfully blocked a user!",
-        message: "User has been blocked and won't be able to message you .",
+        message: "User has been blocked and won't be able to message you.",
         type: "success",
       });
       setIsLoading(false);
@@ -240,7 +241,7 @@ export const ChatProvider = ({ children }: any) => {
       await unblockedUser.wait();
       toast({
         title: "Successfully unblocked a user!",
-        message: "You can now message the user to start a conversation .",
+        message: "You can now message the user to start a conversation.",
         type: "success",
       });
       setIsLoading(false);
@@ -305,7 +306,7 @@ export const ChatProvider = ({ children }: any) => {
       toast({
         title: "Error fetching username",
         message:
-          "There seem to be an error while fetching your username. Please wait for a moment while we load your username.",
+          "There seem to be an error while fetching your username. Please make sure you have an account created.",
         type: "error",
       });
     } finally {

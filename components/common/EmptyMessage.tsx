@@ -9,7 +9,13 @@ const EmptyMessage = () => {
       <div className="my-10">
         <Heading size="sm">Welcome to DappChat!</Heading>
       </div>
-      <Image src={ChatDapp} alt="image" height={200} width={200} />
+      <Image
+        src={ChatDapp}
+        alt="image"
+        className="rounded-full"
+        height={200}
+        width={200}
+      />
       <div className="rounded-md flex flex-col ">
         <div className="border rounded-lg border-slate-600 p-5 bg-white mt-3">
           <Paragraph className="text-slate-500">

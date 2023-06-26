@@ -147,9 +147,9 @@ const Navbar = () => {
           </button>
           <button
             onClick={() => connectWallet()}
-            className="rounded-xl text-white border p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
+            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
           >
-            {account ? currentUser : "CONNECT WALLET"}
+            {currentUser ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
           </button>
           {currentTheme === "dark" ? (
             <button

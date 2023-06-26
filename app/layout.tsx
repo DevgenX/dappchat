@@ -1,9 +1,13 @@
-import "@/styles/globals.css";
+import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/common/Toast";
 import { Providers } from "@/components/Providers";
 import Announcement from "@/components/Announcement";
+import { Inter } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -11,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={cn(inter.className)}>
       <body className="min-h-screen bg-gray-100 dark:bg-slate-900 antialiased">
         <Providers>
           <Announcement />

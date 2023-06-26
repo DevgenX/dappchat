@@ -1,9 +1,5 @@
 import Tutorials from "@/components/Tutorials";
-
-type Metadata = {
-  title: string;
-  description: string;
-};
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "DappChat | Tutorials",

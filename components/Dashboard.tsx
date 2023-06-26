@@ -54,6 +54,7 @@ const Dashboard = () => {
             height={700}
             src={DappChat}
             alt="Decentralized-Messaging"
+            priority
           />
         </div>
       </div>

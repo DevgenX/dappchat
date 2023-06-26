@@ -1,9 +1,5 @@
 import Users from "@/components/Users";
-
-type Metadata = {
-  title: string;
-  description: string;
-};
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "DappChat | Users",

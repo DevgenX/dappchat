@@ -190,3 +190,36 @@ export async function hardChain() {
     }
   }
 }
+
+export async function sepoliaChain() {
+  try {
+    await window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: "0xaa36a7" }],
+    });
+  } catch (error) {
+    const providerRpcError = error as ProviderRpcError;
+    if (providerRpcError.code === 4902) {
+      try {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: "0xaa36a7",
+              chainName: "Sepolia",
+              nativeCurrency: {
+                name: "SepoliaETH",
+                symbol: "SepoliaETH",
+                decimals: 18,
+              },
+              rpcUrls: ["https://rpc.sepolia.org/"],
+              blockExplorerUrls: ["https://sepolia.etherscan.io/"],
+            },
+          ],
+        });
+      } catch (addError) {
+        console.log("Error adding Chain");
+      }
+    }
+  }
+}

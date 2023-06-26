@@ -10,6 +10,7 @@ import {
   binanceChain,
   polyChain,
   hardChain,
+  sepoliaChain,
 } from "@/lib/ChainChange";
 
 import Image from "next/image";
@@ -50,7 +51,7 @@ const NetworkModal: FC<ModalProps> = ({
       // ethChain();
       return;
     } else if (selectedNetwork === "Sepolia") {
-      return;
+      sepoliaChain();
     } else if (selectedNetwork === "BSC Testnet") {
       // bscTest();
       return;

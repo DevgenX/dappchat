@@ -1,7 +1,6 @@
 "use client";
 
 import React, {
-  useMemo,
   useEffect,
   useState,
   createContext,
@@ -36,7 +35,7 @@ export const ChatProvider = ({ children }: any) => {
 
   const router = useRouter();
 
-  const fetchUserData = useCallback(async () => {
+  const fetchUserData = async () => {
     try {
       if (!account) return;
       const contract = await connectToSmartContract();
@@ -54,7 +53,7 @@ export const ChatProvider = ({ children }: any) => {
         type: "error",
       });
     }
-  }, [account]);
+  };
 
   const checkWalletConnection = useCallback(async () => {
     try {
@@ -262,51 +261,26 @@ export const ChatProvider = ({ children }: any) => {
     }
   };
 
-  const getUserMessages = useCallback(
-    async (address: string) => {
-      setIsLoading(true);
-      try {
-        if (!account && !registeredUser) {
-          toast({
-            title: "Error fetching user data",
-            message: "Please create an account to access the application",
-            type: "error",
-          });
-        }
-        const contract = await connectToSmartContract();
-        const getMessages = await contract.readMessages(address);
-        setMessages(getMessages);
-        setIsLoading(false);
-      } catch (err) {
-        setIsLoading(false);
+  const getUserMessages = async (address: string) => {
+    setIsLoading(true);
+    try {
+      if (!account && !registeredUser) {
         toast({
-          title: "Error fetching user messages",
-          message:
-            "It seems you are trying to access messages from unknown user.",
+          title: "Error fetching user data",
+          message: "Please create an account to access the application",
           type: "error",
         });
-      } finally {
-        setIsLoading(false);
       }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [messages, account]
-  );
-
-  const getUsername = async (address: string): Promise<string | undefined> => {
-    try {
-      if (!account) return;
-
-      if (account) {
-        const contract = await connectToSmartContract();
-        const currentUsername = await contract.getUsername(address);
-        return currentUsername;
-      }
+      const contract = await connectToSmartContract();
+      const getMessages = await contract.readMessages(address);
+      setMessages(getMessages);
+      setIsLoading(false);
     } catch (err) {
+      setIsLoading(false);
       toast({
-        title: "Error fetching username",
+        title: "Error fetching user messages",
         message:
-          "There seem to be an error while fetching your username. Please make sure you have an account created.",
+          "It seems you are trying to access messages from unknown user.",
         type: "error",
       });
     } finally {
@@ -314,7 +288,31 @@ export const ChatProvider = ({ children }: any) => {
     }
   };
 
-  const chainChange = () => {
+  const getUsername = useCallback(
+    async (address: string): Promise<string | undefined> => {
+      try {
+        if (!account) return;
+
+        if (account) {
+          const contract = await connectToSmartContract();
+          const currentUsername = await contract.getUsername(address);
+          return currentUsername;
+        }
+      } catch (err) {
+        toast({
+          title: "Error fetching username",
+          message:
+            "There seem to be an error while fetching your username. Please make sure you have an account created.",
+          type: "error",
+        });
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [account]
+  );
+
+  const detectChainChange = () => {
     if (typeof window.ethereum !== "undefined") {
       window.ethereum.on("chainChanged", () => {
         window.location.reload();
@@ -331,7 +329,7 @@ export const ChatProvider = ({ children }: any) => {
   useEffect(() => {
     checkWalletConnection();
     fetchUserData();
-    chainChange();
+    detectChainChange();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account, currentUser, messages]);
 

@@ -6,9 +6,9 @@ const Announcement = () => {
       <div className="flex items-center">
         <span>
           Interacting with <span className="text-light-gold">DappChat</span>{" "}
-          costs gas fees. Please use testnet and get free Ethereum {""}
-          <Link href="https://goerlifaucet.com/" className="underline">
-            Goerli
+          costs gas fees. Please use Sepolia testnet and get free Ethereum {""}
+          <Link href="https://sepoliafaucet.com/" className="underline">
+            Sepolia.
           </Link>
         </span>
       </div>

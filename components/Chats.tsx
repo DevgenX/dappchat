@@ -36,7 +36,7 @@ const Chats: FC = () => {
                     size={17}
                     className="self-center text-red-400 cursor-pointer hover:scale-105"
                     onClick={() =>
-                      handleBlockUser(params.get("friendkey") || " ")
+                      handleBlockUser(params?.get("friendkey") || "")
                     }
                   />
                 </div>

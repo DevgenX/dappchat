@@ -26,10 +26,6 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const toggleModal = () => {
-    setIsModalOpen(() => !isModalOpen);
-  };
-
   const getUserName = (username: string) => {
     if (!username) return;
 
@@ -49,10 +45,6 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
               <h1>{getUserName(currentUser)}</h1>
             </div>
             <div className="flex">
-              <div onClick={toggleModal} className="pr-3 hover:scale-125">
-                <BsFillPersonPlusFill size={20} />
-              </div>
-              {isModalOpen && <FriendModal setIsModalOpen={setIsModalOpen} />}
               <div onClick={toggleBlockModal} className="hover:scale-125">
                 <Icons.MoreVertical size={20} />
               </div>

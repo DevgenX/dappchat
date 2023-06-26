@@ -13,6 +13,7 @@ import {
   bscContract,
   bnbContract,
   polygonContract,
+  sepoliaContract,
 } from "@/lib/constants";
 
 let contractAdd: string;
@@ -28,6 +29,7 @@ export const getCurrentChain = async () => {
   let polygon = "0x89";
   let ftm = "0xfa";
   let avalanche = "0xa86a";
+  let sepolia = "0xaa36a7";
 
   const provider = (await detectEthereumProvider()) as any;
   if (!provider) return;
@@ -52,6 +54,8 @@ export const getCurrentChain = async () => {
     chain = "Fantom";
   } else if (chainId === avalanche) {
     chain = "Avalanche";
+  } else if (chainId === sepolia) {
+    chain = "Sepolia";
   }
   return chain;
 };
@@ -63,6 +67,7 @@ export const setSmartContract = async (): Promise<string> => {
   let bsct = "0x61";
   let bnb = "0x38";
   let polygon = "0x89";
+  let sepolia = "0xaa36a7";
 
   const provider = (await detectEthereumProvider()) as any;
 
@@ -94,6 +99,8 @@ export const setSmartContract = async (): Promise<string> => {
     contractAdd = bnbContract;
   } else if (chainId === polygon) {
     contractAdd = polygonContract;
+  } else if (chainId === sepolia) {
+    contractAdd = sepoliaContract;
   }
   return contractAdd;
 };

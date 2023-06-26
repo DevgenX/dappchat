@@ -12,8 +12,6 @@ import DappChat from "@/public/assets/DappChat.png";
 import Features from "@/components/Features";
 import AccountModal from "@/components/common/AccountModal";
 
-import { useChatContext } from "../context/DappChat.context";
-
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
 

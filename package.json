@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@metamask/detect-provider": "^2.0.0",
-    "@next/font": "13.1.6",
+    "next/font": "13.1.6",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
     "bignumber.js": "^4.0.4",

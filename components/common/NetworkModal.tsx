@@ -76,7 +76,7 @@ const NetworkModal: FC<ModalProps> = ({
         >
           <Icons.X />
         </button>
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-2 md:grid-cols-2">
           {options.map((chain, index) => (
             <div
               className="flex flex-col items-center justify-center p-5"

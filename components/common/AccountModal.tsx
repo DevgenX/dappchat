@@ -56,7 +56,7 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
             </button>
             <button
               className="px-4 py-2 text-sm font-medium text-white bg-teal-600 dark:bg-blue-600 rounded-md hover:scale-105"
-              disabled={isLoading}
+              disabled={account ? false : true}
               onClick={() => createAccount({ name })}
             >
               Register

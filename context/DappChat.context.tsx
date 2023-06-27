@@ -57,26 +57,16 @@ export const ChatProvider = ({ children }: any) => {
 
   const checkWalletConnection = useCallback(async () => {
     try {
-      if (!window.ethereum) {
-        toast({
-          title: "Wallet is not connected",
-          message: "Please download Metamask",
-          type: "error",
-        });
-      } else {
-        const walletAccounts = await window.ethereum.request({
-          method: "eth_accounts",
-        });
-        if (walletAccounts.length) {
-          setAccount(walletAccounts[0]);
-        }
+      if (!window.ethereum) return;
+
+      const walletAccounts = await window.ethereum.request({
+        method: "eth_accounts",
+      });
+      if (walletAccounts.length) {
+        setAccount(walletAccounts[0]);
       }
     } catch (e) {
-      toast({
-        title: "Wallet is not connected",
-        message: "Please download Metamask",
-        type: "error",
-      });
+      return;
     }
   }, []);
 

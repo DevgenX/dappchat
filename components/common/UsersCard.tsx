@@ -46,7 +46,6 @@ const UsersCard: FC<UsersCardType> = ({ user, index }) => {
           </p>
         </div>
       </div>
-
       {openModal && <FriendModal setIsModalOpen={setOpenModal} />}
     </div>
   );

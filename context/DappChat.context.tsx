@@ -49,7 +49,7 @@ export const ChatProvider = ({ children }: any) => {
       toast({
         title: "Error fetching user data",
         message:
-          "There seems to be a problem fetching user data. Please make sure you have an account created.",
+          "It seems you don't have an account created. Please create an account to use the application.",
         type: "error",
       });
     }
@@ -90,7 +90,7 @@ export const ChatProvider = ({ children }: any) => {
     } catch (e) {
       toast({
         title: "Wallet is not connected",
-        message: "Please download Metamask",
+        message: "Please connect your wallet to use the application.",
         type: "error",
       });
     }
@@ -277,12 +277,6 @@ export const ChatProvider = ({ children }: any) => {
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
-      toast({
-        title: "Error fetching user messages",
-        message:
-          "It seems you are trying to access messages from unknown user.",
-        type: "error",
-      });
     } finally {
       setIsLoading(false);
     }
@@ -292,21 +286,11 @@ export const ChatProvider = ({ children }: any) => {
     async (address: string): Promise<string | undefined> => {
       try {
         if (!account) return;
-
-        if (account) {
-          const contract = await connectToSmartContract();
-          const currentUsername = await contract.getUsername(address);
-          return currentUsername;
-        }
+        const contract = await connectToSmartContract();
+        const currentUsername = await contract.getUsername(address);
+        return currentUsername;
       } catch (err) {
-        toast({
-          title: "Error fetching username",
-          message:
-            "There seem to be an error while fetching your username. Please make sure you have an account created.",
-          type: "error",
-        });
-      } finally {
-        setIsLoading(false);
+        return;
       }
     },
     [account]
@@ -318,11 +302,7 @@ export const ChatProvider = ({ children }: any) => {
         window.location.reload();
       });
     } else {
-      toast({
-        title: "Error connecting to a chain",
-        message: "Make sure you are connected to or have installed metamask.",
-        type: "error",
-      });
+      return;
     }
   };
 
@@ -331,7 +311,7 @@ export const ChatProvider = ({ children }: any) => {
     fetchUserData();
     detectChainChange();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account, currentUser, messages]);
+  }, [currentUser, messages]);
 
   return (
     <ChatContext.Provider

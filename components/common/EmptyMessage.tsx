@@ -20,8 +20,8 @@ const EmptyMessage = () => {
         <div className="border rounded-lg border-slate-600 p-5 bg-white mt-3">
           <Paragraph className="text-slate-500">
             <span className="text-light-gold">DappChat</span> is a multi-chain
-            decentralized messaging platform for users to simply and instantly
-            message each other, wallet-to-wallet.
+            and fully on-chain decentralized messaging platform for users to
+            simply and instantly message each other, wallet-to-wallet.
           </Paragraph>
         </div>
         <div className="border rounded-lg border-slate-600 py-5 bg-white mt-3">

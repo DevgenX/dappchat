@@ -1,8 +1,9 @@
 import { FC, SetStateAction } from "react";
-import { useChatContext } from "@/context/DappChat.context";
+
 import Heading from "@/components/common/Heading";
 import Paragraph from "@/components/common/Paragraph";
 import Icons from "@/components/Icons";
+import { useChatContext } from "@/context/DappChat.context";
 
 interface ModalProps {
   toggleBlockModal: React.Dispatch<SetStateAction<boolean>>;

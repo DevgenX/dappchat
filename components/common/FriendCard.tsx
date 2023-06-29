@@ -1,7 +1,8 @@
 import { FC } from "react";
+import Link from "next/link";
+
 import Avatar from "@/components/common/Avatar";
 import { FriendListType } from "@/context/ChatTypes";
-import Link from "next/link";
 import { useChatContext } from "@/context/DappChat.context";
 
 interface FriendProps {

@@ -3,14 +3,14 @@
 import { useEffect, useMemo } from "react";
 import { FC } from "react";
 import {
-  bscTest,
   polygonTest,
-  ethChain,
   ethTest,
   binanceChain,
   polyChain,
-  hardChain,
   sepoliaChain,
+  bscTest,
+  ethChain,
+  hardChain,
 } from "@/lib/ChainChange";
 
 import Image from "next/image";

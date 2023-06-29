@@ -3,8 +3,8 @@ import { Signer, ethers } from "ethers";
 import BigNumber from "bignumber.js";
 import detectEthereumProvider from "@metamask/detect-provider";
 
-import { contractABI, contractAddress } from "@/lib/constants";
-import { hardhatRPC, goerliRPC, mumbaiRPC, bscRPC } from "@/lib/constants";
+import { contractABI } from "@/lib/constants";
+
 import { toast } from "@/components/common/Toast";
 import {
   hhContract,

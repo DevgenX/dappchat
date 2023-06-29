@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, FC, SetStateAction } from "react";
-import { useChatContext } from "@/context/DappChat.context";
 import Heading from "@/components/common/Heading";
 import Loading from "@/components/common/Loading";
+import { useChatContext } from "@/context/DappChat.context";
 
 interface ModalProps {
   setIsModalOpen: React.Dispatch<SetStateAction<boolean>>;

@@ -1,9 +1,10 @@
 "use client";
 
-import Avatar from "@/components/common/Avatar";
 import { FC, useState } from "react";
-import { UserList } from "@/context/ChatTypes";
 import { BsFillPersonPlusFill } from "react-icons/bs";
+
+import Avatar from "@/components/common/Avatar";
+import { UserList } from "@/context/ChatTypes";
 import FriendModal from "@/components/common/FriendModal";
 
 interface UsersCardType {

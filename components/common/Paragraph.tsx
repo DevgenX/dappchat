@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, forwardRef } from "react";
+import { HTMLAttributes, forwardRef } from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 

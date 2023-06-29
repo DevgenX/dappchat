@@ -1,10 +1,11 @@
 "use client";
 
 import { FC, useState, useEffect } from "react";
-import { Icons } from "@/components/Icons";
 import { useSearchParams } from "next/navigation";
-import { useChatContext } from "@/context/DappChat.context";
+
+import { Icons } from "@/components/Icons";
 import Loading from "@/components/common/Loading";
+import { useChatContext } from "@/context/DappChat.context";
 
 interface UserData {
   name: string;

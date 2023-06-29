@@ -30,7 +30,7 @@ const Dashboard = () => {
             <Link href="/tutorials" className="underline underline-offset-2">
               Explore{" "}
               <BsFillArrowUpRightCircleFill
-                size={25}
+                size={20}
                 className="hover:-translate-y-1 transition-transform cursor-pointer inline-block z-10"
               />
             </Link>

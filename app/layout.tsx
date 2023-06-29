@@ -6,6 +6,7 @@ import { Providers } from "@/components/Providers";
 import Announcement from "@/components/Announcement";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,11 +19,13 @@ export default function RootLayout({
     <html lang="en" className={cn(inter.className)}>
       <body className="min-h-screen bg-gray-100 dark:bg-slate-900 antialiased">
         <Providers>
-          <Announcement />
-          <Navbar />
-          <Toaster position="top-right" />
-          {children}
-          <Footer />
+          <Suspense>
+            <Announcement />
+            <Navbar />
+            <Toaster position="top-right" />
+            {children}
+            <Footer />
+          </Suspense>
         </Providers>
       </body>
     </html>

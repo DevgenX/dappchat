@@ -2,7 +2,7 @@ import Chats from "@/components/Chats";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DappChat | Chat",
+  title: "DappChat | Chats",
   description:
     "A multi-chain and fully on-chain decentralized messaging application",
 };

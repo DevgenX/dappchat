@@ -6,12 +6,12 @@ import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
-import { Icons } from "@/components/Icons";
-import { navLinks } from "@/helpers/NavLinks";
-import AnonymousIcon from "@/public/assets/anonymous.png";
-import { useChatContext } from "@/context/DappChat.context";
 import NetworkModal from "@/components/common/NetworkModal";
+import { Icons } from "@/components/Icons";
+import { useChatContext } from "@/context/DappChat.context";
+import { navLinks } from "@/helpers/NavLinks";
 import { getCurrentChain } from "@/lib/Api";
+import AnonymousIcon from "@/public/assets/anonymous.png";
 
 const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
@@ -44,7 +44,7 @@ const Navbar = () => {
     getNetwork();
     fetchAccountUsername();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account, currentUser, selectedNetwork, currentChain]);
+  }, [currentUser]);
 
   return (
     <header className="w-[80%] mx-auto px-4 sm:px-20">
@@ -87,7 +87,7 @@ const Navbar = () => {
             onClick={() => connectWallet()}
             className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
           >
-            {currentUser ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
+            {account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
           </button>
           <button
             onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
@@ -143,7 +143,7 @@ const Navbar = () => {
             onClick={() => connectWallet()}
             className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
           >
-            {currentUser ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
+            {account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
           </button>
           {currentTheme === "dark" ? (
             <button

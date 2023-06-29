@@ -89,6 +89,13 @@ contract DappChat {
         break;
     }
 }
+        for(uint256 i = 0; i < users[userAddress].friendList.length; i++) {
+            if(users[userAddress].friendList[i].friendkey == msg.sender) {
+                users[userAddress].friendList[i] = users[userAddress].friendList[users[userAddress].friendList.length - 1];
+                users[userAddress].friendList.pop();
+                break;
+            }
+        }
 
         users[msg.sender].blockedUsers[userAddress] = true;
         users[msg.sender].blockedUsersArray.push(userAddress);

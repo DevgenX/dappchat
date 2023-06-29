@@ -153,7 +153,8 @@ export const ChatProvider = ({ children }: any) => {
       setIsLoading(false);
       toast({
         title: "Error sending a message",
-        message: "It seems you are not friends with this user.",
+        message:
+          "There seems to be an error sending a message. Please try again.",
         type: "error",
       });
     } finally {
@@ -307,7 +308,7 @@ export const ChatProvider = ({ children }: any) => {
     fetchUserData();
     detectChainChange();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUser, messages]);
+  }, [account, currentUser, messages]);
 
   return (
     <ChatContext.Provider

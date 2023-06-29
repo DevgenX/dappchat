@@ -66,6 +66,13 @@ export const ChatProvider = ({ children }: any) => {
         if (walletAccounts.length) {
           setAccount(walletAccounts[0]);
         }
+        window.ethereum.on("accountsChanged", (accounts: string) => {
+          if (accounts.length) {
+            setAccount(accounts[0]);
+          } else {
+            setAccount("");
+          }
+        });
       }
     } catch (e) {
       toast({

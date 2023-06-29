@@ -112,10 +112,10 @@ function unblockUser(address userAddress) external userExists(msg.sender) {
         users[msg.sender].blockedUsersArray.pop();
 
         // Check if the user is already a friend
-        bool isFriend = isFriend(msg.sender, userAddress);
+        bool isFriendsWith = isFriend(msg.sender, userAddress);
 
         // Add the user as a friend if not already a friend
-        if (!isFriend) {
+        if (!isFriendsWith) {
             string memory friendName = users[userAddress].name;
             Friends memory friend = Friends(friendName, userAddress);
             Friends memory me = Friends(users[msg.sender].name, msg.sender);

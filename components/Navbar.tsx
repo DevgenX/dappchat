@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Heading from "@/components/common/Heading";
 
 import NetworkModal from "@/components/common/NetworkModal";
 import { Icons } from "@/components/Icons";
@@ -47,7 +48,7 @@ const Navbar = () => {
   }, [currentUser]);
 
   return (
-    <header className="w-[80%] mx-auto px-4 sm:px-20">
+    <div className="w-[80%] mx-auto px-4 sm:px-20">
       <div className="flex items-center justify-between py-3 md:py-5">
         <Link href="/">
           <div className="flex items-center space-x-2 cursor-pointer">
@@ -58,9 +59,12 @@ const Navbar = () => {
               height={50}
               width={50}
             />
-            <h2 className="text-2xl text-black font-bold dark:text-white">
+            <Heading
+              size="sm"
+              className="text-[20px] md:text-2xl text-black font-bold dark:text-white"
+            >
               DappChat
-            </h2>
+            </Heading>
           </div>
         </Link>
         <div className="hidden md:flex items-center justify-center space-x-6 flex-grow font-bold">
@@ -169,7 +173,7 @@ const Navbar = () => {
           />
         )}
       </div>
-    </header>
+    </div>
   );
 };
 

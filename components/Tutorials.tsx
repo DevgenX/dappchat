@@ -9,9 +9,9 @@ const Tutorials = () => {
 
         <Paragraph
           size="sm"
-          className="mt-5 flex font-extralight justify-center"
+          className="mt-5 px-5 flex font-extralight justify-center"
         >
-          Ready to experience the decentralized way of messaging?
+          Ready to explore the decentralized way of messaging?
         </Paragraph>
         <hr className="w-1/2 h-0.5 mx-auto mt-3 bg-neutral-400 border-0 dark:bg-neutral-200 "></hr>
       </div>

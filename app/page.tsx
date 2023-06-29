@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Suspense>
         <Dashboard />
       </Suspense>
-    </main>
+    </>
   );
 }

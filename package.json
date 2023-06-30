@@ -38,10 +38,11 @@
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",
-    "@types/react": "18.2.7",
     "@types/node": "^20.2.5",
+    "@types/react": "18.2.7",
     "@types/react-scroll": "^1.8.6",
     "autoprefixer": "^10.4.13",
     "chai": "^4.3.7",

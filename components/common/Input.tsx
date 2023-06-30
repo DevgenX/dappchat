@@ -1,4 +1,4 @@
-import React, { FC, memo, ChangeEvent, forwardRef } from "react";
+import React, { FC, ChangeEvent, forwardRef, KeyboardEvent } from "react";
 
 interface InputProps {
   type: string;
@@ -6,13 +6,23 @@ interface InputProps {
   className: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   name: string;
+  onEnter?: () => void;
   value?: string;
   readOnly?: boolean;
   ref: React.Ref<HTMLInputElement>;
 }
 
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
-  ({ type, className, placeholder, onChange, name, value, readOnly }, ref) => {
+  (
+    { type, className, placeholder, onChange, name, value, onEnter, readOnly },
+    ref
+  ) => {
+    const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === "Enter" && onEnter) {
+        onEnter();
+      }
+    };
+
     return (
       <input
         type={type}
@@ -22,6 +32,7 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
         value={value}
         readOnly={readOnly}
         onChange={onChange}
+        onKeyDown={handleKeyDown}
         ref={ref}
       />
     );

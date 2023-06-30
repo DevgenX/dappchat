@@ -70,6 +70,12 @@ const InputBox: FC<MessageTypes> = ({ sendMessage }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
+  const handleEnterKeyPress = () => {
+    if (content && userData.friendkey) {
+      sendMessage({ content, address: userData.friendkey });
+    }
+  };
+
   return (
     <>
       <div className="flex py-2 gap-2 relative my-4 mx-4">
@@ -81,6 +87,7 @@ const InputBox: FC<MessageTypes> = ({ sendMessage }) => {
           className="bg-white flex-grow rounded-full outline-none p-2"
           readOnly={currentUser ? false : true}
           onChange={handleInputChange}
+          onEnter={handleEnterKeyPress}
         />
         <Button
           onClick={() =>

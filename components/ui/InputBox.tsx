@@ -1,12 +1,21 @@
 "use client";
 
-import { FC, useState, useEffect } from "react";
+import {
+  FC,
+  useState,
+  useEffect,
+  ChangeEvent,
+  useMemo,
+  useCallback,
+  useRef,
+} from "react";
 import { useSearchParams } from "next/navigation";
 
 import { Icons } from "@/components/Icons";
 import Button from "@/components/common/Button";
 import Loading from "@/components/common/Loading";
 import { useChatContext } from "@/context/DappChat.context";
+import Input from "@/components/common/Input";
 
 interface UserData {
   name: string;
@@ -23,7 +32,7 @@ interface MessageTypes {
   }) => "" | Promise<void>;
 }
 
-const Input: FC<MessageTypes> = ({ sendMessage }) => {
+const InputBox: FC<MessageTypes> = ({ sendMessage }) => {
   const [userData, setUserData] = useState<UserData>({
     name: "",
     friendkey: "",
@@ -39,6 +48,7 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
   } = useChatContext();
 
   const params = useSearchParams();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (!params) return;
@@ -48,6 +58,11 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
     });
   }, [params]);
 
+  const handleInputChange = useCallback(() => {
+    const searchValue = inputRef.current?.value || "";
+    setInput(searchValue);
+  }, [setInput]);
+
   useEffect(() => {
     if (userData.friendkey) {
       getUserMessages(userData.friendkey);
@@ -55,16 +70,24 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages]);
 
+  const handleEnterKeyPress = () => {
+    if (content && userData.friendkey) {
+      sendMessage({ content, address: userData.friendkey });
+    }
+  };
+
   return (
     <>
       <div className="flex py-2 gap-2 relative my-4 mx-4">
-        <input
+        <Input
           type="text"
+          ref={inputRef}
+          name="message"
           placeholder="Message..."
           className="bg-white flex-grow rounded-full outline-none p-2"
-          value={content}
           readOnly={currentUser ? false : true}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={handleInputChange}
+          onEnter={handleEnterKeyPress}
         />
         <Button
           onClick={() =>
@@ -78,4 +101,4 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
     </>
   );
 };
-export default Input;
+export default InputBox;

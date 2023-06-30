@@ -46,7 +46,7 @@ const Navbar = () => {
     getNetwork();
     fetchAccountUsername();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUser]);
+  }, [account]);
 
   return (
     <div className="w-[80%] mx-auto px-4 sm:px-20">

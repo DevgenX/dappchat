@@ -1,6 +1,5 @@
 import Dashboard from "@/components/Dashboard";
 import { Metadata } from "next";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "DappChat",
@@ -11,9 +10,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
-      <Suspense>
-        <Dashboard />
-      </Suspense>
+      <Dashboard />
     </>
   );
 }

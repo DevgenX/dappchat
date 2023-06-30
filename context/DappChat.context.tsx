@@ -45,6 +45,8 @@ export const ChatProvider = ({ children }: any) => {
       setUserList(getAllUsers);
       const getBlockedUsers = await contract.getAllBlockedUsers();
       setBlockedUsers(getBlockedUsers);
+      const getUserNickname = await contract.getUsername(account);
+      setUsername(getUserNickname);
     } catch (err) {
       toast({
         title: "Error fetching user data",

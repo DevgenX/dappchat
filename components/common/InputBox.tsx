@@ -4,6 +4,7 @@ import { FC, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { Icons } from "@/components/Icons";
+import Button from "@/components/common/Button";
 import Loading from "@/components/common/Loading";
 import { useChatContext } from "@/context/DappChat.context";
 
@@ -65,15 +66,14 @@ const Input: FC<MessageTypes> = ({ sendMessage }) => {
           readOnly={currentUser ? false : true}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button
+        <Button
           onClick={() =>
             sendMessage({ content: content, address: userData.friendkey })
           }
           className="absolute p-2 text-black mt-1 rounded-full right-1 hover:scale-105"
           disabled={isLoading}
-        >
-          {isLoading ? <Loading /> : <Icons.Send size={20} />}
-        </button>
+          label={isLoading ? <Loading /> : <Icons.Send size={20} />}
+        />
       </div>
     </>
   );

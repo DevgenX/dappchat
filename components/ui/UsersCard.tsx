@@ -5,7 +5,7 @@ import { BsFillPersonPlusFill } from "react-icons/bs";
 
 import Avatar from "@/components/common/Avatar";
 import { UserList } from "@/context/ChatTypes";
-import FriendModal from "@/components/common/FriendModal";
+import FriendModal from "@/components/ui/FriendModal";
 
 interface UsersCardType {
   user: UserList;

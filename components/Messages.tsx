@@ -1,5 +1,5 @@
 import { useChatContext } from "@/context/DappChat.context";
-import MessageCard from "@/components/common/MessageCard";
+import MessageCard from "@/components/ui/MessageCard";
 
 const Messages = () => {
   const { messages } = useChatContext();

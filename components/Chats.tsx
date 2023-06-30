@@ -31,14 +31,22 @@ const Chats: FC = () => {
             ) : (
               <div className="h-full  flex flex-col">
                 <div className="flex text-slate-800 justify-between px-2 py-2">
-                  <p>Getting spammed by this user?</p>
-                  <Icons.Ban
-                    size={17}
-                    className="self-center text-red-400 cursor-pointer hover:scale-105"
-                    onClick={() =>
-                      handleBlockUser(params?.get("friendkey") || "")
-                    }
-                  />
+                  {params?.get("friendkey") ? (
+                    <>
+                      <p>Getting spammed by this user?</p>
+                      <Icons.Ban
+                        size={17}
+                        className="self-center text-red-400 cursor-pointer hover:scale-105"
+                        onClick={() =>
+                          handleBlockUser(params?.get("friendkey") || "")
+                        }
+                      />
+                    </>
+                  ) : (
+                    <p className="text-stone-800">
+                      Select a friend to start a conversation
+                    </p>
+                  )}
                 </div>
                 <div className="overflow-scroll flex-grow max-h-[700px] bg-slate-200 p-4 min-h-[700px]">
                   {selectedUser ? <Messages /> : <div>{<EmptyMessage />}</div>}

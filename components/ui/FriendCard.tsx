@@ -1,5 +1,6 @@
-import { FC, useCallback, useMemo, memo } from "react";
+import { FC, useState, useCallback, useMemo, memo, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 import Avatar from "@/components/common/Avatar";
 import { FriendListType } from "@/context/ChatTypes";

@@ -5,7 +5,6 @@ import {
 } from "react-icons/ai";
 
 import Link from "next/link";
-import dynamic from "next/dynamic";
 
 const Footer = () => {
   return (

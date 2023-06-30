@@ -3,7 +3,7 @@
 import { FC, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import InputBox from "@/components/common/InputBox";
+import InputBox from "@/components/ui/InputBox";
 import FriendList from "@/components/FriendList";
 import EmptyMessage from "./common/EmptyMessage";
 import { useChatContext } from "@/context/DappChat.context";

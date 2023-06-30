@@ -10,7 +10,7 @@ import Heading from "@/components/common/Heading";
 import Paragraph from "@/components/common/Paragraph";
 import DappChat from "@/public/assets/DappChat.png";
 import Features from "@/components/Features";
-import AccountModal from "@/components/common/AccountModal";
+import AccountModal from "@/components/ui/AccountModal";
 
 const Dashboard = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);

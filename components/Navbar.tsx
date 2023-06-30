@@ -8,7 +8,7 @@ import Image from "next/image";
 
 import Heading from "@/components/common/Heading";
 import Button from "@/components/common/Button";
-import NetworkModal from "@/components/common/NetworkModal";
+import NetworkModal from "@/components/ui/NetworkModal";
 import { Icons } from "@/components/Icons";
 import { useChatContext } from "@/context/DappChat.context";
 import { navLinks } from "@/helpers/NavLinks";

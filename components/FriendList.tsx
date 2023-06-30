@@ -1,12 +1,10 @@
 "use client";
 
 import { FC, useCallback, useState } from "react";
-import { BsFillPersonPlusFill } from "react-icons/bs";
 import { Icons } from "@/components/Icons";
-import FriendModal from "@/components/common/FriendModal";
 import { useChatContext } from "@/context/DappChat.context";
-import FriendCard from "@/components/common/FriendCard";
-import BlockModal from "./common/BlockedModal";
+import FriendCard from "@/components/ui/FriendCard";
+import BlockModal from "./ui/BlockedModal";
 
 interface FriendListProps {
   selectedUser: string;

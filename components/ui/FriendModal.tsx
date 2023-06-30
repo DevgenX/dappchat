@@ -1,8 +1,11 @@
 "use client";
-
 import { useState, FC, SetStateAction } from "react";
+
 import Heading from "@/components/common/Heading";
 import Loading from "@/components/common/Loading";
+import Button from "@/components/common/Button";
+import Input from "@/components/common/Input";
+
 import { useChatContext } from "@/context/DappChat.context";
 
 interface ModalProps {
@@ -27,11 +30,12 @@ const FriendModal: FC<ModalProps> = ({ setIsModalOpen }) => {
             <label htmlFor="nickname" className="block font-medium">
               Nickname
             </label>
-            <input
+            <Input
               type="text"
               id="nickname"
               className="w-full text-black dark:text-white border-gray-300 dark:border-gray-600 outline-none py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
               value={name}
+              required
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -39,27 +43,27 @@ const FriendModal: FC<ModalProps> = ({ setIsModalOpen }) => {
             <label htmlFor="walletAddress" className="block font-medium">
               Wallet Address
             </label>
-            <input
+            <Input
               type="text"
               id="walletAddress"
               className="w-full text-black dark:text-white border-gray-300 dark:border-gray-600 outline-none py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
               value={address}
+              required
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
           <div className="flex justify-end">
-            <button
+            <Button
               className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-200 dark:bg-gray-700 rounded-md mr-2 hover:scale-105"
               onClick={() => setIsModalOpen((prev) => !prev)}
-            >
-              Cancel
-            </button>
-            <button
+              label="Cancel"
+            />
+
+            <Button
               className="px-4 py-2 text-sm font-medium text-white bg-teal-600 dark:bg-blue-600 rounded-md hover:scale-105"
               onClick={() => handleAddFriend({ address, name })}
-            >
-              Add Friend
-            </button>
+              label="Add Friend"
+            />
           </div>
         </div>
       )}

@@ -2,14 +2,16 @@ import React, { FC, ChangeEvent, forwardRef, KeyboardEvent } from "react";
 
 interface InputProps {
   type: string;
-  placeholder: string;
+  placeholder?: string;
   className: string;
+  id?: string | number;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  name: string;
+  name?: string;
   onEnter?: () => void;
   value?: string;
+  required?: boolean;
   readOnly?: boolean;
-  ref: React.Ref<HTMLInputElement>;
+  ref?: React.Ref<HTMLInputElement>;
 }
 
 const Input: FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(

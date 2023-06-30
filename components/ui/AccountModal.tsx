@@ -1,9 +1,12 @@
 "use client";
-
 import { useState, FC, SetStateAction } from "react";
-import { useChatContext } from "@/context/DappChat.context";
+
 import Heading from "@/components/common/Heading";
 import Loading from "@/components/common/Loading";
+import Button from "@/components/common/Button";
+import Input from "@/components/common/Input";
+
+import { useChatContext } from "@/context/DappChat.context";
 
 interface ModalProps {
   setOpenModal: React.Dispatch<SetStateAction<boolean>>;
@@ -27,7 +30,7 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
             <label htmlFor="username" className="block font-medium">
               Username
             </label>
-            <input
+            <Input
               type="text"
               id="username"
               className="w-full text-black dark:text-white border-gray-300 dark:border-gray-600 outline-none py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
@@ -39,7 +42,7 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
             <label htmlFor="walletAddress" className="block font-medium">
               Wallet Address
             </label>
-            <input
+            <Input
               type="text"
               id="walletAddress"
               className="w-full border-gray-300 text-slate-500 dark:border-gray-600 outline-none py-2 px-3 focus:ring-indigo-500 focus:border-indigo-500 rounded-md shadow-sm"
@@ -48,19 +51,17 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
             />
           </div>
           <div className="flex justify-end">
-            <button
+            <Button
               className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-200 dark:bg-gray-700 rounded-md mr-2 hover:scale-105"
               onClick={() => setOpenModal((prev) => !prev)}
-            >
-              Cancel
-            </button>
-            <button
+              label="Cancel"
+            />
+            <Button
               className="px-4 py-2 text-sm font-medium text-white bg-teal-600 dark:bg-blue-600 rounded-md hover:scale-105"
               disabled={account ? false : true}
               onClick={() => createAccount({ name })}
-            >
-              Register
-            </button>
+              label="Register"
+            />
           </div>
         </div>
       )}

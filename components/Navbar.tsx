@@ -70,25 +70,17 @@ const Navbar = () => {
             </div>
           </div>
         </Link>
-        <div className="md:text-lg">
-          <div
-            className={`flex-1 justify-self-center text-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-              navbar ? "block" : "hidden"
-            }`}
-          >
-            <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              {navLinks.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.page}
-                  className="block lg:inline-block text-neutral-900 cursor-pointer hover:underline dark:text-neutral-100"
-                  onClick={() => setNavbar(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </div>
+        <div className="hidden md:flex items-center justify-center space-x-6 flex-grow font-bold">
+          {navLinks.map((item, index) => (
+            <Link
+              key={index}
+              href={item.page}
+              className="text-neutral-900 cursor-pointer hover:scale-105 dark:text-neutral-100"
+              onClick={() => setNavbar(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
         </div>
         <div className="flex flex-row space-x-2 text-[10px] md:text-lg">
           <Button
@@ -129,6 +121,28 @@ const Navbar = () => {
               }
             />
           </div>
+        </div>
+      </div>
+      <div
+        className={`flex justify-center text-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+          navbar ? "block" : "hidden"
+        }`}
+      >
+        <div className="items-center justify-center md:hidden font-bold space-y-8 md:space-x-6 md:space-y-0">
+          {navLinks.map((item, index) => {
+            return (
+              <Link
+                key={index}
+                href={item.page}
+                className={
+                  "block lg:inline-block text-neutral-900 cursor-pointer hover:scale-105 dark:text-neutral-100"
+                }
+                onClick={() => setNavbar(!navbar)}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       </div>
       {openModal && (

@@ -15,7 +15,7 @@ interface FriendListProps {
 
 const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const { username, friendList, currentUser } = useChatContext();
+  const { username, friendList } = useChatContext();
 
   const toggleBlockModal = () => {
     setIsDropdownOpen(!isDropdownOpen);

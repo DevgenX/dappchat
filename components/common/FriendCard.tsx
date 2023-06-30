@@ -19,8 +19,8 @@ const FriendCard: FC<FriendProps> = memo(
 
     const handleSelectFriend = useCallback(async () => {
       await getUserMessages(friend.friendkey);
-      selectFriend(friend.friendkey);
-    }, [friend.friendkey, getUserMessages, selectFriend]);
+      selectFriend(friend.name);
+    }, [friend.friendkey, friend.name, getUserMessages, selectFriend]);
 
     const username = useMemo(
       () => getUsername(friend.name),

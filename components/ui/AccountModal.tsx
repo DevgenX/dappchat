@@ -18,7 +18,7 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
   const { account, isLoading, createAccount } = useChatContext();
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-opacity-0">
+    <div className="fixed backdrop-blur-sm inset-0 flex items-center justify-center bg-opacity-0">
       {isLoading ? (
         <Loading />
       ) : (

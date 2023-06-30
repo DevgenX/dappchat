@@ -49,8 +49,8 @@ const Navbar = () => {
   }, [account]);
 
   return (
-    <div className="w-[80%] mx-auto px-4 sm:px-20">
-      <div className="flex items-center justify-between py-3 md:py-5">
+    <div className="w-[80%] mx-auto md:px-20">
+      <div className="flex items-center justify-between pr-3 md:pr-0 py-3 md:py-5">
         <Link href="/">
           <div className="flex items-center space-x-2 cursor-pointer">
             <Image
@@ -60,115 +60,84 @@ const Navbar = () => {
               height={50}
               width={50}
             />
-            <Heading
-              size="sm"
-              className="text-[20px] md:text-2xl text-black font-bold dark:text-white"
-            >
-              DappChat
-            </Heading>
+            <div className="hidden md:block">
+              <Heading
+                size="sm"
+                className="text-2xl text-black dark:text-white"
+              >
+                DappChat
+              </Heading>
+            </div>
           </div>
         </Link>
-        <div className="hidden md:flex items-center justify-center space-x-6 flex-grow font-bold">
-          {navLinks.map((item, index) => (
-            <Link
-              key={index}
-              href={item.page}
-              className="text-neutral-900 cursor-pointer hover:scale-105 dark:text-neutral-100"
-              onClick={() => setNavbar(false)}
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="md:text-lg">
+          <div
+            className={`flex-1 justify-self-center text-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+              navbar ? "block" : "hidden"
+            }`}
+          >
+            <div className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+              {navLinks.map((item, index) => (
+                <Link
+                  key={index}
+                  href={item.page}
+                  className="block lg:inline-block text-neutral-900 cursor-pointer hover:underline dark:text-neutral-100"
+                  onClick={() => setNavbar(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
-        <div className="items-center space-x-2 hidden md:flex">
+        <div className="flex flex-row space-x-2 text-[10px] md:text-lg">
           <Button
             onClick={handleOpenModal}
-            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
-            label={currentChain ? currentChain : "Set Network"}
-          />
-
-          <Button
-            onClick={() => connectWallet()}
-            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
-            label={account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
-          />
-
-          <Button
-            onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
-            className="bg-slate-100 p-2 rounded-xl hover:scale-105"
-            label={
-              currentTheme === "dark" ? (
-                <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
-              ) : (
-                <Icons.Moon size={30} className="h-7 w-7" />
-              )
-            }
-          />
-        </div>
-        <div className="md:hidden">
-          <Button
-            className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
-            onClick={() => setNavbar(!navbar)}
-            label={
-              navbar ? (
-                <Icons.X className="dark:text-white" size={30} />
-              ) : (
-                <Icons.Menu className="dark:text-white" size={30} />
-              )
-            }
-          />
-        </div>
-      </div>
-      <div
-        className={`flex justify-center text-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
-          navbar ? "block" : "hidden"
-        }`}
-      >
-        <div className="items-center justify-center md:hidden font-bold space-y-8 md:space-x-6 md:space-y-0">
-          {navLinks.map((item, index) => {
-            return (
-              <Link
-                key={index}
-                href={item.page}
-                className={
-                  "block lg:inline-block text-neutral-900 cursor-pointer hover:scale-105 dark:text-neutral-100"
-                }
-                onClick={() => setNavbar(!navbar)}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-          <Button
-            onClick={handleOpenModal}
-            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
+            className="rounded-xl text-white border  p-3 bg-teal-600 dark:bg-slate-700 border-none block hover:scale-105"
             label={currentChain ? currentChain : "Set Network"}
           />
           <Button
             onClick={() => connectWallet()}
-            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
-            label={account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
+            className="rounded-xl text-white border  p-3 bg-teal-600 dark:bg-blue-700 border-none block hover:scale-105"
+            label={account ? account.slice(0, 5) + ".." : "Connect Wallet"}
           />
-          <Button
-            onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
-            className="bg-slate-100 p-2 rounded-xl hover:scale-105"
-            label={
-              currentTheme === "dark" ? (
-                <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
-              ) : (
-                <Icons.Moon size={30} className="h-7 w-7" />
-              )
-            }
-          />
+          <div className="hidden md:flex">
+            <Button
+              onClick={() =>
+                setTheme(currentTheme === "dark" ? "light" : "dark")
+              }
+              className="bg-slate-100 p-2 rounded-xl hover:scale-105"
+              label={
+                currentTheme === "dark" ? (
+                  <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
+                ) : (
+                  <Icons.Moon size={30} className="h-7 w-7" />
+                )
+              }
+            />
+          </div>
+          <div className="md:hidden">
+            <Button
+              className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
+              onClick={() => setNavbar(!navbar)}
+              label={
+                navbar ? (
+                  <Icons.X className="dark:text-white" size={30} />
+                ) : (
+                  <Icons.Menu className="dark:text-white" size={30} />
+                )
+              }
+            />
+          </div>
         </div>
-        {openModal && (
-          <NetworkModal
-            selectedNetwork={selectedNetwork}
-            setSelectedNetwork={setSelectedNetwork}
-            setOpenModal={setOpenModal}
-          />
-        )}
       </div>
+      {openModal && (
+        <NetworkModal
+          selectedNetwork={selectedNetwork}
+          setSelectedNetwork={setSelectedNetwork}
+          setOpenModal={setOpenModal}
+        />
+      )}
     </div>
   );
 };

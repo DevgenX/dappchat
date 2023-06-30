@@ -27,13 +27,15 @@ const Dashboard = () => {
             <span className="font-bold text-light-gold">DappChat</span> is a
             decentralized protocol that allows wallet-to-wallet messaging
             powered by multi-chain interoperability.{" "}
-            <Link href="/tutorials" className="underline underline-offset-2">
-              Explore{" "}
-              <BsFillArrowUpRightCircleFill
-                size={20}
-                className="hover:-translate-y-1 transition-transform cursor-pointer inline-block z-10"
-              />
-            </Link>
+            <span className="mt-2  pr-3 block">
+              <Link href="/tutorials" className="underline underline-offset-2">
+                Explore
+                <BsFillArrowUpRightCircleFill
+                  size={20}
+                  className="hover:-translate-y-1 transition-transform cursor-pointer inline-block z-10"
+                />
+              </Link>
+            </span>
           </Paragraph>
           <button
             onClick={() => setOpenModal((prev) => !prev)}

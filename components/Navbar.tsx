@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import Heading from "@/components/common/Heading";
 
+import Heading from "@/components/common/Heading";
+import Button from "@/components/common/Button";
 import NetworkModal from "@/components/common/NetworkModal";
 import { Icons } from "@/components/Icons";
 import { useChatContext } from "@/context/DappChat.context";
@@ -80,41 +81,42 @@ const Navbar = () => {
           ))}
         </div>
         <div className="items-center space-x-2 hidden md:flex">
-          <button
+          <Button
             onClick={handleOpenModal}
             className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
-          >
-            {currentChain ? currentChain : "Set Network"}
-          </button>
+            label={currentChain ? currentChain : "Set Network"}
+          />
 
-          <button
+          <Button
             onClick={() => connectWallet()}
             className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
-          >
-            {account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
-          </button>
-          <button
+            label={account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
+          />
+
+          <Button
             onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
             className="bg-slate-100 p-2 rounded-xl hover:scale-105"
-          >
-            {currentTheme === "dark" ? (
-              <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
-            ) : (
-              <Icons.Moon size={30} className="h-7 w-7" />
-            )}
-          </button>
+            label={
+              currentTheme === "dark" ? (
+                <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
+              ) : (
+                <Icons.Moon size={30} className="h-7 w-7" />
+              )
+            }
+          />
         </div>
         <div className="md:hidden">
-          <button
+          <Button
             className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
             onClick={() => setNavbar(!navbar)}
-          >
-            {navbar ? (
-              <Icons.X className="dark:text-white" size={30} />
-            ) : (
-              <Icons.Menu className="dark:text-white" size={30} />
-            )}
-          </button>
+            label={
+              navbar ? (
+                <Icons.X className="dark:text-white" size={30} />
+              ) : (
+                <Icons.Menu className="dark:text-white" size={30} />
+              )
+            }
+          />
         </div>
       </div>
       <div
@@ -137,33 +139,27 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <button
+          <Button
             onClick={handleOpenModal}
-            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none  hover:scale-105"
-          >
-            {currentChain ? currentChain : "Set Network"}
-          </button>
-          <button
+            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
+            label={currentChain ? currentChain : "Set Network"}
+          />
+          <Button
             onClick={() => connectWallet()}
             className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
-          >
-            {account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
-          </button>
-          {currentTheme === "dark" ? (
-            <button
-              onClick={() => setTheme("light")}
-              className="bg-slate-100 p-2 rounded-xl"
-            >
-              <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
-            </button>
-          ) : (
-            <button
-              onClick={() => setTheme("dark")}
-              className="bg-slate-100 p-2 rounded-xl"
-            >
-              <Icons.Moon size={30} className="h-7 w-7" />
-            </button>
-          )}
+            label={account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
+          />
+          <Button
+            onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
+            className="bg-slate-100 p-2 rounded-xl hover:scale-105"
+            label={
+              currentTheme === "dark" ? (
+                <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
+              ) : (
+                <Icons.Moon size={30} className="h-7 w-7" />
+              )
+            }
+          />
         </div>
         {openModal && (
           <NetworkModal

@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import { Icons } from "@/components/Icons";
 import FriendModal from "@/components/common/FriendModal";
@@ -15,18 +15,13 @@ interface FriendListProps {
 
 const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { friendList, currentUser } = useChatContext();
-
-  const selectFriend = (user: string) => {
-    setSelectedUser(user);
-  };
+  const { username, friendList, currentUser } = useChatContext();
 
   const toggleBlockModal = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const getUserName = (username: string) => {
+  const getUserName = useCallback((username: string) => {
     if (!username) return;
 
     if (username.length > 8) {
@@ -34,7 +29,7 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
     } else {
       return username;
     }
-  };
+  }, []);
 
   return (
     <>
@@ -42,7 +37,7 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
         <div className="my-3 gap-2">
           <div className="flex justify-between border-b border-gray-500 mx-3">
             <div className="mb-3">
-              <h1>{getUserName(currentUser)}</h1>
+              <h1>{getUserName(username)}</h1>
             </div>
             <div className="flex">
               <div onClick={toggleBlockModal} className="hover:scale-125">
@@ -57,9 +52,10 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
             <FriendCard
               key={index}
               index={index}
-              selectFriend={selectFriend}
+              selectFriend={setSelectedUser}
               selectedUser={selectedUser}
               friend={friend}
+              getUsername={getUserName}
             />
           ))}
         </div>

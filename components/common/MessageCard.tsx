@@ -12,7 +12,7 @@ const MessageCard: FC<MessagesProps> = ({ message }) => {
   const { account } = useChatContext();
 
   return (
-    <div className="overflow-scroll">
+    <>
       <div
         className={
           message.sender.toLowerCase() === account.toLowerCase()
@@ -34,7 +34,7 @@ const MessageCard: FC<MessagesProps> = ({ message }) => {
           </p>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 export default MessageCard;

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useCallback, useMemo, memo } from "react";
 import Link from "next/link";
 
 import Avatar from "@/components/common/Avatar";
@@ -10,59 +10,54 @@ interface FriendProps {
   selectFriend: (name: string) => void;
   selectedUser: string;
   friend: FriendListType;
+  getUsername: (name: string) => string | undefined;
 }
 
-const FriendCard: FC<FriendProps> = ({
-  index,
-  selectFriend,
-  selectedUser,
-  friend,
-}) => {
-  const { getUserMessages } = useChatContext();
+const FriendCard: FC<FriendProps> = memo(
+  ({ index, selectFriend, selectedUser, friend, getUsername }) => {
+    const { getUserMessages } = useChatContext();
 
-  const handleSelectFriend = (friend: string) => {
-    selectFriend(friend);
-    getUserMessages(friend);
-  };
+    const handleSelectFriend = useCallback(async () => {
+      await getUserMessages(friend.friendkey);
+      selectFriend(friend.friendkey);
+    }, [friend.friendkey, getUserMessages, selectFriend]);
 
-  const getUserName = (username: string) => {
-    if (!username) return;
+    const username = useMemo(
+      () => getUsername(friend.name),
+      [friend.name, getUsername]
+    );
 
-    if (username.length > 8) {
-      return username.charAt(0).toUpperCase() + username.slice(1, 6);
-    } else {
-      return username;
-    }
-  };
-
-  return (
-    <Link
-      href={{
-        pathname: "/chat",
-        query: { name: `${friend.name}`, friendkey: `${friend.friendkey}` },
-      }}
-    >
-      <div
-        key={index}
-        onClick={() => handleSelectFriend(friend.friendkey)}
-        className={`border-b border-gray-500 hover:bg-slate-600 flex mb-2 items-center gap-2 ${
-          selectedUser?.trim().toLowerCase() ===
-          friend.name.trim().toLowerCase()
-            ? "bg-slate-600"
-            : ""
-        }`}
+    return (
+      <Link
+        href={{
+          pathname: "/chat",
+          query: { name: friend.name, friendkey: friend.friendkey },
+        }}
       >
-        {selectedUser === friend.name && (
-          <div className="w-1 bg-blue-500 h-12 rounded-r-md"></div>
-        )}
-        <div className="flex items-center">
-          <div className="flex gap-2 py-2 pl-4 items-center justify-center">
-            <Avatar id={index} />
-            <span>{getUserName(friend.name)}</span>
+        <div
+          key={index}
+          onClick={handleSelectFriend}
+          className={`border-b border-gray-500 hover:bg-slate-600 flex mb-2 items-center gap-2 ${
+            selectedUser?.trim().toLowerCase() ===
+            friend.name.trim().toLowerCase()
+              ? "bg-slate-600"
+              : ""
+          }`}
+        >
+          {selectedUser === friend.name && (
+            <div className="w-1 bg-blue-500 h-12 rounded-r-md"></div>
+          )}
+          <div className="flex items-center">
+            <div className="flex gap-2 py-2 pl-4 items-center justify-center">
+              <Avatar id={index} />
+              <span>{username}</span>
+            </div>
           </div>
         </div>
-      </div>
-    </Link>
-  );
-};
+      </Link>
+    );
+  }
+);
+
+FriendCard.displayName = "FriendCard";
 export default FriendCard;

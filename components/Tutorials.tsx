@@ -3,7 +3,6 @@ import Paragraph from "@/components/common/Paragraph";
 import Image from "next/image";
 import Link from "next/link";
 import Medium from "@/public/assets/Medium.png";
-import Head from "next/head";
 
 const Tutorials = () => {
   return (

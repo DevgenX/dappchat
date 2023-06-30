@@ -139,27 +139,31 @@ const Navbar = () => {
               </Link>
             );
           })}
-          <Button
-            onClick={handleOpenModal}
-            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
-            label={currentChain ? currentChain : "Set Network"}
-          />
-          <Button
-            onClick={() => connectWallet()}
-            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
-            label={account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
-          />
-          <Button
-            onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
-            className="bg-slate-100 p-2 rounded-xl hover:scale-105"
-            label={
-              currentTheme === "dark" ? (
-                <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
-              ) : (
-                <Icons.Moon size={30} className="h-7 w-7" />
-              )
-            }
-          />
+          <div className="flex flex-col items-center justify-center">
+            <Button
+              onClick={handleOpenModal}
+              className="rounded-xl justify-center text-white border mb-3 font-bold p-3 bg-teal-600 dark:bg-blue-600 border-none block hover:scale-105"
+              label={currentChain ? currentChain : "Set Network"}
+            />
+            <Button
+              onClick={() => connectWallet()}
+              className="rounded-xl text-white border font-bold p-3 bg-teal-600 mb-3 dark:bg-blue-600 border-none block hover:scale-105"
+              label={account ? account.slice(0, 5) + ".." : "CONNECT WALLET"}
+            />
+            <Button
+              onClick={() =>
+                setTheme(currentTheme === "dark" ? "light" : "dark")
+              }
+              className="bg-slate-100 p-2 rounded-xl hover:scale-105"
+              label={
+                currentTheme === "dark" ? (
+                  <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
+                ) : (
+                  <Icons.Moon size={30} className="h-7 w-7" />
+                )
+              }
+            />
+          </div>
         </div>
         {openModal && (
           <NetworkModal

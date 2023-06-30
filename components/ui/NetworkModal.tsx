@@ -74,7 +74,7 @@ const NetworkModal: FC<ModalProps> = ({
           className="absolute top-3 right-3"
           onClick={() => setOpenModal(false)}
         >
-          <Icons.X />
+          <Icons.X className="text-white" />
         </button>
         <div className="grid grid-cols-2 md:grid-cols-2">
           {options.map((chain, index) => (
@@ -82,7 +82,7 @@ const NetworkModal: FC<ModalProps> = ({
               className="flex flex-col items-center justify-center p-5"
               key={index}
             >
-              <h3 className="pb-2 text-center">{chain.network}</h3>
+              <h3 className="pb-2 text-center text-white">{chain.network}</h3>
               <div
                 className="flex items-center justify-center"
                 onClick={() => setSelectedNetwork(chain.network)}

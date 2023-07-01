@@ -8,9 +8,6 @@ import {
   binanceChain,
   polyChain,
   sepoliaChain,
-  bscTest,
-  ethChain,
-  hardChain,
 } from "@/lib/ChainChange";
 
 import Image from "next/image";

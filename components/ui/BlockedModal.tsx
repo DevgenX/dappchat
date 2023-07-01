@@ -1,9 +1,8 @@
 import { FC, SetStateAction } from "react";
 
+import Icons from "@/components/Icons";
 import Heading from "@/components/common/Heading";
 import Paragraph from "@/components/common/Paragraph";
-import Icons from "@/components/Icons";
-import Button from "@/components/common/Button";
 
 import { useChatContext } from "@/context/DappChat.context";
 

@@ -12,6 +12,7 @@ module.exports = {
     },
 
     extend: {
+      screens: { sm: "480px", md: "768px", lg: "976px", xl: "1440pd" },
       colors: {
         "light-gold": "#f5bc51",
         "dark-gold": "#533519",

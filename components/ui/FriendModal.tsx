@@ -1,10 +1,10 @@
 "use client";
 import { useState, FC, SetStateAction } from "react";
 
-import Heading from "@/components/common/Heading";
-import Loading from "@/components/common/Loading";
-import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
+import Button from "@/components/common/Button";
+import Loading from "@/components/common/Loading";
+import Heading from "@/components/common/Heading";
 
 import { useChatContext } from "@/context/DappChat.context";
 

@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="mx-auto p-4 mb-2 text-black text-center flex flex-col dark:text-neutral-100 md:flex-row md:justify-between">
         <div className="text-black dark:text-white mb-3">
           Made with <span className="text-red-500">❤</span> by{" "}
-          <span className="font-bold text-light-gold">Seb</span>
+          <span className="font-bold text-gradient-1">Seb</span>
         </div>
         <div className="flex flex-row items-center justify-center space-x-2">
           <Link

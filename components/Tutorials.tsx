@@ -1,16 +1,16 @@
-import Heading from "@/components/common/Heading";
-import Paragraph from "@/components/common/Paragraph";
 import Image from "next/image";
 import Link from "next/link";
+
+import Heading from "@/components/common/Heading";
+import Paragraph from "@/components/common/Paragraph";
 import Medium from "@/public/assets/Medium.png";
-import Head from "next/head";
 
 const Tutorials = () => {
   return (
-    <div className="mx-auto container flex flex-col justify-center items-center">
+    <div className="mx-auto container flex flex-col justify-center items-center mt-10">
       <div className="px-5 flex flex-col items-center">
         <Heading size="default">Experience Blockchain Messaging</Heading>
-        <Paragraph className="mt-5 px-5 font-extralight">
+        <Paragraph className="mt-5 px-5 font-extralight text-black dark:text-white">
           Ready to explore the decentralized way of messaging?
         </Paragraph>
         <hr className="w-[60%] h-0.5 mx-auto mt-3 bg-neutral-400 border-0 dark:bg-neutral-200 " />

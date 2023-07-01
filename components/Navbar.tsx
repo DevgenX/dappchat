@@ -13,6 +13,7 @@ import { Icons } from "@/components/Icons";
 import { useChatContext } from "@/context/DappChat.context";
 import { navLinks } from "@/helpers/NavLinks";
 import { getCurrentChain } from "@/lib/Api";
+
 import AnonymousIcon from "@/public/assets/anonymous.png";
 
 const Navbar = () => {
@@ -49,7 +50,7 @@ const Navbar = () => {
   }, [account]);
 
   return (
-    <div className="w-[80%] mx-auto md:px-20">
+    <div className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-40 shadow bg-white dark:bg-slate-900">
       <div className="flex items-center justify-between pr-3 md:pr-0 py-3 md:py-5">
         <Link href="/">
           <div className="flex items-center space-x-2 cursor-pointer">
@@ -65,7 +66,7 @@ const Navbar = () => {
                 size="sm"
                 className="text-2xl text-black dark:text-white"
               >
-                DappChat
+                Dapp<span className="text-light-gold">Chat</span>
               </Heading>
             </div>
           </div>
@@ -75,7 +76,7 @@ const Navbar = () => {
             <Link
               key={index}
               href={item.page}
-              className="text-neutral-900 cursor-pointer hover:scale-105 dark:text-neutral-100"
+              className="text-black cursor-pointer hover:-translate-y-1 transition-transform dark:text-neutral-100"
               onClick={() => setNavbar(false)}
             >
               {item.label}
@@ -124,7 +125,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`flex justify-center text-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+        className={`flex justify-center text-center pb-3 mt-8 md:block z-50 md:pb-0 md:mt-0 ${
           navbar ? "block" : "hidden"
         }`}
       >
@@ -135,7 +136,7 @@ const Navbar = () => {
                 key={index}
                 href={item.page}
                 className={
-                  "block lg:inline-block text-neutral-900 cursor-pointer hover:scale-105 dark:text-neutral-100"
+                  "block lg:inline-block text-black cursor-pointer hover:scale-105 dark:text-neutral-100"
                 }
                 onClick={() => setNavbar(!navbar)}
               >
@@ -143,6 +144,21 @@ const Navbar = () => {
               </Link>
             );
           })}
+          <div className="py-2">
+            <Button
+              onClick={() =>
+                setTheme(currentTheme === "dark" ? "light" : "dark")
+              }
+              className="bg-slate-100 p-2 rounded-xl hover:scale-105"
+              label={
+                currentTheme === "dark" ? (
+                  <Icons.Sun size={30} className="h-7 w-7 dark:text-black" />
+                ) : (
+                  <Icons.Moon size={30} className="h-7 w-7" />
+                )
+              }
+            />
+          </div>
         </div>
       </div>
       {openModal && (

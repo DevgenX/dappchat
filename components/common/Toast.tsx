@@ -1,8 +1,8 @@
 "use client";
-
-import { Icons } from "@/components/Icons";
-import { cn } from "@/lib/utils";
 import * as React from "react";
+
+import { cn } from "@/lib/utils";
+import { Icons } from "@/components/Icons";
 import hotToast, { Toaster as HotToaster } from "react-hot-toast";
 
 export const Toaster = HotToaster;

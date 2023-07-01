@@ -17,25 +17,23 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="home min-h-screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12]">
-        <div className="flex flex-col gap-4 mb-10">
+      <div className="home min-h-screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12] mt-10">
+        <div className="flex flex-col gap-4 mb-10 mr-10">
           <Heading className="text-white text-5xl dark:text-white">
             Multi-chain <br /> decentralized <br /> messaging
           </Heading>
-          <Paragraph className="max-w-md md:text-left text-gray-200">
+          <Paragraph className="max-w-md md:text-left  text-gray-200">
             Message anyone from the blockchain anonymously.{" "}
             <span className="font-bold text-light-gold">DappChat</span> is a
             decentralized protocol that allows wallet-to-wallet messaging
             powered by multi-chain interoperability.{" "}
-            <span className="mt-2  pr-3 block">
-              <Link href="/tutorials" className="underline underline-offset-2">
-                Explore
-                <BsFillArrowUpRightCircleFill
-                  size={20}
-                  className="hover:-translate-y-1 transition-transform cursor-pointer inline-block z-10"
-                />
-              </Link>
-            </span>
+            <Link href="/tutorials" className="underline underline-offset-2">
+              Learn
+              <BsFillArrowUpRightCircleFill
+                size={20}
+                className="hover:-translate-y-1 transition-transform cursor-pointer inline-block z-10"
+              />
+            </Link>
           </Paragraph>
           <button
             onClick={() => setOpenModal((prev) => !prev)}

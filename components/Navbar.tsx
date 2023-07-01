@@ -50,7 +50,7 @@ const Navbar = () => {
   }, [account]);
 
   return (
-    <div className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-40 shadow bg-white dark:bg-slate-900">
+    <div className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-40 bg-white dark:bg-slate-900">
       <div className="flex items-center justify-between pr-3 md:pr-0 py-3 md:py-5">
         <Link href="/">
           <div className="flex items-center space-x-2 cursor-pointer">

@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="home min-h-screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12] mt-10">
+      <div className="home min-h-screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12] mt-20 md:mt-10">
         <div className="flex flex-col gap-4 mb-10 mr-10">
           <Heading className="text-white text-5xl dark:text-white">
             Multi-chain <br /> decentralized <br /> messaging

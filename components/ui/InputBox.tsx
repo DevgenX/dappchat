@@ -1,14 +1,6 @@
 "use client";
 
-import {
-  FC,
-  useState,
-  useEffect,
-  ChangeEvent,
-  useMemo,
-  useCallback,
-  useRef,
-} from "react";
+import { FC, useState, useEffect, useCallback, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 
 import { Icons } from "@/components/Icons";

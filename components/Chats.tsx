@@ -3,13 +3,16 @@
 import { FC, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import InputBox from "@/components/ui/InputBox";
-import FriendList from "@/components/FriendList";
-import EmptyMessage from "./common/EmptyMessage";
-import { useChatContext } from "@/context/DappChat.context";
 import Icons from "@/components/Icons";
 import Messages from "@/components/Messages";
+import FriendList from "@/components/FriendList";
+import Announcement from "@/components/Announcement";
+
+import InputBox from "@/components/ui/InputBox";
 import Loading from "@/components/common/Loading";
+import EmptyMessage from "@/components/common/EmptyMessage";
+
+import { useChatContext } from "@/context/DappChat.context";
 
 const Chats: FC = () => {
   const [selectedUser, setSelectedUser] = useState<string>("");
@@ -18,46 +21,57 @@ const Chats: FC = () => {
   const { handleSendMessage, isLoading, handleBlockUser } = useChatContext();
 
   return (
-    <div className="flex flex-row min-h-screen">
-      <div className="container mx-auto">
-        <div className="mx-5 md:min-h-[70%] md:mx-auto md:max-w-5xl md:flex md:flex-row">
-          <FriendList
-            selectedUser={selectedUser}
-            setSelectedUser={setSelectedUser}
-          />
-          <div className="w-full md:w-2/3  text-black md:rounded-r-lg bg-slate-400">
-            {isLoading ? (
-              <Loading />
-            ) : (
-              <div className="h-full  flex flex-col">
-                <div className="flex text-slate-800 justify-between px-2 py-2">
-                  {params?.get("friendkey") ? (
-                    <>
-                      <p>Getting spammed by this user?</p>
-                      <Icons.Ban
-                        size={17}
-                        className="self-center text-red-400 cursor-pointer hover:scale-105"
-                        onClick={() =>
-                          handleBlockUser(params?.get("friendkey") || "")
-                        }
-                      />
-                    </>
-                  ) : (
-                    <p className="text-stone-800">
-                      Select a friend to start a conversation
-                    </p>
-                  )}
+    <>
+      <div className="mb-5 flex justify-center">
+        <Announcement />
+      </div>
+      <div className="flex flex-row min-h-screen">
+        <div className="container mx-auto">
+          <div className="mx-5 md:min-h-[70%] md:mx-auto md:max-w-5xl md:flex md:flex-row">
+            <FriendList
+              selectedUser={selectedUser}
+              setSelectedUser={setSelectedUser}
+            />
+
+            <div className="w-full md:w-2/3 text-black md:rounded-r-lg bg-slate-400">
+              {isLoading ? (
+                <Loading />
+              ) : (
+                <div className="h-full flex flex-col">
+                  <div className="flex text-slate-800 justify-between px-2 py-2">
+                    {params?.get("friendkey") ? (
+                      <>
+                        <p>Getting spammed by this user?</p>
+                        <Icons.Ban
+                          size={17}
+                          className="self-center text-red-400 cursor-pointer hover:scale-105"
+                          onClick={() =>
+                            handleBlockUser(params?.get("friendkey") || "")
+                          }
+                        />
+                      </>
+                    ) : (
+                      <p className="text-gray-200">
+                        Select a <span className="text-yellow-200">friend</span>{" "}
+                        to start a conversation
+                      </p>
+                    )}
+                  </div>
+                  <div className="overflow-scroll flex-grow max-h-[700px] bg-slate-200 p-4 min-h-[700px]">
+                    {selectedUser ? (
+                      <Messages />
+                    ) : (
+                      <div>{<EmptyMessage />}</div>
+                    )}
+                  </div>
+                  <InputBox sendMessage={handleSendMessage} />
                 </div>
-                <div className="overflow-scroll flex-grow max-h-[700px] bg-slate-200 p-4 min-h-[700px]">
-                  {selectedUser ? <Messages /> : <div>{<EmptyMessage />}</div>}
-                </div>
-                <InputBox sendMessage={handleSendMessage} />
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

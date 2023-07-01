@@ -17,8 +17,8 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="home min-h-screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12]">
-        <div className="flex flex-col gap-4 mb-10">
+      <div className="home min-h-screen flex flex-col md:flex-row justify-center items-center md:space-y-12 md:space-x-[12] mt-20 md:mt-10">
+        <div className="flex flex-col gap-4 mb-10 mx-5 md:mr-10">
           <Heading className="text-white text-5xl dark:text-white">
             Multi-chain <br /> decentralized <br /> messaging
           </Heading>
@@ -27,13 +27,6 @@ const Dashboard = () => {
             <span className="font-bold text-light-gold">DappChat</span> is a
             decentralized protocol that allows wallet-to-wallet messaging
             powered by multi-chain interoperability.{" "}
-            <Link href="/tutorials" className="underline underline-offset-2">
-              Explore{" "}
-              <BsFillArrowUpRightCircleFill
-                size={20}
-                className="hover:-translate-y-1 transition-transform cursor-pointer inline-block z-10"
-              />
-            </Link>
           </Paragraph>
           <button
             onClick={() => setOpenModal((prev) => !prev)}

@@ -1,10 +1,12 @@
 import React, { FC } from "react";
-import { FaUserSecret, FaUserFriends, FaPaperPlane } from "react-icons/fa";
-import { MdOutlineBlock } from "react-icons/md";
+
 import { BsLock } from "react-icons/bs";
 import { GiChaingun } from "react-icons/gi";
-import FeaturesCard from "@/components/ui/FeaturesCard";
+import { MdOutlineBlock } from "react-icons/md";
+import { FaUserSecret, FaUserFriends, FaPaperPlane } from "react-icons/fa";
+
 import { FeaturesProps } from "@/types/types";
+import FeaturesCard from "@/components/ui/FeaturesCard";
 
 const features: FeaturesProps[] = [
   {

@@ -35,8 +35,6 @@ export const ChatProvider = ({ children }: any) => {
 
   const router = useRouter();
 
-  console.log(currentUser);
-
   const fetchUserData = async () => {
     try {
       if (!account) return;

@@ -1,18 +1,18 @@
 "use client";
-
 import { useState } from "react";
+
 import Heading from "@/components/common/Heading";
 import Paragraph from "@/components/common/Paragraph";
 import UsersCard from "@/components/ui/UsersCard";
-import { useChatContext } from "@/context/DappChat.context";
 import AccountModal from "@/components/ui/AccountModal";
+import { useChatContext } from "@/context/DappChat.context";
 
 const Users = () => {
   const { userList, currentUser } = useChatContext();
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   return (
-    <div className="container mx-auto min-h-screen">
+    <div className="container mx-auto min-h-screen mt-10">
       <div className="flex flex-col justify-center items-center">
         <Heading size="lg">Meet and Add Friends</Heading>
         <Paragraph className="m-5 font-extralight text-black dark:text-white">

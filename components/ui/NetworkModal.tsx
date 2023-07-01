@@ -8,14 +8,12 @@ import {
   binanceChain,
   polyChain,
   sepoliaChain,
-  bscTest,
-  ethChain,
-  hardChain,
 } from "@/lib/ChainChange";
 
 import Image from "next/image";
 import networks from "@/public/logo";
 import Icons from "@/components/Icons";
+import Heading from "@/components/common/Heading";
 
 interface ModalProps {
   selectedNetwork: string;
@@ -68,7 +66,7 @@ const NetworkModal: FC<ModalProps> = ({
   }, [selectedNetwork]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-opacity-0 z-10">
+    <div className="fixed backdrop-blur-sm inset-0 flex items-center justify-center bg-opacity-0 z-10">
       <div className="absolute bg-gray-800 rounded-md p-8">
         <button
           className="absolute top-3 right-3"
@@ -76,6 +74,9 @@ const NetworkModal: FC<ModalProps> = ({
         >
           <Icons.X className="text-white" />
         </button>
+        <Heading size="sm" className="m-3">
+          Change Network
+        </Heading>
         <div className="grid grid-cols-2 md:grid-cols-2">
           {options.map((chain, index) => (
             <div

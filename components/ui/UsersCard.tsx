@@ -4,8 +4,8 @@ import { FC, useState } from "react";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 
 import Avatar from "@/components/common/Avatar";
-import { UserList } from "@/context/ChatTypes";
 import FriendModal from "@/components/ui/FriendModal";
+import { UserList } from "@/context/ChatTypes";
 
 interface UsersCardType {
   user: UserList;

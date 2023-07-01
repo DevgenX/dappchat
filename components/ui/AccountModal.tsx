@@ -1,10 +1,10 @@
 "use client";
 import { useState, FC, SetStateAction } from "react";
 
-import Heading from "@/components/common/Heading";
-import Loading from "@/components/common/Loading";
-import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
+import Button from "@/components/common/Button";
+import Loading from "@/components/common/Loading";
+import Heading from "@/components/common/Heading";
 
 import { useChatContext } from "@/context/DappChat.context";
 
@@ -18,7 +18,7 @@ const AccountModal: FC<ModalProps> = ({ setOpenModal }) => {
   const { account, isLoading, createAccount } = useChatContext();
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-opacity-0">
+    <div className="fixed backdrop-blur-sm inset-0 flex items-center justify-center bg-opacity-0">
       {isLoading ? (
         <Loading />
       ) : (

@@ -32,6 +32,7 @@ export const ChatProvider = ({ children }: any) => {
   const [currentUser, setCurrentUser] = useState<string>("");
   const [registeredUser, setRegisteredUser] = useState<string>("");
   const [input, setInput] = useState<string>("");
+  const [checkMetamask, setCheckMetamask] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -60,11 +61,12 @@ export const ChatProvider = ({ children }: any) => {
   const checkWalletConnection = async () => {
     try {
       if (!window.ethereum) {
-        return;
+        setCheckMetamask(false);
       } else {
         const walletAccounts = await window.ethereum.request({
           method: "eth_accounts",
         });
+        setCheckMetamask(true);
         if (walletAccounts.length) {
           setAccount(walletAccounts[0]);
         }
@@ -87,11 +89,17 @@ export const ChatProvider = ({ children }: any) => {
 
   const connectWallet = async () => {
     try {
+      if (!window.ethereum) {
+        setCheckMetamask(false);
+        return;
+      }
+
       await window.ethereum.enable();
       const walletAccounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
       setAccount(walletAccounts[0]);
+      setCheckMetamask(true);
     } catch (e) {
       toast({
         title: "Wallet is not connected",
@@ -323,6 +331,7 @@ export const ChatProvider = ({ children }: any) => {
     <ChatContext.Provider
       value={{
         isLoading,
+        checkMetamask,
         username,
         account,
         friendList,

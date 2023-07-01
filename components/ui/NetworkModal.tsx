@@ -75,7 +75,7 @@ const NetworkModal: FC<ModalProps> = ({
           <Icons.X className="text-white" />
         </button>
         <Heading size="sm" className="m-3">
-          Change Network
+          Select Chain
         </Heading>
         <div className="grid grid-cols-2 md:grid-cols-2">
           {options.map((chain, index) => (

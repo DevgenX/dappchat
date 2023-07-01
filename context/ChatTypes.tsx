@@ -22,7 +22,7 @@ export interface InitialStateInterface {
   messages: MessagesType[];
   userList: UserList[];
   blockedUsers: string[];
-
+  checkMetamask: boolean;
   setCurrentUser: React.Dispatch<React.SetStateAction<string>>;
   input: string;
   setInput: React.Dispatch<React.SetStateAction<string>>;
@@ -51,6 +51,7 @@ export interface InitialStateInterface {
 
 export const initialState: InitialStateInterface = {
   isLoading: false,
+  checkMetamask: false,
   account: "",
   username: "",
   friendList: [],

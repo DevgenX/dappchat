@@ -20,7 +20,7 @@ const Navbar = () => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   const [navbar, setNavbar] = useState<boolean>(false);
-  const { connectWallet, getUsername, account, setCurrentUser, currentUser } =
+  const { connectWallet, getUsername, account, setCurrentUser, checkMetamask } =
     useChatContext();
 
   const [selectedNetwork, setSelectedNetwork] = useState<string>("");
@@ -92,7 +92,17 @@ const Navbar = () => {
           <Button
             onClick={() => connectWallet()}
             className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-700 border-none block hover:scale-105"
-            label={account ? account.slice(0, 5) + ".." : "Connect Wallet"}
+            label={
+              account ? (
+                account.slice(0, 5) + ".."
+              ) : checkMetamask ? (
+                "Connnect Wallet"
+              ) : (
+                <Link href="https://metamask.io/download/">
+                  Install metamask
+                </Link>
+              )
+            }
           />
           <div className="hidden md:flex">
             <Button
@@ -173,4 +183,3 @@ const Navbar = () => {
 };
 
 export default dynamic(() => Promise.resolve(Navbar), { ssr: false });
-

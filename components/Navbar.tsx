@@ -86,12 +86,12 @@ const Navbar = () => {
         <div className="flex flex-row space-x-2 text-[10px] md:text-lg">
           <Button
             onClick={handleOpenModal}
-            className="rounded-xl text-white border  p-3 bg-teal-600 dark:bg-slate-700 border-none block hover:scale-105"
+            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-slate-700 border-none block hover:scale-105"
             label={currentChain ? currentChain : "Set Network"}
           />
           <Button
             onClick={() => connectWallet()}
-            className="rounded-xl text-white border  p-3 bg-teal-600 dark:bg-blue-700 border-none block hover:scale-105"
+            className="rounded-xl text-white border font-bold p-3 bg-teal-600 dark:bg-blue-700 border-none block hover:scale-105"
             label={account ? account.slice(0, 5) + ".." : "Connect Wallet"}
           />
           <div className="hidden md:flex">

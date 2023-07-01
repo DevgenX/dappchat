@@ -35,8 +35,8 @@ const FriendList: FC<FriendListProps> = ({ selectedUser, setSelectedUser }) => {
     <>
       <div className="bg-slate-500 p-2 md:w-1/3 text-white md:rounded-l-lg mb-4 md:mb-0 relative">
         <div className="my-3 gap-2">
-          <div className="flex justify-between border-b border-gray-500 mx-3">
-            <div className="mb-3">
+          <div className="flex justify-between border-b border-gray-400 mb-2 mx-3">
+            <div className="mb-2">
               <h1>{getUserName(username)}</h1>
             </div>
             <div className="flex">

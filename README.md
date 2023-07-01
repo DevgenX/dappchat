@@ -1,6 +1,7 @@
 # DappChat
 
-<img width="1261" alt="Screenshot 2023-06-30 at 3 35 50 PM" src="https://github.com/DevgenX/dappchat/assets/107775878/f07abf8f-2732-4a1b-a6ed-e7319894cf1e">
+![Screenshot 2023-07-01 at 4 39 20 PM](https://github.com/DevgenX/dappchat/assets/107775878/a257c129-6f24-4467-a208-eac92d8b534c)
+
 
 DappChat is a decentralized messaging application that enables users to communicate securely and privately on the blockchain. With wallet-to-wallet communication, users can experience true decentralization and take control of their conversations. This readme provides an overview of the features and functionalities offered by DappChat.
 

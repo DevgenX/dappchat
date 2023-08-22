@@ -21,3 +21,12 @@
 .three-d {
   text-shadow: none;
 }
+
+.overflow-y-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.overflow-y-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

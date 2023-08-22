@@ -28,6 +28,7 @@ export interface InitialStateInterface {
   setInput: React.Dispatch<React.SetStateAction<string>>;
   currentUser: string;
   connectWallet: () => Promise<void> | "";
+  setMessages: React.Dispatch<React.SetStateAction<MessagesType[]>>;
   createAccount: ({ name }: { name: string }) => Promise<void> | "";
   getUserMessages: (address: string) => Promise<void> | [];
   getUsername: (address: string) => Promise<string | undefined> | "";
@@ -59,6 +60,7 @@ export const initialState: InitialStateInterface = {
   userList: [],
   blockedUsers: [],
   currentUser: "",
+  setMessages: () => "",
   setCurrentUser: () => "",
   input: "",
   setInput: () => "",

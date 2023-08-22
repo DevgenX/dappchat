@@ -337,6 +337,7 @@ export const ChatProvider = ({ children }: any) => {
         friendList,
         messages,
         setCurrentUser,
+        setMessages,
         currentUser,
         input,
         setInput,

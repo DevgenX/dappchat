@@ -18,7 +18,38 @@ const Chats: FC = () => {
   const [selectedUser, setSelectedUser] = useState<string>("");
   const params = useSearchParams();
 
-  const { handleSendMessage, isLoading, handleBlockUser } = useChatContext();
+  const {
+    handleSendMessage,
+    isLoading,
+    handleBlockUser,
+    setMessages,
+    messages,
+  } = useChatContext();
+
+  // useEffect(() => {
+  //   const handleEvent = (error: Error, event: any) => {
+  //     if (!error) {
+  //       // Event triggered, handle the event
+  //       const { sender, recipient, content } = event.returnValues;
+  //       console.log(event);
+  //       // Trigger a re-render
+  //       setMessages([...messages, event]);
+  //     }
+  //   };
+
+  //   const subscribeToEvent = async () => {
+  //     const contract = await connectToSmartContract();
+  //     // Subscribe to the event
+  //     contract.on("MessageSent", handleEvent);
+
+  //     // Clean up the event subscription when the component unmounts
+  //     return () => {
+  //       contract.off("MessageSent", handleEvent);
+  //     };
+  //   };
+
+  //   subscribeToEvent();
+  // }, []);
 
   return (
     <>
@@ -37,7 +68,7 @@ const Chats: FC = () => {
               {isLoading ? (
                 <Loading />
               ) : (
-                <div className="h-full flex flex-col">
+                <div className="h-full flex flex-col w-full">
                   <div className="flex text-slate-800 justify-between px-2 py-2">
                     {params?.get("friendkey") ? (
                       <>
@@ -57,7 +88,7 @@ const Chats: FC = () => {
                       </p>
                     )}
                   </div>
-                  <div className="overflow-scroll flex-grow max-h-[700px] bg-slate-200 p-4 min-h-[700px]">
+                  <div className="overflow-y-scroll flex-grow max-h-[700px] bg-slate-200 p-4 min-h-[600px]">
                     {selectedUser ? (
                       <Messages />
                     ) : (

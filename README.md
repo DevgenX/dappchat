@@ -25,8 +25,8 @@ To maintain a clean and spam-free messaging experience, DappChat empowers users 
 Privacy is a fundamental aspect of DappChat. All conversations and data are securely stored on the blockchain, leveraging its inherent security features. Additionally, DappChat encrypts all messages by default, further safeguarding the privacy of users' conversations and ensuring that only the intended recipients can access the content.
 
 ## Additional Resources
-### Medium: https://medium.com/@seb_5882
-### YouTube: https://www.youtube.com/watch?v=mU5GEzbzZoA&t=1s
+### Medium: [https://medium.com/@seb_5882](https://medium.com/@seb_5882/dappchat-a-multi-chain-and-fully-on-chain-decentralized-messaging-61d7bd3dcef3)
+### YouTube: [https://www.youtube.com/watch?v=mU5GEzbzZoA&t=1s](https://www.youtube.com/watch?v=jnu7UGOoiEM)
 For more information, updates, and news about DappChat, please refer to the provided Medium and YouTube links.
 
 Thank you for choosing DappChat for your decentralized messaging needs! If you have any questions or require further assistance, please don't hesitate to reach out to our support team.
